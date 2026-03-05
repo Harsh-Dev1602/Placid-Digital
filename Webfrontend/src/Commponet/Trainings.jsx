@@ -5,6 +5,12 @@ import axios from "axios";
 function Trainings() {
   const [courses, setCourses] = useState([]);
    const navigate = useNavigate();
+    const scrollTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    };
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -50,7 +56,7 @@ function Trainings() {
                 <button onClick={()=> navigate(`/course-details/${c._id}/${c.courseName}`)}
                   className="bg-[#154979] px-10 py-3 rounded-lg text-18 font-medium border text-white border-[#154979] hover:text-[#154979] hover:bg-transparent hover:cursor-pointer transition duration-300 ease-in-out"
                 >
-                  View Details
+                     <span onClick={scrollTop}> View Details</span> 
                 </button>
               </div>
             </div>
