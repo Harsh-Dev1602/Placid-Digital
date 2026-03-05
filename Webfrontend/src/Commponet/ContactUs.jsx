@@ -1,4 +1,5 @@
 import React from 'react'
+import Img from "../../public/Img.png";
 
 function ContactUs() {
     return (
@@ -9,7 +10,7 @@ function ContactUs() {
                     <h1 className="text-[#154979] font-bold italic font-mono">Contact Us</h1>
                     <p className="mt-2 ">Let us help your business
                         to move forward.</p>
-                    <img src="../../public/Img.png" />
+                    <img src={Img} />
                 </div>
 
                 <section id='contact'>

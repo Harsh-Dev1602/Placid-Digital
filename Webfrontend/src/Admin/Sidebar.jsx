@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import Logo from "../../public/placidlogo.png";
 
 function Sidebar() {
     const AdminMenu = [
@@ -32,7 +33,7 @@ function Sidebar() {
             <div className="group relative shadow-lg p-5 w-96   flex flex-col justify-between items-center">
                 <div className="w-full">
                     <div className=' border-b-2 pb-5 border-b-[#154979] flex justify-center items-center gap-2'>
-                        <img src="../../public/placidlogo.png" className='w-30 h-auto rounded-2xl ' />
+                        <img src={Logo} className='w-30 h-auto rounded-2xl ' />
 
                     </div>
                     <ul className='mt-5 flex flex-col p-2 gap-2'>
