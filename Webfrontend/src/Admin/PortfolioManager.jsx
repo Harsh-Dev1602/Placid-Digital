@@ -10,9 +10,11 @@ function PortfolioManager() {
     const fetchItems = async () => {
       try {
         const res = await axios.get('/sfs-app/admin/all-portfolio')
-        setItems(res.data || [])
+        const items = Array.isArray(res.data) ? res.data : []
+        setItems(items)
       } catch (err) {
         console.log(err.response?.data?.message || err.message || 'Failed to fetch portfolio items')
+        setItems([])
       }
     }
     fetchItems()

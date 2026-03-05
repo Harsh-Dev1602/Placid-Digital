@@ -10,9 +10,16 @@ function CoursePageManager() {
     const fetchPages = async () => {
       try {
         const res = await axios.get('/sfs-app/course/all-pages')
-        setPages(res.data || [])
+        const pages = Array.isArray(res.data) ? res.data : []
+        // Ensure each page has courseDocuments as an array
+        const validPages = pages.map(p => ({
+          ...p,
+          courseDocuments: Array.isArray(p.courseDocuments) ? p.courseDocuments : []
+        }))
+        setPages(validPages)
       } catch (err) {
         console.error('Failed to load pages', err)
+        setPages([])
       }
     }
     fetchPages()

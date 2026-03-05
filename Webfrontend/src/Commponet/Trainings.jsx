@@ -10,9 +10,11 @@ function Trainings() {
     const fetchCourses = async () => {
       try {
         const res = await axios.get("/sfs-app/course/all-course");
-        setCourses(res.data || []);
+        const courses = Array.isArray(res.data) ? res.data : [];
+        setCourses(courses);
       } catch (err) {
         console.error("failed to load courses", err.response?.data?.message || err.message);
+        setCourses([]);
       }
     };
 

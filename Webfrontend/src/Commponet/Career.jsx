@@ -32,9 +32,11 @@ function Career() {
     const fetchJobs = async () => {
       try {
         const res = await axios.get('/sfs-app/admin/all-job');
-        setJobs(res.data || [])
+        const jobs = Array.isArray(res.data) ? res.data : []
+        setJobs(jobs)
       } catch (err) {
         console.error('Failed to fetch jobs', err)
+        setJobs([])
       }
     }
     fetchJobs()

@@ -8,9 +8,11 @@ function Portfolio() {
         const fetch = async () => {
             try {
                 const res = await axios.get('/sfs-app/admin/all-portfolio')
-                setProjects(res.data || [])
+                const projects = Array.isArray(res.data) ? res.data : []
+                setProjects(projects)
             } catch (err) {
                 console.error('Portfolio fetch failed', err.response?.data?.message || err.message)
+                setProjects([])
             }
         }
         fetch()

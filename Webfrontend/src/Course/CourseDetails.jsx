@@ -12,10 +12,16 @@ function CourseDetails() {
         const fetchCourse = async () => {
             try {
                 const res = await axios.get(`/sfs-app/course/course-details/${id}`);
-                setCourse(res.data);
+                const data = res.data || {};
+                // Ensure coursePage is always an array
+                if (!Array.isArray(data.coursePage)) {
+                    data.coursePage = [];
+                }
+                setCourse(data);
 
             } catch (err) {
                 console.error(err);
+                setCourse({});
             }
         }
         fetchCourse()

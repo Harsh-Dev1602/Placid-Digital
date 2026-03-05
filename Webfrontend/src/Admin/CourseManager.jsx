@@ -10,9 +10,11 @@ function CourseManager() {
     const fetchCourses = async () => {
       try {
         const res = await axios.get('/sfs-app/course/all-course')
-        setCourses(res.data || [])
+        const courses = Array.isArray(res.data) ? res.data : []
+        setCourses(courses)
       } catch (err) {
         console.log(err.response?.data?.message || err.message || 'Failed to fetch courses')
+        setCourses([])
       }
     }
     fetchCourses()

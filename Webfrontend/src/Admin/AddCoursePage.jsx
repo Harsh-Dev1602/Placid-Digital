@@ -37,10 +37,12 @@ function AddCoursePage() {
     const fetchCourses = async () => {
       try {
         const res = await axios.get('/sfs-app/course/all-course')
-        setCourses(res.data || [])
-        if (res.data && res.data.length) setSelectedCourse(res.data[0]._id)
+        const courses = Array.isArray(res.data) ? res.data : []
+        setCourses(courses)
+        if (courses && courses.length) setSelectedCourse(courses[0]._id)
       } catch (err) {
         console.error('Failed to load courses for AddCoursePage', err)
+        setCourses([])
       }
     }
     fetchCourses()
