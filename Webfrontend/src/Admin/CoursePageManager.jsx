@@ -57,7 +57,7 @@ function CoursePageManager() {
             <div className=' border-t-2 border-t-gray-100 flex justify-center '>
               <div className=' rounded-lg p-4 shadow-mentor Shadow flex items-center justify-center'>
                 {
-                  page.courseDocuments.map(({ _id, documentName, documentDescription }) => (
+                  (page.courseDocuments || []).map(({ _id, documentName, documentDescription }) => (
                     <div key={_id} className="p-2 space-y-2">
                       <p className=' font-bold'>{documentName}</p>
                       <p>{documentDescription}</p>
