@@ -11,7 +11,7 @@ import Img5 from "../../public/Offer_Img/ImgO5.png"
 import Img6 from "../../public/Offer_Img/ImgO6.png"
 
 function Offer() {
-    const offerCard = [
+    const OfferCard = [
         {
             id: 0,
             img: Img0,
@@ -104,7 +104,7 @@ function Offer() {
 
                 <div className="w-full h-auto mx-auto rounded-2xl my-1">
                     <Slider {...settings}>
-                        {offerCard.map(({ id, img, text, paragraph }) => (
+                        {OfferCard.map(({ id, img, text, paragraph }) => (
                             <div key={id} className="w-full  p-4">
                                 <div className='group relative card-hover  shadow-lg'>
                                 <div className=' w-full overflow-hidden rounded-lg bg-gray-200 '>
