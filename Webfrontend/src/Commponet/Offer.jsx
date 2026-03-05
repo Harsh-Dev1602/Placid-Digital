@@ -2,44 +2,51 @@ import Slider from "react-slick"
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+import Img0 from "../../public/Offer_Img/ImgO.jpg"
+import Img1 from "../../public/Offer_Img/ImgO1.jpg"
+import Img2 from "../../public/Offer_Img/ImgO2.jpg"
+import Img3 from "../../public/Offer_Img/ImgO3.png"
+import Img4 from "../../public/Offer_Img/ImgO4.png"
+import Img5 from "../../public/Offer_Img/ImgO5.png"
+import Img6 from "../../public/Offer_Img/ImgO6.png"
 
 function Offer() {
     const offerCard = [
         {
             id: 0,
-            img: "../../public/Offer_Img/ImgO.jpg",
+            img: Img0,
             text: "Software Development",
             paragraph: "Custom software built to empower your business processes."
         },
         {
             id: 1,
-            img: "../../public/Offer_Img/ImgO1.jpg",
+            img: Img1,
             text: " Digital Transformation",
             paragraph: "Modernize your operations with cutting-edge digital solution."
         }, {
             id: 2,
-            img: "../../public/Offer_Img/ImgO2.jpg",
+            img: Img2,
             text: " Application Services",
             paragraph: "End-to-end development, maintenance, and optimization."
         }, {
             id: 3,
-            img: "../../public/Offer_Img/ImgO3.png",
+            img: Img3,
             text: "UI/UX Design",
             paragraph: "Designs that blend aesthetics with seamless usability."
         },
         {
             id: 4,
-            img: "../../public/Offer_Img/ImgO4.png",
+            img: Img4,
             text: "Testing & QA",
             paragraph: "Ensure quality and performance with robust testing services."
         }, {
             id: 5,
-            img: "../../public/Offer_Img/ImgO5.png",
+            img: Img5,
             text: "Managed IT Services",
             paragraph: " Reliable IT management that lets you focus on growth."
         }, {
             id: 6,
-            img: "../../public/Offer_Img/ImgO6.png",
+            img: Img6,
             text: "IT Support",
             paragraph: "24/7 technical support to keep your business running smoothly."
         },
@@ -75,7 +82,7 @@ function Offer() {
                 }
             },
             {
-                breakpoint: 380,
+                breakpoint: 500,
                 settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1

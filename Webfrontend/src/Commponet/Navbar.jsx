@@ -9,6 +9,7 @@ import { FaFacebookSquare } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import Logo from "../../public/placidlogo.png"
 
 
 function Navbar() {
@@ -89,7 +90,7 @@ function Navbar() {
                 </div>
                 <div className="flex border-y border-y-[#15497923]  mx-auto items-center justify-evenly z-50 w-full px-6  py-3 ">
                     <Link onClick={scrollTop} to="/" className=' flex justify-center items-center gap-2'>
-                        <img src="../../public/placidlogo.png" className='w-48' />
+                        <img src={Logo} className='w-48' />
 
                     </Link>
 

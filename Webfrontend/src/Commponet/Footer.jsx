@@ -6,6 +6,7 @@ import { FaFacebookSquare } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import Logo from "../../public/placidlogo.png"
 
 function Footer() {
     const scrollTop = () => {
@@ -21,7 +22,7 @@ function Footer() {
                 <div className=" container mx-auto flex flex-col md:flex-row justify-between gap-10 pb-10 ">
                     <div className=' md:w-80 flex flex-col  items-start justify-center space-y-5'>
                         <div className=" flex justify-center items-center gap-5">
-                            <img src="../../public/placidlogo.png" className=' bg-white rounded-2xl w-30' />
+                            <img src={Logo} className=' bg-white rounded-2xl w-30' />
                            
                         </div>
                         <p className='text-justify leading-6'>Placid Digital Pvt. Ltd. is a fast-growing IT Company that provides holistic IT solutions to businesses across geographies We offer IT expertise in software, website, and application (iOS & Android) development; UI/UX design; and digital marketing.</p>
