@@ -5,6 +5,11 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  define: {
+    'import.meta.env.VITE_API_URL': JSON.stringify(
+      process.env.VITE_API_URL || 'https://placid-digital.onrender.com'
+    ),
+  },
   plugins: [react(),
     tailwindcss(),
   ],
@@ -12,7 +17,7 @@ export default defineConfig({
     port: 3002,
     proxy: {
       "/sfs-app": {
-        target: process.env.VITE_BACKEND_URL || "https://placid-digital.onrender.com",
+        target: process.env.VITE_API_URL || "https://placid-digital.onrender.com",
         changeOrigin: true,
       },
     },
