@@ -1,5 +1,5 @@
 import { ReactTyped } from "react-typed";
-import Services from "./services";
+import Services from "./Services";
 import Offer from "./Offer";
 import Trainings from "./Trainings";
 import ContactUs from "./ContactUs";
