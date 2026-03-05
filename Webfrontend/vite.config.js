@@ -8,11 +8,11 @@ export default defineConfig({
   plugins: [react(),
     tailwindcss(),
   ],
-     server: {
+  server: {
     port: 3002,
     proxy: {
       "/sfs-app": {
-        target: "https://placid-digital.onrender.com",
+        target: process.env.VITE_BACKEND_URL || "https://placid-digital.onrender.com",
         changeOrigin: true,
       },
     },
