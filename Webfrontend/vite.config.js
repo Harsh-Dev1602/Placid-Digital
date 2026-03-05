@@ -12,7 +12,7 @@ export default defineConfig({
     port: 3002,
     proxy: {
       "/sfs-app": {
-        target: "http://localhost:3000",
+        target: "https://placid-digital.onrender.com",
         changeOrigin: true,
       },
     },
