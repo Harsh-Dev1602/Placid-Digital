@@ -29,7 +29,7 @@ function Trainings() {
 
   return (
     <>
-      <div className="my-5 container mx-auto px-10">
+      <div className="my-5 container mx-auto px-5 lg:px-10">
         <h1 className="text-5xl text-center font-bold text-[#154979]">
           Popular Trainings
         </h1>

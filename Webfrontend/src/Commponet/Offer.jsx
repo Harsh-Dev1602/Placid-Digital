@@ -1,7 +1,6 @@
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import Img0 from "../../public/Offer_Img/ImgO.jpg"
 import Img1 from "../../public/Offer_Img/ImgO1.jpg"
 import Img2 from "../../public/Offer_Img/ImgO2.jpg"
@@ -52,49 +51,10 @@ function Offer() {
         },
     ]
 
-    var settings = {
-        dots: true,
-        slidesToShow: 4,
-        slidesToScroll: 4,
-        initialSlide: 0,
-        infinite: true,
-        autoplay: true,
-        speed: 2000,
-        autoplaySpeed: 5000,
-        nextArrow: <NextArrow />,
-        prevArrow: <PrevArrow />,
-        responsive: [
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 3,
-                    infinite: true,
-                    dots: true
-                }
-            },
-            {
-                breakpoint: 900,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2,
-                    initialSlide: 2
-                }
-            },
-            {
-                breakpoint: 500,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                }
-            }
-        ]
-    };
-
     return (
         <>
-            <div className="container  py-10 px-5 mx-auto">
-                <div className=" p-5 flex justify-between gap-5 flex-col md:flex-row">
+            <div className="container  py-10 px-5 space-y-10 mx-auto">
+                <div className=" p-5 flex justify-between gap-10 flex-col md:flex-row">
                     <span className=" lg:w-xl space-y-3">
                         <h3 className=" font-bold italic font-mono">What we offer</h3>
                         <h2 className="text-[#83C026] font-serif font-bold">The best solutions for your business - what we do.</h2>
@@ -102,12 +62,11 @@ function Offer() {
                     <p className="lg:w-1/2 font-semibold text-[#154979] text-justify">Smart Future Step is a fast-growing IT Company that provides holistic IT solutions to businesses across geographies. We offer IT expertise in software, website, and application (iOS & Android) development; UI/UX design; and digital marketing.</p>
                 </div>
 
-                <div className="w-full h-auto mx-auto rounded-2xl my-1">
-                    <Slider {...settings}>
-                        {OfferCard.map(({ id, img, text, paragraph }) => (
-                            <div key={id} className="w-full  p-4">
-                                <div className='group relative card-hover  shadow-lg'>
-                                <div className=' w-full overflow-hidden rounded-lg bg-gray-200 '>
+                {/* <div className="w-full h-auto mx-auto relative flex   gap-10 animate-slide">
+                   
+                        {OfferCard.map(({ id, img, text, paragraph }) => (                           
+                                <div key={id} className='  h-auto w-full md:w-90 group relative flex flex-col justify-center items-center card-hover px-5  shadow-lg'>
+                                <div className=' w-full h-auto md:w-80 overflow-hidden  bg-gray-200 '>
                                     <img
                                         src={img}
                                         className='h-50 w-full object-cover object-center  '
@@ -116,20 +75,57 @@ function Offer() {
                                 <div className='my-4 flex justify-center '>
 
                                     <div className='border border-white rounded-lg -mt-8 bg-white p-4 px-5 shadow-mentor Shadow  '>
-                                        <p
+                                        <h3
                                             href='/'
-                                            className=' font-bold text-[#154979] text-center'>
+                                            className=' font-bold text-[#154979] text-center pb-2'>
                                             {text}
-                                        </p>
+                                        </h3>
 
                                         <p className="  text-justify text-sm">{paragraph}</p>
                                     </div>
                                 </div>
                             </div>
-                            </div>
                         ))
                         }
-                    </Slider>
+                </div> */}
+                <div className="w-full overflow-hidden py-10">
+
+                    <div className="flex gap-1 lg:gap-5 w-max animate-slide">
+
+                        {OfferCard.map(({ id, img, text, paragraph}) => (
+
+                            <div
+                                key={id}
+                                className="w-80 group flex flex-col items-center shadow-lg px-5"
+                            >
+
+                                <div className="w-full overflow-hidden bg-gray-200">
+                                    <img
+                                        src={img}
+                                        className="h-50 w-full object-cover"
+                                    />
+                                </div>
+
+                                <div className="my-4 flex justify-center">
+                                    <div className="border border-white rounded-lg -mt-8 bg-white p-4 px-5">
+
+                                        <h3 className="font-bold text-[#154979] text-center pb-2">
+                                            {text}
+                                        </h3>
+
+                                        <p className="text-justify text-sm">
+                                            {paragraph}
+                                        </p>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        ))}
+
+                    </div>
+
                 </div>
             </div>
         </>
@@ -137,15 +133,3 @@ function Offer() {
 }
 
 export default Offer
-
-const PrevArrow = ({ onClick }) => (
-    <div className="custom-arrow prev" onClick={onClick}>
-        <MdKeyboardArrowLeft size={40} color="white" />
-    </div>
-);
-
-const NextArrow = ({ onClick }) => (
-    <div className="custom-arrow next" onClick={onClick}>
-        <MdKeyboardArrowRight size={40} color="white" />
-    </div>
-);

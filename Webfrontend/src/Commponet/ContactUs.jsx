@@ -4,7 +4,7 @@ import Img from "../../public/Img.png";
 function ContactUs() {
     return (
         <>
-            <div className="py-20 container mx-auto flex justify-center items-end-safe flex-col lg:flex-row">
+            <div className="py-15 container mx-auto flex justify-center items-end-safe flex-col lg:flex-row">
 
                 <div className="mx-auto space-y-6   max-w-xl text-center">
                     <h1 className="text-[#154979] font-bold italic font-mono">Contact Us</h1>
@@ -13,7 +13,7 @@ function ContactUs() {
                     <img src={Img} />
                 </div>
 
-                <section id='contact'>
+                <section id='contact' className=' px-5'>
                     <div className='w-full md:w-2xl group relative shadow-lg p-5 rounded-2xl container '>
                         <div className='relative'>
                             <h2 className='mb-9 text-[#83C026] font-serif font-bold tracking-tight'>Get in Touch</h2>
