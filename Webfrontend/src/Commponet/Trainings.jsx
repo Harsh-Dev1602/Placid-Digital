@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import apiClient from "../Services/api";
 
 function Trainings() {
   const [courses, setCourses] = useState([]);
@@ -15,7 +15,7 @@ function Trainings() {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const res = await axios.get("/sfs-app/course/all-course");
+        const res = await apiClient.get("/sfs-app/course/all-course");
         const courses = Array.isArray(res.data) ? res.data : [];
         setCourses(courses);
       } catch (err) {

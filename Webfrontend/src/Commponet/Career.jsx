@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import axios from 'axios'
+import { useLoading } from '../Context/LoadingProvider'
 
 function Career() {
   const reasons = [
@@ -27,9 +28,11 @@ function Career() {
   ];
 
   const [jobs, setJobs] = useState([])
+  const [, setIsLoading] = useLoading()
 
   useEffect(() => {
     const fetchJobs = async () => {
+      setIsLoading(true)
       try {
         const res = await axios.get('/sfs-app/admin/all-job');
         const jobs = Array.isArray(res.data) ? res.data : []
@@ -37,10 +40,12 @@ function Career() {
       } catch (err) {
         console.error('Failed to fetch jobs', err)
         setJobs([])
+      } finally {
+        setIsLoading(false)
       }
     }
     fetchJobs()
-  }, [])
+  }, [setIsLoading])
   return (
     <>
       <div className="bg-white">

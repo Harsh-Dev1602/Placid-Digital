@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import { Link } from 'react-router-dom'
+import { useLoading } from '../Context/LoadingProvider'
 
 function CoursePageManager() {
   const [pages, setPages] = useState([])
+  const [, setIsLoading] = useLoading()
 
   useEffect(() => {
     const fetchPages = async () => {
+      setIsLoading(true)
       try {
         const res = await axios.get('/sfs-app/course/all-pages')
         const pages = Array.isArray(res.data) ? res.data : []
@@ -20,10 +23,12 @@ function CoursePageManager() {
       } catch (err) {
         console.error('Failed to load pages', err)
         setPages([])
+      } finally {
+        setIsLoading(false)
       }
     }
     fetchPages()
-  }, [])
+  }, [setIsLoading])
 
   const handleDelete = async (id) => {
     const ok = window.confirm('Are you sure you want to delete this course page?')

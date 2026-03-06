@@ -3,17 +3,18 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { FaRegPlayCircle } from "react-icons/fa";
 import { IoDocumentTextOutline } from "react-icons/io5";
+import { useLoading } from '../Context/LoadingProvider'
 
 function CourseDetails() {
     const { id } = useParams()
     const [course, setCourse] = useState(null)
-    const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
+    const [loading, setIsLoading] = useLoading()
 
     useEffect(() => {
         const fetchCourse = async () => {
+            setIsLoading(true)
             try {
-                setLoading(true)
                 console.log('Fetching course with ID:', id)
                 const res = await axios.get(`/sfs-app/course/course-details/${id}`)
                 console.log('Course data received:', res.data)
@@ -31,25 +32,19 @@ function CourseDetails() {
                 setError(err.message)
                 setCourse(null)
             } finally {
-                setLoading(false)
+                 setIsLoading(false)
             }
         }
         
         if (id) {
             fetchCourse()
         }
-    }, [id])
+    }, [id, setIsLoading])
 
 
     return (
         <>
             <section className=' container mx-auto '>
-                {loading && (
-                    <div className="flex justify-center items-center h-96">
-                        <p className="text-xl text-[#154979]">Loading course details...</p>
-                    </div>
-                )}
-                
                 {error && (
                     <div className="flex justify-center items-center h-96">
                         <p className="text-xl text-red-600">Error loading course: {error}</p>

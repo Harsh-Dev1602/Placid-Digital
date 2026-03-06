@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import apiClient from '../Services/api'
 import toast from 'react-hot-toast'
 import { Link } from 'react-router-dom'
 
@@ -9,7 +9,7 @@ function CourseManager() {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const res = await axios.get('/sfs-app/course/all-course')
+        const res = await apiClient.get('/sfs-app/course/all-course')
         const courses = Array.isArray(res.data) ? res.data : []
         setCourses(courses)
       } catch (err) {
@@ -24,7 +24,7 @@ function CourseManager() {
     const ok = window.confirm('Are you sure you want to delete this course?')
     if (!ok) return
     try {
-      await axios.delete(`/sfs-app/course/course-delete/${id}`)
+      await apiClient.delete(`/sfs-app/course/course-delete/${id}`)
       setCourses(prev => prev.filter(c => c._id !== id))
       toast.success('Course deleted')
     } catch (err) {

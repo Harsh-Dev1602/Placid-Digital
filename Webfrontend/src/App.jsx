@@ -2,6 +2,7 @@ import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 import { useAuth } from './Context/AuthProvider'
+import { useLoading } from './Context/LoadingProvider'
 
 import Navbar from './Commponet/Navbar'
 import Home from './Commponet/Home'
@@ -16,6 +17,7 @@ import WebDevelopment from './Services/WebDevelopment'
 import AppDevelopment from './Services/AppDevelopment '
 import DigitalMarketing from './Services/DigitalMarketing'
 import CourseDetails from './Course/CourseDetails'
+import Loading from './Loading/Loading'
 
 import LogIn from './Admin/LogIn'
 import Dashboard from './Admin/Dashboard'
@@ -32,12 +34,16 @@ import CoursePageManager from './Admin/CoursePageManager'
 function App() {
 
   const [authUser, setAuthUser] = useAuth();
+  const [isLoading] = useLoading();
+
   return (
     <>
+     
       <div className="leading-none text-gray-950 font-sans">
         <div className={`${authUser ? "hidden" : " "}`}>
           <Navbar />
         </div>
+         {isLoading && <Loading />}
         <Routes>
           <Route path="/" element={authUser ? <Navigate to="/admin-dashboard" /> : <Home />} />
           <Route path="/about" element={<AboutUs />} />

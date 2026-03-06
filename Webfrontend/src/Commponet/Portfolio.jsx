@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { useLoading } from '../Context/LoadingProvider'
 
 function Portfolio() {
     const [projects, setProjects] = useState([])
+    const [, setIsLoading] = useLoading()
 
     useEffect(() => {
         const fetch = async () => {
+            setIsLoading(true)
             try {
                 const res = await axios.get('/sfs-app/admin/all-portfolio')
                 const projects = Array.isArray(res.data) ? res.data : []
@@ -13,10 +16,12 @@ function Portfolio() {
             } catch (err) {
                 console.error('Portfolio fetch failed', err.response?.data?.message || err.message)
                 setProjects([])
+            } finally {
+                setIsLoading(false)
             }
         }
         fetch()
-    }, [])
+    }, [setIsLoading])
 
     return (
         <>

@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import { Link } from 'react-router-dom'
+import { useLoading } from '../Context/LoadingProvider'
 
 function PortfolioManager() {
   const [items, setItems] = useState([])
+  const [, setIsLoading] = useLoading()
 
   useEffect(() => {
     const fetchItems = async () => {
+      setIsLoading(true)
       try {
         const res = await axios.get('/sfs-app/admin/all-portfolio')
         const items = Array.isArray(res.data) ? res.data : []
@@ -15,10 +18,12 @@ function PortfolioManager() {
       } catch (err) {
         console.log(err.response?.data?.message || err.message || 'Failed to fetch portfolio items')
         setItems([])
+      } finally {
+        setIsLoading(false)
       }
     }
     fetchItems()
-  }, [])
+  }, [setIsLoading])
 
   const handleDelete = async (id) => {
     const ok = window.confirm('Are you sure you want to delete this portfolio item?')

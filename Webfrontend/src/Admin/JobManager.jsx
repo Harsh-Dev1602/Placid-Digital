@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import { Link } from 'react-router-dom'
+import { useLoading } from '../Context/LoadingProvider'
 
 function JobManager() {
   const [jobs, setJobs] = useState([])
+  const [, setIsLoading] = useLoading()
 
   useEffect(() => {
     const fetchJobs = async () => {
+      setIsLoading(true)
       try {
         const res = await axios.get('/sfs-app/admin/all-job')
         const jobs = Array.isArray(res.data) ? res.data : []
@@ -15,10 +18,12 @@ function JobManager() {
       } catch (err) {
         console.error(err)
         setJobs([])
+      } finally {
+        setIsLoading(false)
       }
     }
     fetchJobs()
-  }, [])
+  }, [setIsLoading])
 
   const handleDelete = async (id) => {
     const ok = window.confirm('Are you sure you want to delete this job?')
