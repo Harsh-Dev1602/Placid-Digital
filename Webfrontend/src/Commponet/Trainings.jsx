@@ -10,7 +10,7 @@ function Trainings() {
             top: 0,
             behavior: "smooth",
         });
-    };
+    }; 
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -53,10 +53,10 @@ function Trainings() {
               </div>
               <p className="p-2 text-center text-gray-700">{c.courseDescription}</p>
               <div className="flex justify-center items-center">
-                <button onClick={()=> navigate(`/course-details/${c._id}/${c.courseName}`)}
+                <button onClick={()=> {navigate(`/course-details/${c._id}/${c.courseName}`), scrollTop()}}
                   className="bg-[#154979] px-10 py-3 rounded-lg text-18 font-medium border text-white border-[#154979] hover:text-[#154979] hover:bg-transparent hover:cursor-pointer transition duration-300 ease-in-out"
                 >
-                     <span onClick={scrollTop}> View Details</span> 
+                      View Details
                 </button>
               </div>
             </div>

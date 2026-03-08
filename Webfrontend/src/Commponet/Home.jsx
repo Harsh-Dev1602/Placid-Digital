@@ -9,10 +9,9 @@ function Home() {
 
     return (
         <>
-
-            <section style={{ height: "calc(100vh - 200px)" }} id='Home' className=' flex flex-col  lg:flex-row justify-evenly items-center'>
-                <img src={Img} className="size-60 md:size-[500px] order-2 h-auto object-cover" />
-                <div className='lg:w-1/2 order-2  lg:order-1 relative px-6 lg:px-5'>
+            <section style={{ height: "calc(100vh - 200px)" }} id='Home' className=' flex flex-col  lg:flex-row justify-between items-center'>
+                <img src={Img} className="size-60 sm:size-[500px] order-2 h-auto object-cover" />
+                <div className='md:w-1/2 order-2  lg:order-1 relative px-6 lg:px-5'>
                     <div className='container '>
                         <div className='flex flex-col gap-1 lg:gap-2 text-center'>
                             <ReactTyped

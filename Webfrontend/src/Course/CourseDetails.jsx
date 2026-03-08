@@ -15,9 +15,7 @@ function CourseDetails() {
         const fetchCourse = async () => {
             setIsLoading(true)
             try {
-                console.log('Fetching course with ID:', id)
                 const res = await axios.get(`/sfs-app/course/course-details/${id}`)
-                console.log('Course data received:', res.data)
                 
                 // Ensure coursePage is an array
                 const courseData = res.data || {}
@@ -53,7 +51,7 @@ function CourseDetails() {
                 
                 {(course?.coursePage || []).map((r) => (
                         <div key={r._id} className=" space-y-20 mb-10">
-                            <div style={{ height: "calc(100vh - 167.2px)" }} className="w-full BG_Color flex justify-center md:justify-between  items-center p-10 gap-5 flex-col md:flex-row">
+                            <div className="w-full py-50 BG_Color flex justify-center md:justify-between  items-center p-10 gap-5 flex-col md:flex-row">
                                 <div className=" md:w-1/2 space-y-5  order-2 md:order-1">
                                     <h1 className='text-[#154979] font-bold tracking-wide'>{course?.courseName}</h1>
                                     <h3>{course?.courseDescription}</h3>

@@ -38,12 +38,14 @@ function App() {
 
   return (
     <>
-     
+      { isLoading &&  <Loading />}
+
+      <div className={`${isLoading ? " hidden" : "block"}`}>
       <div className="leading-none text-gray-950 font-sans">
         <div className={`${authUser ? "hidden" : " "}`}>
           <Navbar />
         </div>
-         {isLoading && <Loading />}
+        
         <Routes>
           <Route path="/" element={authUser ? <Navigate to="/admin-dashboard" /> : <Home />} />
           <Route path="/about" element={<AboutUs />} />
@@ -93,6 +95,7 @@ function App() {
           },
         }}
       />
+      </div>
     </>
   )
 }

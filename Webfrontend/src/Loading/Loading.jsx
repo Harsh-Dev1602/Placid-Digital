@@ -2,253 +2,121 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Loading = () => {
-    return (
-        <div style={{ minHeight: "calc(100vh - 200px)" }} className="w-full h-screen flex justify-center items-center">
-            <StyledWrapper>
-                <div className="loader">
-                    <div className="box1" />
-                    <div className="box2" />
-                    <div className="box3" />
-                </div>
-            </StyledWrapper>
+  return (
+    <div className="w-full h-screen flex justify-center items-center">
+      <StyledWrapper>
+        <div className="three-body">
+          <div className="three-body__dot" />
+          <div className="three-body__dot" />
+          <div className="three-body__dot" />
         </div>
-    );
+      </StyledWrapper>
+    </div>
+  );
 }
 
 const StyledWrapper = styled.div`
-  .loader {
-    width: 112px;
-    height: 112px;
+  .three-body {
+   --uib-size: 60px;
+   --uib-speed: 0.8s;
+   --uib-color: #154979;
+   position: relative;
+   display: inline-block;
+   height: var(--uib-size);
+   width: var(--uib-size);
+   animation: spin78236 calc(var(--uib-speed) * 2.5) infinite linear;
   }
 
-  .box1,
-  .box2,
-  .box3 {
-    /* border: 16px solid #f5f5f5; */
-    background-color: #c1c1c1;
-    border-radius: 10px;
-    box-sizing: border-box;
-    position: absolute;
-    display: block;
+  .three-body__dot {
+   position: absolute;
+   height: 100%;
+   width: 30%;
   }
 
-  .box1 {
-    width: 112px;
-    height: 48px;
-    margin-top: 64px;
-    margin-left: 0px;
-    animation: abox1 3s 1s forwards ease-in-out infinite;
+  .three-body__dot:after {
+   content: '';
+   position: absolute;
+   height: 0%;
+   width: 100%;
+   padding-bottom: 100%;
+   background-color: var(--uib-color);
+   border-radius: 50%;
   }
 
-  .box2 {
-    width: 48px;
-    height: 48px;
-    margin-top: 0px;
-    margin-left: 0px;
-    animation: abox2 3s 1s forwards ease-in-out infinite;
+  .three-body__dot:nth-child(1) {
+   bottom: 5%;
+   left: 0;
+   transform: rotate(60deg);
+   transform-origin: 50% 85%;
   }
 
-  .box3 {
-    width: 48px;
-    height: 48px;
-    margin-top: 0px;
-    margin-left: 64px;
-    animation: abox3 3s 1s forwards ease-in-out infinite;
+  .three-body__dot:nth-child(1)::after {
+   bottom: 0;
+   left: 0;
+   animation: wobble1 var(--uib-speed) infinite ease-in-out;
+   animation-delay: calc(var(--uib-speed) * -0.3);
   }
 
-  @keyframes abox1 {
-    0% {
-      width: 112px;
-      height: 48px;
-      margin-top: 64px;
-      margin-left: 0px;
-    }
+  .three-body__dot:nth-child(2) {
+   bottom: 5%;
+   right: 0;
+   transform: rotate(-60deg);
+   transform-origin: 50% 85%;
+  }
 
-    12.5% {
-      width: 48px;
-      height: 48px;
-      margin-top: 64px;
-      margin-left: 0px;
-    }
+  .three-body__dot:nth-child(2)::after {
+   bottom: 0;
+   left: 0;
+   animation: wobble1 var(--uib-speed) infinite
+      calc(var(--uib-speed) * -0.15) ease-in-out;
+  }
 
-    25% {
-      width: 48px;
-      height: 48px;
-      margin-top: 64px;
-      margin-left: 0px;
-    }
+  .three-body__dot:nth-child(3) {
+   bottom: -5%;
+   left: 0;
+   transform: translateX(116.666%);
+  }
 
-    37.5% {
-      width: 48px;
-      height: 48px;
-      margin-top: 64px;
-      margin-left: 0px;
-    }
+  .three-body__dot:nth-child(3)::after {
+   top: 0;
+   left: 0;
+   animation: wobble2 var(--uib-speed) infinite ease-in-out;
+  }
 
-    50% {
-      width: 48px;
-      height: 48px;
-      margin-top: 64px;
-      margin-left: 0px;
-    }
+  @keyframes spin78236 {
+   0% {
+    transform: rotate(0deg);
+   }
 
-    62.5% {
-      width: 48px;
-      height: 48px;
-      margin-top: 64px;
-      margin-left: 0px;
-    }
+   100% {
+    transform: rotate(360deg);
+   }
+  }
 
-    75% {
-      width: 48px;
-      height: 112px;
-      margin-top: 0px;
-      margin-left: 0px;
-    }
-
-    87.5% {
-      width: 48px;
-      height: 48px;
-      margin-top: 0px;
-      margin-left: 0px;
-    }
-
+  @keyframes wobble1 {
+   0%,
     100% {
-      width: 48px;
-      height: 48px;
-      margin-top: 0px;
-      margin-left: 0px;
-    }
+    transform: translateY(0%) scale(1);
+    opacity: 1;
+   }
+
+   50% {
+    transform: translateY(-66%) scale(0.65);
+    opacity: 0.8;
+   }
   }
 
-  @keyframes abox2 {
-    0% {
-      width: 48px;
-      height: 48px;
-      margin-top: 0px;
-      margin-left: 0px;
-    }
-
-    12.5% {
-      width: 48px;
-      height: 48px;
-      margin-top: 0px;
-      margin-left: 0px;
-    }
-
-    25% {
-      width: 48px;
-      height: 48px;
-      margin-top: 0px;
-      margin-left: 0px;
-    }
-
-    37.5% {
-      width: 48px;
-      height: 48px;
-      margin-top: 0px;
-      margin-left: 0px;
-    }
-
-    50% {
-      width: 112px;
-      height: 48px;
-      margin-top: 0px;
-      margin-left: 0px;
-    }
-
-    62.5% {
-      width: 48px;
-      height: 48px;
-      margin-top: 0px;
-      margin-left: 64px;
-    }
-
-    75% {
-      width: 48px;
-      height: 48px;
-      margin-top: 0px;
-      margin-left: 64px;
-    }
-
-    87.5% {
-      width: 48px;
-      height: 48px;
-      margin-top: 0px;
-      margin-left: 64px;
-    }
-
+  @keyframes wobble2 {
+   0%,
     100% {
-      width: 48px;
-      height: 48px;
-      margin-top: 0px;
-      margin-left: 64px;
-    }
-  }
+    transform: translateY(0%) scale(1);
+    opacity: 1;
+   }
 
-  @keyframes abox3 {
-    0% {
-      width: 48px;
-      height: 48px;
-      margin-top: 0px;
-      margin-left: 64px;
-    }
-
-    12.5% {
-      width: 48px;
-      height: 48px;
-      margin-top: 0px;
-      margin-left: 64px;
-    }
-
-    25% {
-      width: 48px;
-      height: 112px;
-      margin-top: 0px;
-      margin-left: 64px;
-    }
-
-    37.5% {
-      width: 48px;
-      height: 48px;
-      margin-top: 64px;
-      margin-left: 64px;
-    }
-
-    50% {
-      width: 48px;
-      height: 48px;
-      margin-top: 64px;
-      margin-left: 64px;
-    }
-
-    62.5% {
-      width: 48px;
-      height: 48px;
-      margin-top: 64px;
-      margin-left: 64px;
-    }
-
-    75% {
-      width: 48px;
-      height: 48px;
-      margin-top: 64px;
-      margin-left: 64px;
-    }
-
-    87.5% {
-      width: 48px;
-      height: 48px;
-      margin-top: 64px;
-      margin-left: 64px;
-    }
-
-    100% {
-      width: 112px;
-      height: 48px;
-      margin-top: 64px;
-      margin-left: 0px;
-    }
+   50% {
+    transform: translateY(66%) scale(0.65);
+    opacity: 0.8;
+   }
   }`;
 
-export default Loading
+export default Loading;
