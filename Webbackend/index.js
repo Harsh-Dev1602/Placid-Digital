@@ -12,7 +12,12 @@ import cookieParser from "cookie-parser";
 const App = express();
 App.use(express.json());
 App.use(cookieParser());
-App.use(cors());
+App.use(
+  cors({
+    origin: "https://placid-digital.vercel.app/",
+    credentials: true
+  })
+);
 
 const PORT = process.env.PORT || 3001;
 const DB_URL = process.env.MONGO_DB_URL

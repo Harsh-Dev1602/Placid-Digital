@@ -2,11 +2,11 @@ import axios from 'axios';
 import { setupAxiosInterceptors } from '../config/apiConfig.js';
 
 // Get the backend URL from environment variables or use the development proxy
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || '';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL ;
 
 // Create axios instance with base URL
 const apiClient = axios.create({
-  baseURL: '',
+  baseURL: BACKEND_URL,
   timeout: 50000,
   headers: {
     'Content-Type': 'application/json',

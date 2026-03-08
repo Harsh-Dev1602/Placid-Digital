@@ -29,7 +29,7 @@ export const setupAxiosInterceptors = (axiosInstance) => {
   axiosInstance.interceptors.request.use(
     (config) => {
       // Only modify URL if it's a relative path
-      if (config.url && !config.url.startsWith('http')) {
+      if (config.url && !config.url.startsWith('https')) {
         config.url = buildApiUrl(config.url);
       }
       return config;

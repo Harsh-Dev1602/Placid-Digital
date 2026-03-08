@@ -5,9 +5,9 @@ const createTokenAndSaveCookie = (adminId, res) => {
     expiresIn: "1d",
   });
   res.cookie("Admin_Key", token, {
-    httpOnly: false,        // prevent XSS
-    secure: true,          // required for HTTPS deployment
-    sameSite: "Lax",      // allow cross-site cookies
+     httpOnly: false, // xss
+    secure: false,
+    sameSite: "Lax", // csrf
   });
 };
 export default createTokenAndSaveCookie;
