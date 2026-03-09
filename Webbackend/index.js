@@ -15,7 +15,7 @@ App.use(cookieParser());
 App.use(cors());
 App.use(
   cors({
-    origin: "https://placid-digital.vercel.app/",
+    origin: "https://placid-digital.vercel.app",
   })
 );
 
