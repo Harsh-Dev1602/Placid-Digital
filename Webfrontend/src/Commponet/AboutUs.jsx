@@ -1,15 +1,16 @@
 import React from 'react'
+import  girldoodle from "../../public/girldoodle.svg"
 
 function AboutUs() {
   return (
     <>
-        <div className=" mx-auto container px-5 py-10">
+        <div className=" mx-auto container  px-5 py-10">
 
           <h1 className="text-3xl text-[#83C026] font-serif font-bold text-center mb-16">
              About Us
           </h1>
 
-          <div className="grid md:grid-cols-2 gap-10 items-center mb-20">
+          <div className="grid BG-Img p-5 rounded-2xl bg-[#15497925] md:grid-cols-2 gap-10 items-center mb-20">
 
             <div>
               <h2 className="text-[#154979] italic font-mono font-bold mb-4">
@@ -27,9 +28,9 @@ function AboutUs() {
 
             <div className="flex justify-center">
               <img
-                src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
+                src={girldoodle}
                 alt="About"
-                className="rounded-xl shadow-lg  w-md"
+                className="  w-md"
               />
             </div>
           </div>
@@ -86,19 +87,19 @@ function AboutUs() {
 
               <div className="grid grid-cols-2 gap-4">
 
-                <div className="bg-[#56b2003f] p-3 rounded-md shadow text-sm font-medium">
+                <div className="card-hover p-6 rounded-xl shadow-md text-center text-sm font-medium">
                   📊 Business Planning
                 </div>
 
-                <div className="bg-[#56b2003f] p-3 rounded-md shadow text-sm font-medium">
+                <div className="card-hover p-6 rounded-xl shadow-md text-center text-sm font-medium">
                   💰 Financial Advice
                 </div>
 
-                <div className="bg-[#56b2003f] p-3 rounded-md shadow text-sm font-medium">
+                <div className="card-hover p-6 rounded-xl shadow-md text-center text-sm font-medium">
                   📈 Investment Strategy
                 </div>
 
-                <div className="bg-[#56b2003f] p-3 rounded-md shadow text-sm font-medium">
+                <div className="card-hover p-6 rounded-xl shadow-md text-center text-sm font-medium">
                   🔐 Business Security
                 </div>
 

@@ -37,7 +37,7 @@ function Services() {
                 {
                     Cards.map(({ id, text, paragraph, icon }) => (
                         <div key={id} className="space-y-4 rounded-2xl group relative shadow-lg hover:scale-95 border-[#154979] duration-200 hover:border-2 p-4">
-                            <div className=' mx-auto text-[#154979] text-5xl size-10'>{icon}</div>
+                            <div className='text-end mx-auto text-[#154979] text-5xl size-10'>{icon}</div>
                             <p className="text-xl text-center font-bold text-[#154979]">
                                 {text}
                             </p>

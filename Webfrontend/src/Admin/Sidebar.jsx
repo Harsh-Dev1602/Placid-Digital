@@ -30,16 +30,16 @@ function Sidebar() {
     };
     return (
         <>
-            <div className="group relative shadow-lg p-5 w-96   flex flex-col justify-between items-center">
+            <div className="group bg-[#15497919] rounded-l-4xl relative border-r-2  border-r-gray-200 p-5 w-96   flex flex-col justify-between items-center">
                 <div className="w-full">
-                    <div className=' border-b-2 pb-5 border-b-[#154979] flex justify-center items-center gap-2'>
+                    <div className=' border-b-2 pb-5 border-b-gray-200 flex justify-center items-center gap-2'>
                         <img src={Logo} className='w-30 h-auto rounded-2xl ' />
 
                     </div>
-                    <ul className='mt-5 flex flex-col p-2 gap-2'>
+                    <ul className='mt-5 flex flex-col p-2'>
                         {
                             AdminMenu.map(({ id, label, path }) => (
-                                <Link to={path} key={id} className=" hover:text-[#83C026] p-1 hover:underline font-semibold flex gap-2">{label}</Link>
+                                <Link to={path} key={id} className="  p-4 hover:bg-gray-200 rounded-xl font-semibold flex gap-2">{label}</Link>
                             ))
                         }
                     </ul>

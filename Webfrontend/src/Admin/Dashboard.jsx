@@ -4,9 +4,9 @@ import Sidebar from './Sidebar'
 
 function Dashboard() {
     return (
-        <div className="w-full mx-auto flex  h-screen">
+        <div className="w-full overflow-y-auto bg-gray-100 mx-auto flex px-5  h-screen">
             <Sidebar />
-            <div className=' container mx-auto'>
+            <div className='rounded-r-4xl  container mx-auto bg-white'>
                 <Outlet />
             </div>
         </div>
