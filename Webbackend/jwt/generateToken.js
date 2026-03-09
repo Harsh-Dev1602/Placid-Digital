@@ -8,7 +8,6 @@ const createTokenAndSaveCookie = (adminId, res) => {
     httpOnly: true, // Temporarily set to false for testing
     secure: false,
     sameSite: "lax",
-    path: "/",
   });
 };
 export default createTokenAndSaveCookie;

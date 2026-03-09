@@ -13,14 +13,14 @@ const App = express();
 App.use(express.json());
 App.use(cookieParser());
 App.use(cors());
-App.use(
-     cors({
-          origin: "https://placid-digital.vercel.app",
-          credentials: true,
-          methods: ["GET", "POST", "PUT", "DELETE"],
-          allowedHeaders: ["Content-Type", "Authorization"]
-     })
-);
+// App.use(
+//      cors({
+//           origin: "https://placid-digital.vercel.app",
+//           credentials: true,
+//           methods: ["GET", "POST", "PUT", "DELETE"],
+//           allowedHeaders: ["Content-Type", "Authorization"]
+//      })
+// );
 
 const PORT = process.env.PORT || 3001;
 const DB_URL = process.env.MONGO_DB_URL
@@ -38,7 +38,7 @@ App.get('/', (req, res) => {
 
 App.use("/sfs-app/course", courseRouter);
 App.use("/sfs-app/upload", uploadRouter);
-App.use("/sfs-app/admin", adminRouter)
+App.use("/sfs-app/admin", adminRouter);
 
 App.listen(PORT, () => {
      console.log(`WebBackend Run on this port http://localhost:${PORT}`)
