@@ -19,12 +19,14 @@ export const sendContactMail = async (req, res) => {
   });
 
   // Send email in the background (no need to block the response)
-  try {
-    await transporter.sendMail({
-      from: userInfo.email,
-      to: process.env.SEND_EMAIL_ID,
-      subject: "New Contact Message from Placid Digital",
-      html: `
+  setImmediate(async () => {
+    try {
+      await transporter.sendMail({
+        from: `"Placid Digital" <${process.env.EMAIL_USER}>`,
+        replyTo: userInfo.email,
+        to: process.env.SEND_EMAIL_ID,
+        subject: "New Contact Message from Placid Digital",
+        html: `
         <div style="background-color:#f4f6fb;padding:24px 0;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
           <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
             <tr>
@@ -84,8 +86,9 @@ export const sendContactMail = async (req, res) => {
           </table>
         </div>
       `,
-    });
-  } catch (error) {
-    console.error("Error sending contact email:", error.message);
-  }
+      });
+    } catch (error) {
+      console.error("Error sending contact email:", error.message);
+    }
+  })
 };
