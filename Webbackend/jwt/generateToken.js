@@ -6,7 +6,7 @@ const createTokenAndSaveCookie = (adminId, res) => {
   });
   res.cookie("Admin_Key", token, {
     httpOnly: true, // Temporarily set to false for testing
-    secure: false,
+    secure: true,
     sameSite: "lax",
   });
 };
