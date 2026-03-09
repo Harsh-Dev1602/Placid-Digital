@@ -1,65 +1,86 @@
-import React from 'react'
+import React from 'react';
 import styled from 'styled-components';
 import { useForm } from "react-hook-form";
-import axios from 'axios';
 import toast from 'react-hot-toast';
 import { FaRegFileImage } from "react-icons/fa";
+import apiClient from '../Services/api';
 
 function AddCourse() {
-  const { register, handleSubmit, reset, formState: { errors, isSubmitSuccessful }, setValue } = useForm()
-  const [uploading, setUploading] = React.useState(false)
-  const [uploadedImageUrl, setUploadedImageUrl] = React.useState("")
+  const { register, handleSubmit, reset, formState: { errors, isSubmitSuccessful, isSubmitting }, setValue } = useForm();
+  const [uploading, setUploading] = React.useState(false);
+  const [uploadedImageUrl, setUploadedImageUrl] = React.useState("");
   React.useEffect(() => {
     if (isSubmitSuccessful) {
       reset();
     }
   }, [isSubmitSuccessful, reset]);
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     if (!uploadedImageUrl) {
-      toast.error("Please upload an image first")
-      return
+      toast.error("Please upload an image first");
+      return;
     }
 
     const userInfo = {
       courseImgUrl: uploadedImageUrl,
       courseName: data.courseName,
       courseDescription: data.courseDescription,
-    }
+    };
 
-    axios.post("/sfs-app/course/course-add", userInfo)
-      .then(res => {
-        toast.success("Course added successfully")
-        reset()
-        setUploadedImageUrl("")
-      })
-      .catch(err => {
-        toast.error("Failed to add course")
-        console.error(err)
-      })
+    try {
+      const res = await apiClient.post("/sfs-app/course/course-add", userInfo);
+      if (res.data?.success) {
+        toast.success(res.data.message || "Course added successfully");
+      } else {
+        toast.success("Course added successfully");
+      }
+      reset();
+      setUploadedImageUrl("");
+    } catch (error) {
+      const backendMessage =
+        error.response?.data?.message ||
+        error.response?.data?.error;
+
+      const errorMessage =
+        backendMessage ||
+        (error.code === "ECONNABORTED"
+          ? "Request timed out while adding course. Please try again."
+          : error.message || "Failed to add course");
+
+      toast.error(errorMessage);
+      console.error(error);
+    }
   };
 
   const handleFileChange = async (e) => {
-    const file = e.target.files && e.target.files[0]
-    if (!file) return
-    const formData = new FormData()
-    formData.append('image', file)
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    const formData = new FormData();
+    formData.append('image', file);
     try {
-      setUploading(true)
-      const res = await axios.post('/sfs-app/upload/upload-img', formData, {
+      setUploading(true);
+      const res = await apiClient.post('/sfs-app/upload/upload-img', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
-      })
-      const { imageUrl } = res.data
-      setUploadedImageUrl(imageUrl)
-      setValue('courseImgUrl', imageUrl)
-      toast.success('Image uploaded')
-    } catch (err) {
-      console.error(err)
-      toast.error('Image upload failed')
+      });
+      const { imageUrl } = res.data;
+      setUploadedImageUrl(imageUrl);
+      setValue('courseImgUrl', imageUrl);
+      toast.success('Image uploaded');
+    } catch (error) {
+      console.error(error);
+      const backendMessage =
+        error.response?.data?.message ||
+        error.response?.data?.error;
+      const errorMessage =
+        backendMessage ||
+        (error.code === "ECONNABORTED"
+          ? "Image upload timed out. Please try again."
+          : error.message || "Image upload failed");
+      toast.error(errorMessage);
     } finally {
-      setUploading(false)
+      setUploading(false);
     }
-  }
+  };
   return (
     <>
       <div style={{ height: "calc(100vh - 40px)" }} className="w-full flex justify-center items-center">
@@ -90,7 +111,13 @@ function AddCourse() {
               <input  className="w-full rounded-md border border-solid bg-transparent px-5 py-3 text-base text-dark outline-hidden transition border-gray-200 placeholder:text-black/30 focus:border-[#154979] focus-visible:shadow-none text-black" {...register("courseDescription", { required: true })} placeholder="Please enter course description" type="text" />
               {errors.courseDescription && <span className=' text-red-600 mt-5'>This field is required</span>}
             </div>
-            <button className="bg-[#154979] w-full py-3 rounded-lg text-18 font-medium border text-white border-[#154979] hover:text-[#154979] hover:bg-transparent hover:cursor-pointer transition duration-300 ease-in-out">Add Course</button>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="bg-[#154979] w-full py-3 rounded-lg text-18 font-medium border text-white border-[#154979] hover:text-[#154979] hover:bg-transparent hover:cursor-pointer transition duration-300 ease-in-out disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              {isSubmitting ? "Adding..." : "Add Course"}
+            </button>
           </form>
         </StyledWrapper>
       </div>

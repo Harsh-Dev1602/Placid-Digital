@@ -1,12 +1,11 @@
 import axios from 'axios';
 import { setupAxiosInterceptors } from '../config/apiConfig.js';
 
-// Get the backend URL from environment variables or use the development proxy
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL ;
-
-// Create axios instance with base URL
+// Create axios instance.
+// We let `setupAxiosInterceptors` handle prefixing the correct backend URL
+// (dev via Vite proxy, prod via absolute URL).
 const apiClient = axios.create({
-  baseURL: BACKEND_URL,
+  baseURL: '',
   timeout: 50000,
   withCredentials: true,
   headers: {

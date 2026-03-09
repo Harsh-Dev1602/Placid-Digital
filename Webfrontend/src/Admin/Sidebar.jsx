@@ -1,8 +1,8 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import axios from 'axios';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import Logo from "../../public/placidlogo.png";
+import apiClient from '../Services/api';
 
 function Sidebar() {
     const AdminMenu = [
@@ -16,7 +16,7 @@ function Sidebar() {
         const confirmLogout = window.confirm("Are you sure you want to log out?");
         if (!confirmLogout) return;
         try {
-            await axios.post("/sfs-app/admin/admin-logout");
+            await apiClient.post("/sfs-app/admin/admin-logout");
             sessionStorage.removeItem("Admin");
             toast.success("Log out successfully..");
             setTimeout(() => {
@@ -25,7 +25,15 @@ function Sidebar() {
         }
         catch (error) {
             console.log("Error in Logout", error);
-            toast.error("Error in logging out");
+            const backendMessage =
+                error.response?.data?.message ||
+                error.response?.data?.error;
+            const errorMessage =
+                backendMessage ||
+                (error.code === "ECONNABORTED"
+                    ? "Logout request timed out. Please check your connection and try again."
+                    : error.message || "Error in logging out");
+            toast.error(errorMessage);
         }
     };
     return (

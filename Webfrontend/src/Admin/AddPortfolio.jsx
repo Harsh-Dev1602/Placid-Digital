@@ -1,14 +1,14 @@
-import React from 'react'
+import React from 'react';
 import styled from 'styled-components';
 import { useForm } from "react-hook-form";
-import axios from 'axios';
 import toast from 'react-hot-toast';
 import { FaRegFileImage } from "react-icons/fa";
+import apiClient from '../Services/api';
 
 function AddPortfolio() {
-  const { register, handleSubmit, reset, formState: { errors, isSubmitSuccessful }, setValue } = useForm()
-  const [uploading, setUploading] = React.useState(false)
-  const [uploadedImageUrl, setUploadedImageUrl] = React.useState("")
+  const { register, handleSubmit, reset, formState: { errors, isSubmitSuccessful, isSubmitting }, setValue } = useForm();
+  const [uploading, setUploading] = React.useState(false);
+  const [uploadedImageUrl, setUploadedImageUrl] = React.useState("");
   React.useEffect(() => {
     if (isSubmitSuccessful) {
       reset();
@@ -17,48 +17,68 @@ function AddPortfolio() {
 
   const onSubmit = (data) => {
     if (!uploadedImageUrl) {
-      toast.error("Please upload an image first")
-      return
+      toast.error("Please upload an image first");
+      return;
     }
 
     const payload = {
       portfolisImgUrl: uploadedImageUrl,
       portfolisName: data.portfolisName,
-    }
+    };
 
-    axios.post("/sfs-app/admin/portfolio-add", payload)
+    apiClient.post("/sfs-app/admin/portfolio-add", payload)
       .then(res => {
-        toast.success("Portfolio item added successfully")
-        reset()
-        setUploadedImageUrl("")
+        if (res.data?.success) {
+          toast.success(res.data.message || "Portfolio item added successfully");
+        } else {
+          toast.success("Portfolio item added successfully");
+        }
+        reset();
+        setUploadedImageUrl("");
       })
-      .catch(err => {
-        toast.error("Failed to add portfolio item")
-        console.error(err)
-      })
+      .catch(error => {
+        const backendMessage =
+          error.response?.data?.message ||
+          error.response?.data?.error;
+        const errorMessage =
+          backendMessage ||
+          (error.code === "ECONNABORTED"
+            ? "Request timed out while adding portfolio item. Please try again."
+            : error.message || "Failed to add portfolio item");
+        toast.error(errorMessage);
+        console.error(error);
+      });
   };
 
   const handleFileChange = async (e) => {
-    const file = e.target.files && e.target.files[0]
-    if (!file) return
-    const formData = new FormData()
-    formData.append('image', file)
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    const formData = new FormData();
+    formData.append('image', file);
     try {
-      setUploading(true)
-      const res = await axios.post('/sfs-app/upload/upload-img', formData, {
+      setUploading(true);
+      const res = await apiClient.post('/sfs-app/upload/upload-img', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
-      })
-      const { imageUrl } = res.data
-      setUploadedImageUrl(imageUrl)
-      setValue('portfolisImgUrl', imageUrl)
-      toast.success('Image uploaded')
-    } catch (err) {
-      console.error(err)
-      toast.error('Image upload failed')
+      });
+      const { imageUrl } = res.data;
+      setUploadedImageUrl(imageUrl);
+      setValue('portfolisImgUrl', imageUrl);
+      toast.success('Image uploaded');
+    } catch (error) {
+      console.error(error);
+      const backendMessage =
+        error.response?.data?.message ||
+        error.response?.data?.error;
+      const errorMessage =
+        backendMessage ||
+        (error.code === "ECONNABORTED"
+          ? "Image upload timed out. Please try again."
+          : error.message || "Image upload failed");
+      toast.error(errorMessage);
     } finally {
-      setUploading(false)
+      setUploading(false);
     }
-  }
+  };
   return (
     <>
       <div style={{ height: "calc(100vh - 40px)" }} className="w-full flex justify-center items-center">
@@ -85,7 +105,13 @@ function AddPortfolio() {
               <input  className="w-full rounded-md border border-solid bg-transparent px-5 py-3 text-base text-dark outline-hidden transition border-gray-200 placeholder:text-black/30 focus:border-[#154979] focus-visible:shadow-none text-black" {...register("portfolisName", { required: true })} placeholder="Please enter a title" type="text" />
               {errors.portfolisName && <span className=' text-red-600 mt-5'>This field is required</span>}
             </div>
-            <button className="bg-[#154979] w-full py-3 rounded-lg text-18 font-medium border text-white border-[#154979] hover:text-[#154979] hover:bg-transparent hover:cursor-pointer transition duration-300 ease-in-out">Add Item</button>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="bg-[#154979] w-full py-3 rounded-lg text-18 font-medium border text-white border-[#154979] hover:text-[#154979] hover:bg-transparent hover:cursor-pointer transition duration-300 ease-in-out disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              {isSubmitting ? "Adding..." : "Add Item"}
+            </button>
           </form>
         </StyledWrapper>
       </div>

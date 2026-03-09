@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useForm, useFieldArray } from "react-hook-form";
 import toast from 'react-hot-toast';
-import axios from 'axios';
 import { FaRegFileImage } from "react-icons/fa";
 import { TiDeleteOutline } from "react-icons/ti";
 import { IoMdAdd } from "react-icons/io";
+import apiClient from '../Services/api';
 
-// helper api functions
 const uploadCourseImage = async (file) => {
   const formData = new FormData();
   formData.append('image', file);
-  const res = await axios.post('/sfs-app/upload/upload-img', formData, {
+  const res = await apiClient.post('/sfs-app/upload/upload-img', formData, {
     headers: { 'Content-Type': 'multipart/form-data' }
   });
   return res.data;
@@ -20,7 +19,7 @@ const uploadCourseImage = async (file) => {
 
 
 function AddCoursePage() {
-  const { register, handleSubmit, reset, formState: { errors, isSubmitSuccessful }, setValue, control } = useForm({
+  const { register, handleSubmit, reset, formState: { errors, isSubmitSuccessful, isSubmitting }, setValue, control } = useForm({
     defaultValues: {
       courseDocuments: [{ documentName: '', documentDescription: '' }]
     }
@@ -29,20 +28,20 @@ function AddCoursePage() {
     control,
     name: "courseDocuments"
   })
-  const [uploading, setUploading] = React.useState(false)
-  const [uploadedImageUrl, setUploadedImageUrl] = React.useState("")
-  const [courses, setCourses] = useState([])
-  const [selectedCourse, setSelectedCourse] = useState("")
+  const [uploading, setUploading] = React.useState(false);
+  const [uploadedImageUrl, setUploadedImageUrl] = React.useState("");
+  const [courses, setCourses] = useState([]);
+  const [selectedCourse, setSelectedCourse] = useState("");
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const res = await axios.get('/sfs-app/course/all-course')
-        const courses = Array.isArray(res.data) ? res.data : []
-        setCourses(courses)
-        if (courses && courses.length) setSelectedCourse(courses[0]._id)
+        const res = await apiClient.get('/sfs-app/course/all-course');
+        const courses = Array.isArray(res.data) ? res.data : [];
+        setCourses(courses);
+        if (courses && courses.length) setSelectedCourse(courses[0]._id);
       } catch (err) {
-        console.error('Failed to load courses for AddCoursePage', err)
-        setCourses([])
+        console.error('Failed to load courses for AddCoursePage', err);
+        setCourses([]);
       }
     }
     fetchCourses()
@@ -55,12 +54,12 @@ function AddCoursePage() {
 
   const onSubmit =  async (data) => {
     if (!uploadedImageUrl) {
-      toast.error("Please upload an image first")
-      return
+      toast.error("Please upload an image first");
+      return;
     }
     if (!selectedCourse) {
-      toast.error('Please select a parent course')
-      return
+      toast.error('Please select a parent course');
+      return;
     }
 
     const userInfo = {
@@ -68,36 +67,55 @@ function AddCoursePage() {
       courseLogoUrl: data.courseLogoUrl,
       courseVideoUrl: data.courseVideoUrl,
       courseDocuments: data.courseDocuments,
-    }
+    };
 
-  await axios.post('/sfs-app/course/page-add', userInfo)
-      .then(res => {
-        toast.success("Course added successfully")
-        reset()
-        setUploadedImageUrl("")
-        setSelectedCourse("")
-      })
-      .catch(err => {
-        toast.error("Failed to add course")
-        console.error(err)
-      })
+    try {
+      const res = await apiClient.post('/sfs-app/course/page-add', userInfo);
+      if (res.data?.success) {
+        toast.success(res.data.message || "Course documents added successfully");
+      } else {
+        toast.success("Course documents added successfully");
+      }
+      reset();
+      setUploadedImageUrl("");
+      setSelectedCourse("");
+    } catch (error) {
+      const backendMessage =
+        error.response?.data?.message ||
+        error.response?.data?.error;
+      const errorMessage =
+        backendMessage ||
+        (error.code === "ECONNABORTED"
+          ? "Request timed out while submitting documents. Please try again."
+          : error.message || "Failed to add course documents");
+      toast.error(errorMessage);
+      console.error(error);
+    }
   };
 
   const handleFileChange = async (e) => {
     const file = e.target.files && e.target.files[0]
     if (!file) return
     try {
-      setUploading(true)
-      const res = await uploadCourseImage(file)
-      const { imageUrl } = res
-      setUploadedImageUrl(imageUrl)
-      setValue('courseLogoUrl', imageUrl)
-      toast.success('Image uploaded')
+      setUploading(true);
+      const res = await uploadCourseImage(file);
+      const { imageUrl } = res;
+      setUploadedImageUrl(imageUrl);
+      setValue('courseLogoUrl', imageUrl);
+      toast.success('Image uploaded');
     } catch (err) {
-      console.error(err)
-      toast.error('Image upload failed')
+      console.error(err);
+      const backendMessage =
+        err.response?.data?.message ||
+        err.response?.data?.error;
+      const errorMessage =
+        backendMessage ||
+        (err.code === "ECONNABORTED"
+          ? "Image upload timed out. Please try again."
+          : err.message || "Image upload failed");
+      toast.error(errorMessage);
     } finally {
-      setUploading(false)
+      setUploading(false);
     }
   }
   return (
@@ -180,7 +198,13 @@ function AddCoursePage() {
              
             </div>
 
-            <button  className="bg-[#154979] w-full py-3 rounded-lg text-18 font-medium border text-white border-[#154979] hover:text-[#154979] hover:bg-transparent hover:cursor-pointer transition duration-300 ease-in-out">Submit documents</button>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="bg-[#154979] w-full py-3 rounded-lg text-18 font-medium border text-white border-[#154979] hover:text-[#154979] hover:bg-transparent hover:cursor-pointer transition duration-300 ease-in-out disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              {isSubmitting ? "Submitting..." : "Submit documents"}
+            </button>
           </form>
         </StyledWrapper>
       </div>

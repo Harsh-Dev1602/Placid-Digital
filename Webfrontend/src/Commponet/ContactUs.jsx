@@ -1,13 +1,13 @@
-import React from 'react'
+import React from 'react';
 import Img from "../../public/Img.png";
 import { useForm } from "react-hook-form";
-import axios from 'axios';
 import toast from 'react-hot-toast';
+import apiClient from '../Services/api';
 
 function ContactUs() {
 
 
-    const { register, handleSubmit, reset, formState: { errors, isSubmitSuccessful }, } = useForm()
+    const { register, handleSubmit, reset, formState: { errors, isSubmitSuccessful, isSubmitting }, } = useForm();
     React.useEffect(() => {
         if (isSubmitSuccessful) {
             reset();
@@ -17,22 +17,33 @@ function ContactUs() {
     const onSubmit = async (data) => {
         const userInfo = {
             firstname: data.firstname,
-            lastname:data.lastname,
+            lastname: data.lastname,
             email: data.email,
-            Phnumber:data.Phnumber,
-            message:data.message
+            Phnumber: data.Phnumber,
+            message: data.message,
         };
-        await axios.post("/sfs-app/admin/contact-us", userInfo)
-            .then((response) => {
-                if (response.data) {
-                    toast.success("Messege send  successfully");
-                }
-            })
-            .catch((error) => {
-                if (error.response) {
-                    toast.error("Error: " + error.response.data.error);
-                }
-            });
+
+        try {
+            const response = await apiClient.post("/sfs-app/admin/contact-us", userInfo);
+
+            if (response.data?.success) {
+                toast.success(response.data.message || "Message sent successfully");
+            } else {
+                toast.error(response.data?.message || "Something went wrong. Please try again.");
+            }
+        } catch (error) {
+            const backendMessage =
+                error.response?.data?.message ||
+                error.response?.data?.error;
+
+            const errorMessage =
+                backendMessage ||
+                (error.code === "ECONNABORTED"
+                    ? "Request timed out. Please check your internet connection and try again."
+                    : error.message || "Something went wrong. Please try again.");
+
+            toast.error(errorMessage);
+        }
     };
     return ( 
         <>
@@ -98,7 +109,7 @@ function ContactUs() {
                                             Phone Number
                                         </label>
                                         <input
-                                            type='number'
+                                            type='tel'
                                             placeholder='+1234567890'
                                             {...register("Phnumber", { required: true })}
                                             className='w-full text-base px-4 rounded-2xl py-2.5 border-solid border transition-all duration-500 focus:border-[#154979] focus:outline-0'
@@ -119,9 +130,11 @@ function ContactUs() {
                                 </div>
                                 <div className='mt-5 space-y-2 w-full'>
                                     <button
-
-                                        className="border cursor-pointer leading-none px-6 text-lg font-medium py-4 rounded-xl  bg-[#154979]  bg-primary border-[#154979] text-white hover:bg-transparent hover:text-[#154979] ">
-                                        Submit
+                                        type="submit"
+                                        disabled={isSubmitting}
+                                        className="border cursor-pointer leading-none px-6 text-lg font-medium py-4 rounded-xl bg-[#154979] bg-primary border-[#154979] text-white hover:bg-transparent hover:text-[#154979] disabled:opacity-60 disabled:cursor-not-allowed"
+                                    >
+                                        {isSubmitting ? "Sending..." : "Submit"}
                                     </button>
                                 </div>
                             </form>
