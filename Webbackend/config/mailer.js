@@ -1,11 +1,20 @@
 import nodemailer from "nodemailer";
 
+const EMAIL_USER = process.env.EMAIL_USER || process.env.SEND_EMAIL_ID;
+const EMAIL_PASS = process.env.EMAIL_PASS || process.env.SEND_PASS;
+
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: process.env.SEND_EMAIL_ID,
-    pass: process.env.SEND_PASS
-  }
+    user: EMAIL_USER,
+    pass: EMAIL_PASS,
+  },
 });
+
+// Helpful in deploy logs; won't crash the app if misconfigured.
+transporter.verify().then(
+  () => console.log("Mailer ready."),
+  (err) => console.error("Mailer verify failed:", err?.message || err)
+);
 
 export default transporter;

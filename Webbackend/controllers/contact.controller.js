@@ -21,10 +21,14 @@ export const sendContactMail = async (req, res) => {
   // Send email in the background (no need to block the response)
   setImmediate(async () => {
     try {
+      const fromEmail = process.env.EMAIL_USER || process.env.SEND_EMAIL_ID;
+      const toEmail =
+        process.env.CONTACT_RECEIVER_EMAIL || process.env.SEND_EMAIL_ID;
+
       await transporter.sendMail({
-        from: `"Placid Digital" <${process.env.EMAIL_USER}>`,
+        from: `"Placid Digital" <${fromEmail}>`,
         replyTo: userInfo.email,
-        to: process.env.SEND_EMAIL_ID,
+        to: toEmail,
         subject: "New Contact Message from Placid Digital",
         html: `
         <div style="background-color:#f4f6fb;padding:24px 0;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
@@ -88,7 +92,7 @@ export const sendContactMail = async (req, res) => {
       `,
       });
     } catch (error) {
-      console.error("Error sending contact email:", error.message);
+      console.error("Error sending contact email:", error);
     }
   })
 };
