@@ -6,8 +6,6 @@ import { setupAxiosInterceptors } from '../config/apiConfig.js';
 // (dev via Vite proxy, prod via absolute URL).
 const apiClient = axios.create({
   baseURL: '',
-  // Increase timeout to give slower endpoints (like email sending) more time
-  timeout: 120000, // 120 seconds
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
