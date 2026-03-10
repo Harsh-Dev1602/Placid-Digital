@@ -1,5 +1,23 @@
 @import "tailwindcss";
 
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  a {
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
+}
+
 .BG_Color {
   background: linear-gradient(to right, white, #82c02662);
 }

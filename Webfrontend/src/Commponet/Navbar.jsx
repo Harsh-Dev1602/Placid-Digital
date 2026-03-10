@@ -1,217 +1,185 @@
-import React, { useEffect } from 'react'
-import { useState } from "react";
-import { IoLocationSharp } from "react-icons/io5";
-import { Link } from 'react-router-dom';
-import { IoMenu } from "react-icons/io5";
+import React, { useEffect, useState } from "react";
+import { IoLocationSharp, IoMenu } from "react-icons/io5";
+import { Link, useLocation } from "react-router-dom";
 import { RiCloseFill } from "react-icons/ri";
-import { IoIosArrowDropdown } from "react-icons/io";
-import { FaFacebookSquare } from "react-icons/fa";
-import { FaInstagramSquare } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
-import Logo from "../../public/placidlogo.png"
-
+import { IoIosArrowDown } from "react-icons/io";
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { MdEmail, MdPhone } from "react-icons/md";
+import Logo from "../../public/placidlogo.png";
 
 function Navbar() {
-    const [openMenu, setMenu] = useState(false);
-    const [open, setOpen] = useState(false);
-    const [sticky, setSticky] = useState(false)
-    const scrollTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-        });
-    };
+  const [openMenu, setMenu] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [sticky, setSticky] = useState(false);
 
+  const location = useLocation();
 
-    const handleScroll = () => {
-        setSticky(window.scrollY >= 10)
-    }
+  const scrollTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
-    useEffect(() => {
-        window.addEventListener('scroll', handleScroll)
-        return () => {
-            window.removeEventListener('scroll', handleScroll)
-        }
-    }, [])
+  const handleScroll = () => {
+    setSticky(window.scrollY > 50);
+  };
 
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-    const navText = [
-        {
-            id: 0,
-            text: "Home",
-            link: "/"
-        },
-        {
-            id: 2,
-            text: "About Us",
-            link: "/about"
-        },
-        {
-            id: 3,
-            text: "Portfolio",
-            link: "/portfolio"
-        },
-        {
-            id: 4,
-            text: "Career",
-            link: "/career"
-        },
-        {
-            id: 5,
-            text: "Contact",
-            link: "/contact"
-        },
-    ]
+  useEffect(() => {
+    setMenu(false);
+    setOpen(false);
+  }, [location.pathname]);
 
-    return (
-        <>
-            <header
-                className={`z-40 w-full bg-white transition-all duration-300 ${sticky ? 'shadow-lg fixed top-0 ' : ' shadow-none'
-                    }`}>
-                <div className={`bg-[#82c02610]   md:px-5 p-5 flex justify-between items-center text-[15px] md:text-xl ${sticky ? "hidden" : "flex"}`}>
+  const navText = [
+    { id: 0, text: "Home", link: "/" },
+    { id: 1, text: "About Us", link: "/about" },
+    { id: 2, text: "Portfolio", link: "/portfolio" },
+    { id: 3, text: "Career", link: "/career" },
+    { id: 4, text: "Contact", link: "/contact" },
+  ];
 
-                    <ul className='flex flex-col items-center  md:flex-row gap-2 md:gap-5'>
-                        <li className=' font-semibold  flex items-center  gap-1'> <IoLocationSharp /> Indore(M.P.) 452001 </li>
-                        <li className=' hover:text-blue-700 hover:underline font-semibold items-center flex  gap-1'> <MdEmail /><a href="mailto:info@placididigital.in">info@placididigital.in</a> </li>
+  return (
+    <header className={`z-50 w-full bg-white transition-all duration-300 ${sticky ? "fixed top-0 shadow-xl" : "relative"}`}>
+      
+      {/* Top Bar - Clean & Modern */}
+      {!sticky && (
+        <div className="bg-gray-900 text-gray-300 py-2">
+          <div className="container mx-auto px-6 flex justify-between items-center text-xs font-medium">
+            <div className="flex items-center gap-6">
+              <span className="flex items-center gap-1.5 hover:text-green-500 transition cursor-default">
+                <IoLocationSharp className="text-green-500" /> Indore (M.P.) 452001
+              </span>
+              <a href="mailto:info@placiddigital.in" className="flex items-center gap-1.5 hover:text-green-500 transition">
+                <MdEmail className="text-green-500" /> info@placiddigital.in
+              </a>
+            </div>
+            <div className="flex items-center gap-4">
+              <a href="#" className="hover:text-green-500 transition"><FaFacebookF /></a>
+              <a href="#" className="hover:text-green-500 transition"><FaInstagram /></a>
+              <a href="#" className="hover:text-green-500 transition"><FaLinkedinIn /></a>
+            </div>
+          </div>
+        </div>
+      )}
 
-                    </ul>
+      {/* Main Navbar */}
+      <div className={`${sticky ? "py-3" : "py-5"} transition-all duration-300 border-b border-gray-50`}>
+        <div className="container mx-auto px-6 flex items-center justify-between">
+          
+          {/* Logo */}
+          <Link onClick={scrollTop} to="/" className="shrink-0">
+            <img src={Logo} alt="Placid Digital" className="h-10 md:h-12 w-auto" />
+          </Link>
 
-                    <div className=" flex flex-col md:flex-row justify-center items-center gap-2">
-                        <p className=' font-semibold'>Connect Us:</p>
-                        <div className=" grid grid-cols-2 sm:grid-cols-4 sm:gap-2">
-                            <FaFacebookSquare className=' font-semibold text-2xl' />
-                            <FaInstagramSquare className=' font-semibold text-2xl' />
-                            <FaLinkedin className=' font-semibold text-2xl' />
-                            <MdEmail className=' font-semibold text-2xl' />
-                        </div>
-                    </div>
+          {/* Desktop Menu */}
+          <nav className="hidden lg:flex items-center gap-8">
+            {navText.map(({ id, text, link }) => (
+              <Link
+                key={id}
+                to={link}
+                onClick={scrollTop}
+                className={`text-sm font-bold tracking-tight transition-colors ${
+                  location.pathname === link ? "text-green-500" : "text-gray-700 hover:text-green-500"
+                }`}
+              >
+                {text}
+              </Link>
+            ))}
 
+            {/* Services Dropdown */}
+            <div 
+              className="relative group"
+              onMouseEnter={() => setOpen(true)}
+              onMouseLeave={() => setOpen(false)}
+            >
+              <button className="flex items-center gap-1 text-sm font-bold text-gray-700 hover:text-green-500 transition">
+                Services <IoIosArrowDown className={`transition-transform duration-300 ${open ? "rotate-180" : ""}`} />
+              </button>
+
+              {open && (
+                <div className="absolute top-full left-0 pt-4 w-60 z-50 animate-in fade-in slide-in-from-top-2">
+                  <div className="bg-white border border-gray-100 rounded-2xl shadow-2xl p-2 overflow-hidden">
+                    {["Web Development", "App Development", "Digital Marketing"].map((service) => (
+                      <Link
+                        key={service}
+                        to={`/${service.toLowerCase().replace(" ", "-")}`}
+                        className="block px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-green-50 hover:text-green-600 rounded-xl transition"
+                      >
+                        {service}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
-                <div className="flex border-y border-y-[#15497923]  mx-auto items-center justify-evenly z-50 w-full px-6  py-3 ">
-                    <Link onClick={scrollTop} to="/" className=' flex justify-center items-center gap-2'>
-                        <img src={Logo} className='w-48' />
+              )}
+            </div>
+          </nav>
 
-                    </Link>
+          {/* Action Button */}
+          <div className="hidden lg:flex items-center gap-4">
+            <Link
+              to="/training-program"
+              className="bg-green-500 text-white px-7 py-2.5 rounded-full text-sm font-bold hover:bg-gray-900 transition-all shadow-lg shadow-green-100"
+            >
+              Training Program
+            </Link>
+          </div>
 
-                    <div className="hidden border-x border-x-[#15497923] py-2 px-5 items-center md:gap-5 lg:flex ">
-                        {navText.map(({ id, text, link }) => (
-                            <Link onClick={scrollTop} to={link} key={id} className="text-base flex font-medium  capitalized hover:bg-[#154979] hover:text-white p-2 rounded-md">
-                                {text}
-                            </Link>
-                        ))}
-                        <li
-                            className=" list-none relative cursor-pointer"
-                            onClick={() => setOpen(true)}
-                        >
-                            <div className="flex text-base font-medium  capitalized hover:bg-[#154979] hover:text-white p-2 rounded-md items-center  gap-1">
-                                Services
+          {/* Mobile Toggle */}
+          <button 
+            className="lg:hidden p-2 text-3xl text-gray-800"
+            onClick={() => setMenu(!openMenu)}
+          >
+            {openMenu ? <RiCloseFill /> : <IoMenu />}
+          </button>
+        </div>
+      </div>
 
-                                <IoIosArrowDropdown className="w-4 h-4 mt-1" />
-                            </div>
+      {/* Mobile Sidebar */}
+      <div className={`fixed inset-0 z-[60] lg:hidden transition-transform duration-500 ${openMenu ? "translate-x-0" : "-translate-x-full"}`}>
+        <div className="absolute inset-0 b" onClick={() => setMenu(false)}></div>
+        <nav className="relative w-80 h-full bg-white shadow-2xl p-8 flex flex-col">
+        
+          
+          <div className="flex flex-col gap-6">
+            {navText.map(({ id, text, link }) => (
+              <Link
+                key={id}
+                to={link}
+                onClick={() => setMenu(false)}
+                className={`text-xl font-bold ${location.pathname === link ? "text-green-500" : "text-gray-800"}`}
+              >
+                {text}
+              </Link>
+            ))}
+            
+            <button 
+              onClick={() => setOpen(!open)}
+              className="flex items-center justify-between text-xl font-bold text-gray-800"
+            >
+              Services <IoIosArrowDown className={open ? "rotate-180" : ""} />
+            </button>
+            
+            {open && (
+              <div className="flex flex-col gap-4 pl-4 border-l-2 border-green-500">
+                {["Web Development", "App Development", "Digital Marketing"].map((s) => (
+                  <Link key={s} to="/" className="text-gray-500 font-medium">{s}</Link>
+                ))}
+              </div>
+            )}
+          </div>
 
-                            {open && (
-                                <div onMouseLeave={() => setOpen(false)} className="absolute top-15 left-0 bg-white text-black border border-[#15497923] w-52 rounded-md overflow-hidden transition-all duration-300 shadow-lg p-2">
-
-                                    <Link onClick={scrollTop}
-                                        to="/web-development"
-                                        className="text-base flex font-medium  capitalized hover:bg-[#154979] hover:text-white p-2 rounded-md"
-                                    >
-                                        Web Development
-                                    </Link>
-
-                                    <Link onClick={scrollTop} to="/app-development"
-                                        className="text-base flex font-medium  capitalized hover:bg-[#154979] hover:text-white p-2 rounded-md"
-                                    >
-                                        App Development
-                                    </Link>
-
-                                    <Link onClick={scrollTop} to="/digital-marketing"
-
-                                        className="text-base flex font-medium  capitalized hover:bg-[#154979] hover:text-white p-2 rounded-md"
-                                    >
-                                        Digital Marketing
-                                    </Link>
-
-                                </div>
-                            )}
-                        </li>
-
-                    </div>
-
-                    <Link onClick={scrollTop} to="/training-program" className='hidden lg:block bg-[#154979] text-white  hover:bg-transparent duration-300 hover:text-[#154979] border border-[#154979] px-6 py-2 rounded-lg text-xl font-semibold hover:cursor-pointer'>
-                        Training Program
-                    </Link>
-
-                    <div className="lg:hidden block text-3xl cursor-pointer" onClick={() => setMenu(!openMenu)}>
-                        {openMenu ? <> <RiCloseFill /> <div className="fixed z-30 top-0 right-0 w-full h-screen bg-transparent"></div> </> : <IoMenu />}
-                    </div>
-
-                </div>
-
-                {
-                    openMenu && (
-                        <div className="w-60 h-auto  left-0 fixed top-0 lg:hidden z-80  ">
-                            <div style={{ maxHeight: "100vh" }}>
-                                <nav style={{ minHeight: "100vh" }} className=' w-full overflow-y-auto rounded-tr-xl p-4 group relative shadow-lg  flex justify-center items-start  gap-1 flex-col bg-white'>
-                                    {
-                                        navText.map(({ id, text, link }) => (
-                                            <Link onClick={scrollTop} to={link} key={id} className="text-base font-medium  capitalized hover:bg-[#154979] hover:text-white p-2 rounded-md">
-                                                {text}
-                                            </Link>
-
-                                        ))
-
-                                    }
-                                    <li
-                                        className=" list-none relative cursor-pointer"
-                                        onClick={() => setOpen(true)}
-                                    >
-                                        <div className="flex capitalized hover:bg-[#154979] hover:text-white p-2 rounded-md  items-center font-semibold gap-1">
-                                            Services
-                                            <IoIosArrowDropdown className="w-4 h-4 mt-1" />
-                                        </div>
-
-                                        {open && (
-                                            <div onMouseLeave={() => setOpen(false)} className="absolute top-7 left-0 bg-white text-black border border-[#154979] w-52 rounded-md overflow-hidden transition-all duration-300 shadow-lg p-2">
-
-                                                <Link
-                                                    to="/web-development"
-                                                    className="block px-4 capitalized hover:bg-[#154979] hover:text-white p-2 rounded-md]"
-                                                >
-                                                    Web Development
-                                                </Link>
-
-                                                <Link
-                                                    to="/app-development"
-                                                    className="block px-4  capitalized hover:bg-[#154979] hover:text-white p-2 rounded-md"
-                                                >
-                                                    App Development
-                                                </Link>
-
-                                                <Link to="/digital-marketing"
-                                                    className="block px-4  capitalized hover:bg-[#154979] hover:text-white p-2 rounded-md"
-                                                >
-                                                    Digital Marketing
-                                                </Link>
-
-                                            </div>
-                                        )}
-                                    </li>
-
-                                    <Link onClick={scrollTop} to="/training-program" className=' bg-[#154979] text-white text-base font-medium hover:bg-transparent duration-300 hover:text-[#154979] border mt-5 border-primary px-6 py-2 rounded-lg hover:cursor-pointer'>
-                                        Training Program
-                                    </Link>
-                                </nav>
-                            </div>
-                        </div>
-                    )
-                }
-
-            </header>
-
-        </>
-    )
+          <Link
+            to="/training-program"
+            className="mt-auto bg-green-500 text-white py-4 rounded-2xl text-center font-bold shadow-lg"
+          >
+            Start Training
+          </Link>
+        </nav>
+      </div>
+    </header>
+  );
 }
 
-export default Navbar
+export default Navbar;

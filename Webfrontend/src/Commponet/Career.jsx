@@ -1,127 +1,167 @@
-import { useEffect, useState } from 'react'
-
-import axios from 'axios'
-import { useLoading } from '../Context/LoadingProvider'
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useLoading } from "../Context/LoadingProvider";
+import { FaUsers, FaLightbulb, FaRocket, FaCheckCircle, FaArrowRight } from "react-icons/fa";
 
 function Career() {
   const reasons = [
     {
       title: "Friendly Environment",
-      desc: "Join a team that values respect, collaboration, and growth.",
-      img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d",
+      desc: "Join a team that values respect, collaboration, and collective growth.",
+      icon: <FaUsers />,
+      color: "bg-blue-500",
     },
     {
-      title: "Planning",
-      desc: "Plan your work effectively and grow your career with us.",
-      img: "https://images.unsplash.com/photo-1552664730-d307ca884978",
+      title: "Strategic Planning",
+      desc: "Map out your professional roadmap with structured career paths.",
+      icon: <FaLightbulb />,
+      color: "bg-green-500",
     },
     {
-      title: "Execution",
-      desc: "Turn ideas into reality with structured execution.",
-      img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
+      title: "Agile Execution",
+      desc: "Turn innovative ideas into reality with cutting-edge tech stacks.",
+      icon: <FaRocket />,
+      color: "bg-purple-500",
     },
     {
-      title: "Delivery",
-      desc: "Deliver quality solutions on time, every time.",
-      img: "https://images.unsplash.com/photo-1522071820081-009f0129c71c",
+      title: "Quality Delivery",
+      desc: "Take pride in delivering high-impact solutions to global clients.",
+      icon: <FaCheckCircle />,
+      color: "bg-orange-500",
     },
   ];
 
-  const [jobs, setJobs] = useState([])
-  const [, setIsLoading] = useLoading()
+  const [jobs, setJobs] = useState([]);
+  const [, setIsLoading] = useLoading();
 
   useEffect(() => {
     const fetchJobs = async () => {
-      setIsLoading(true)
+      setIsLoading(true);
       try {
-        const res = await axios.get('/sfs-app/admin/all-job');
-        const jobs = Array.isArray(res.data) ? res.data : []
-        setJobs(jobs)
+        const res = await axios.get("/sfs-app/admin/all-job");
+        const jobs = Array.isArray(res.data) ? res.data : [];
+        setJobs(jobs);
       } catch (err) {
-        console.error('Failed to fetch jobs', err)
-        setJobs([])
+        console.error("Failed to fetch jobs", err);
+        setJobs([]);
       } finally {
-        setIsLoading(false)
+        setIsLoading(false);
       }
-    }
-    fetchJobs()
-  }, [setIsLoading])
+    };
+    fetchJobs();
+  }, [setIsLoading]);
+
   return (
-    <>
-      <div className="bg-white">
+    <div className="bg-white">
+      {/* --- Hero Section --- */}
+      <section className="relative py-24 px-6 overflow-hidden bg-gray-50">
+        <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+            <div className="absolute top-[-10%] right-[-5%] w-96 h-96 bg-green-400 rounded-full blur-[120px]"></div>
+            <div className="absolute bottom-[-10%] left-[-5%] w-96 h-96 bg-blue-400 rounded-full blur-[120px]"></div>
+        </div>
 
-        <section className="pt-10 text-center">
-          <h1 className="text-3xl italic font-mono text-[#154979] font-bold tracking-wide">CAREER</h1>
-        </section>
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <span className="bg-green-100 text-green-600 px-4 py-1 rounded-full text-sm font-bold uppercase tracking-widest mb-6 inline-block">
+            Career Opportunities
+          </span>
+          <h1 className="text-4xl md:text-6xl font-black text-gray-900 leading-tight">
+            Build Your <span className="text-green-500">Future</span> <br /> 
+            With Placid Digital
+          </h1>
+          <p className="mt-6 text-gray-500 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+            We don't just offer jobs; we offer a platform to innovate, lead, and 
+            transform the digital landscape.
+          </p>
+        </div>
+      </section>
 
-        <section className="pt-2 px-5">
-          <h3 className="text-center text-[#83C026] font-serif   font-semibold mb-10">
-            WHY CAREER WITH US
-          </h3>
+      {/* --- Why Work With Us (Feature Cards) --- */}
+      <section className="py-24 px-6 max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-black text-gray-900">Why Work With Us</h2>
+          <div className="w-20 h-1.5 bg-green-500 mx-auto mt-4 rounded-full"></div>
+        </div>
 
-          <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-
-            {reasons.map((item, index) => (
-
-              <div key={index} className="space-y-4 rounded-2xl group relative shadow-lg hover:scale-95 border-[#154979] duration-200 hover:border-2 p-4">
-
-                <img
-                  src={item.img}
-                  className="w-20 h-20 mx-auto rounded-full object-cover mb-4"
-
-                />
-                <p className="text-xl text-center font-bold text-[#154979]">
-                  {item.title}
-                </p>
-                <p className="text-sm  ">
-                  {item.desc}
-                </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {reasons.map((item, index) => (
+            <div
+              key={index}
+              className="group p-8 rounded-[2.5rem] bg-white border border-gray-100 shadow-xl shadow-gray-100/50 hover:shadow-2xl hover:shadow-green-100/30 transition-all duration-500 text-center"
+            >
+              <div className={`w-16 h-16 ${item.color} text-white rounded-2xl flex items-center justify-center text-2xl mx-auto mb-6 shadow-lg rotate-3 group-hover:rotate-0 transition-transform duration-300`}>
+                {item.icon}
               </div>
-            ))}
+              <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-green-500 transition-colors">
+                {item.title}
+              </h3>
+              <p className="text-gray-500 text-sm leading-relaxed">
+                {item.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
 
+      {/* --- Job Listings --- */}
+      <section className="py-24 px-6 bg-gray-900 relative">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <div className="text-left">
+              <h2 className="text-3xl md:text-4xl font-black text-white">Current Openings</h2>
+              <p className="text-gray-400 mt-2">Find the role that matches your passion.</p>
+            </div>
+            <div className="hidden md:block h-px flex-1 bg-gray-800 mx-10 mb-4"></div>
+            <span className="text-green-500 font-bold">{jobs.length} Positions Available</span>
           </div>
-        </section>
 
-        <section className="py-20 px-5">
+          {jobs.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {jobs.map((job) => (
+                <div
+                  key={job._id}
+                  className="bg-gray-800/50 backdrop-blur-md rounded-[2.5rem] border border-gray-700 p-2 group hover:border-green-500/50 transition-all duration-500"
+                >
+                  <div className="relative h-56 w-full overflow-hidden rounded-[2rem]">
+                    <img
+                      src={job.jobImgUrl}
+                      alt={job.jobTitle}
+                      className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60"></div>
+                  </div>
 
-          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-
-            {jobs.map((job) => (
-              <div key={job._id} className='card-hover  group relative shadow-lg p-5'>
-                <div className=' overflow-hidden rounded-lg bg-gray-200'>
-                  <img
-                    src={job.jobImgUrl}
-                    width={700}
-                    className=' h-auto object-cover object-center lg:h-full lg:w-full '
-                    alt={job.jobTitle}
-                  />
-                </div>
-                <div className=' flex justify-center '>
-
-                  <div className='border border-white rounded-lg -mt-8 bg-white p-4 shadow-mentor Shadow flex items-center justify-center'>
-                    <div
-                      className='text-xl font-semibold text-[#154979] text-center'>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-white mb-6 group-hover:text-green-400 transition-colors">
                       {job.jobTitle}
-                    </div>
+                    </h3>
+                    
+                    <button className="w-full bg-white text-gray-900 py-4 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-green-500 hover:text-white transition-all duration-300">
+                      Apply Now <FaArrowRight size={14} />
+                    </button>
                   </div>
                 </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-20 bg-gray-800/30 rounded-[3rem] border border-dashed border-gray-700">
+              <p className="text-gray-500 text-lg">No active openings at the moment. Check back soon!</p>
+            </div>
+          )}
+        </div>
+      </section>
 
-                <div className="flex justify-center items-center mt-3">
-                  <button className="bg-[#154979] px-10 py-3 rounded-lg text-18 font-medium border text-white border-[#154979] hover:text-[#154979] hover:bg-transparent hover:cursor-pointer transition duration-300 ease-in-out">
-                    Apply now !
-                  </button>
-                </div>
-              </div>
-
-            ))}
-
-          </div>
-
-        </section>
-
-      </div>
-    </>
-  )
+      {/* --- Footer CTA --- */}
+      <section className="py-20 text-center px-6">
+        <div className="max-w-2xl mx-auto p-12 rounded-[3rem] bg-green-500 text-white shadow-2xl shadow-green-200">
+            <h2 className="text-3xl font-black mb-4">Didn't find your role?</h2>
+            <p className="mb-8 opacity-90 text-lg">Send us your CV anyway! We're always looking for great talent to join our ecosystem.</p>
+            <a href="mailto:hr@placiddigital.in" className="bg-gray-900 text-white px-10 py-4 rounded-2xl font-bold hover:bg-white hover:text-gray-900 transition-all">
+                Submit Resume
+            </a>
+        </div>
+      </section>
+    </div>
+  );
 }
 
-export default Career
+export default Career;

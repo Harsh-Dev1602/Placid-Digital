@@ -1,19 +1,20 @@
 import React from 'react';
-import styled from 'styled-components';
 import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast';
-import { FaRegFileImage } from "react-icons/fa";
+import { HiOutlineCloudUpload, HiOutlineBookOpen, HiOutlineCheckCircle } from "react-icons/hi";
+import { useNavigate } from 'react-router-dom';
 import apiClient from '../Services/api';
 
 function AddCourse() {
-  const { register, handleSubmit, reset, formState: { errors, isSubmitSuccessful, isSubmitting }, setValue } = useForm();
+  const navigate = useNavigate();
+  const { register, handleSubmit, reset, formState: { errors, isSubmitting }, setValue, watch } = useForm();
+  
   const [uploading, setUploading] = React.useState(false);
   const [uploadedImageUrl, setUploadedImageUrl] = React.useState("");
-  React.useEffect(() => {
-    if (isSubmitSuccessful) {
-      reset();
-    }
-  }, [isSubmitSuccessful, reset]);
+
+  // Watch fields for live preview
+  const courseName = watch("courseName", "Course Title");
+  const courseDescription = watch("courseDescription", "Your course description will appear here...");
 
   const onSubmit = async (data) => {
     if (!uploadedImageUrl) {
@@ -28,197 +29,122 @@ function AddCourse() {
     };
 
     try {
-      const res = await apiClient.post("/sfs-app/course/course-add", userInfo);
-      if (res.data?.success) {
-        toast.success(res.data.message || "Course added successfully");
-      } else {
-        toast.success("Course added successfully");
-      }
+      await apiClient.post("/sfs-app/course/course-add", userInfo);
+      toast.success("Course added successfully!");
       reset();
       setUploadedImageUrl("");
+      navigate('/dashboard/course-page-manager'); // Go back to list
     } catch (error) {
-      const backendMessage =
-        error.response?.data?.message ||
-        error.response?.data?.error;
-
-      const errorMessage =
-        backendMessage ||
-        (error.code === "ECONNABORTED"
-          ? "Request timed out while adding course. Please try again."
-          : error.message || "Failed to add course");
-
-      toast.error(errorMessage);
-      console.error(error);
+      toast.error(error.response?.data?.message || "Failed to add course");
     }
   };
 
   const handleFileChange = async (e) => {
-    const file = e.target.files && e.target.files[0];
+    const file = e.target.files?.[0];
     if (!file) return;
+
     const formData = new FormData();
     formData.append('image', file);
+
     try {
       setUploading(true);
       const res = await apiClient.post('/sfs-app/upload/upload-img', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
-      const { imageUrl } = res.data;
-      setUploadedImageUrl(imageUrl);
-      setValue('courseImgUrl', imageUrl);
-      toast.success('Image uploaded');
+      setUploadedImageUrl(res.data.imageUrl);
+      setValue('courseImgUrl', res.data.imageUrl);
+      toast.success('Image processed');
     } catch (error) {
-      console.error(error);
-      const backendMessage =
-        error.response?.data?.message ||
-        error.response?.data?.error;
-      const errorMessage =
-        backendMessage ||
-        (error.code === "ECONNABORTED"
-          ? "Image upload timed out. Please try again."
-          : error.message || "Image upload failed");
-      toast.error(errorMessage);
+      toast.error("Image upload failed");
     } finally {
       setUploading(false);
     }
   };
+
   return (
-    <>
-      <div style={{ height: "calc(100vh - 40px)" }} className="w-full flex justify-center items-center">
-        <StyledWrapper>
-          <form onSubmit={handleSubmit(onSubmit)} className=" w-2xl mx-auto space-y-4 p-5 relative shadow-lg">
-            <h1 className='text-4xl font-bold  text-center text-[#154979d0]'>Add Course</h1>
-
-            <div className="w-full">
-              <label className="custum-file-upload">
-                <div className="icon">
-                  <FaRegFileImage className=' text-6xl' />
-                </div>
-                <div className="text">
-                  <span className='text-center'>Click to upload course image</span>
-                </div>
-                <input id="file" type="file" onChange={handleFileChange} />
-              </label>
-              {errors.courseImgUrl && <span className=' text-red-600 mt-5'>This field is required</span>}
-              {uploading && <div className=' text-sm text-gray-500 mt-2'>Uploading...</div>}
-              {uploadedImageUrl && <div className=' text-sm text-green-600 mt-2'>Uploaded URL: {uploadedImageUrl}</div>}
-            </div>
-
-            <div className="w-full">
-              <input  className="w-full rounded-md border border-solid bg-transparent px-5 py-3 text-base text-dark outline-hidden transition border-gray-200 placeholder:text-black/30 focus:border-[#154979] focus-visible:shadow-none text-black" {...register("courseName", { required: true })} placeholder="Please enter a course name" type="text" />
-              {errors.courseName && <span className=' text-red-600 mt-5'>This field is required</span>}
-            </div>
-            <div className="w-full">
-              <input  className="w-full rounded-md border border-solid bg-transparent px-5 py-3 text-base text-dark outline-hidden transition border-gray-200 placeholder:text-black/30 focus:border-[#154979] focus-visible:shadow-none text-black" {...register("courseDescription", { required: true })} placeholder="Please enter course description" type="text" />
-              {errors.courseDescription && <span className=' text-red-600 mt-5'>This field is required</span>}
-            </div>
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="bg-[#154979] w-full py-3 rounded-lg text-18 font-medium border text-white border-[#154979] hover:text-[#154979] hover:bg-transparent hover:cursor-pointer transition duration-300 ease-in-out disabled:opacity-60 disabled:cursor-not-allowed"
-            >
-              {isSubmitting ? "Adding..." : "Add Course"}
-            </button>
-          </form>
-        </StyledWrapper>
+    <div className="max-w-5xl mx-auto">
+      <div className="mb-10">
+        <h1 className="text-4xl font-black text-[#0F2B5B]">Create New Course</h1>
+        <p className="text-gray-500 mt-2 text-lg">Set up a new educational program for your platform.</p>
       </div>
-    </>
-  )
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        {/* --- Left: Form --- */}
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-xl shadow-gray-200/50">
+          
+          {/* Image Upload Area */}
+          <div className="space-y-2">
+            <label className="text-xs font-black uppercase tracking-widest text-gray-400 ml-2">Course Banner</label>
+            <label className={`relative flex flex-col items-center justify-center w-full h-48 border-2 border-dashed rounded-[2rem] cursor-pointer transition-all ${uploadedImageUrl ? 'border-green-500 bg-green-50/30' : 'border-gray-200 hover:border-[#0F2B5B] bg-gray-50'}`}>
+              {!uploadedImageUrl ? (
+                <div className="flex flex-col items-center justify-center pt-5 pb-6 text-center px-4">
+                  <HiOutlineCloudUpload className={`text-4xl mb-2 ${uploading ? 'animate-bounce text-blue-500' : 'text-gray-400'}`} />
+                  <p className="text-sm font-bold text-gray-500">{uploading ? 'Processing Image...' : 'Click to upload course image'}</p>
+                </div>
+              ) : (
+                <div className="flex flex-col items-center text-green-600">
+                  <HiOutlineCheckCircle className="text-4xl mb-1" />
+                  <span className="text-xs font-bold uppercase">Image Secured</span>
+                </div>
+              )}
+              <input type="file" className="hidden" onChange={handleFileChange} disabled={uploading} />
+            </label>
+          </div>
+
+          {/* Name Input */}
+          <div className="space-y-2">
+            <label className="text-xs font-black uppercase tracking-widest text-gray-400 ml-2">Course Name</label>
+            <input 
+              className={`w-full bg-gray-50 border-2 border-transparent focus:border-[#0F2B5B] focus:bg-white rounded-2xl px-6 py-4 outline-none transition-all font-semibold ${errors.courseName ? 'border-red-500' : ''}`}
+              {...register("courseName", { required: "Name is required" })} 
+              placeholder="e.g. Full Stack Web Development" 
+            />
+          </div>
+
+          {/* Description Input */}
+          <div className="space-y-2">
+            <label className="text-xs font-black uppercase tracking-widest text-gray-400 ml-2">Description</label>
+            <textarea 
+              rows="4"
+              className={`w-full bg-gray-50 border-2 border-transparent focus:border-[#0F2B5B] focus:bg-white rounded-2xl px-6 py-4 outline-none transition-all font-semibold resize-none ${errors.courseDescription ? 'border-red-500' : ''}`}
+              {...register("courseDescription", { required: "Description is required" })} 
+              placeholder="Briefly describe what students will learn..." 
+            />
+          </div>
+
+          <button
+            type="submit"
+            disabled={isSubmitting || uploading}
+            className="w-full bg-[#0F2B5B] text-white py-5 rounded-2xl font-black text-lg hover:bg-[#1a4185] transition-all shadow-xl shadow-blue-900/20 active:scale-[0.98] disabled:opacity-50"
+          >
+            {isSubmitting ? "Generating Course..." : "Publish Course"}
+          </button>
+        </form>
+
+        {/* --- Right: Live Preview --- */}
+        <div className="sticky top-10">
+          <label className="text-xs font-black uppercase tracking-widest text-gray-400 ml-2 block mb-4">Card Preview</label>
+          <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-2xl overflow-hidden max-w-sm mx-auto opacity-80 border-dashed border-2">
+             <div className="h-48 bg-gray-100 flex items-center justify-center overflow-hidden">
+                {uploadedImageUrl ? (
+                    <img src={uploadedImageUrl} className="w-full h-full object-cover" alt="Preview" />
+                ) : (
+                    <HiOutlineBookOpen className="text-6xl text-gray-200" />
+                )}
+             </div>
+             <div className="p-6 text-center">
+                <h3 className="text-xl font-black text-[#0F2B5B] truncate">{courseName || "Course Title"}</h3>
+                <p className="text-gray-500 text-sm mt-2 line-clamp-3">{courseDescription || "Description..."}</p>
+                <div className="mt-6 pt-4 border-t border-gray-50">
+                    <div className="w-full h-10 bg-gray-100 rounded-xl"></div>
+                </div>
+             </div>
+          </div>
+          <p className="text-center text-gray-400 text-xs mt-6 italic">This is how your course will appear on the main website.</p>
+        </div>
+      </div>
+    </div>
+  );
 }
 
-
-const StyledWrapper = styled.div`
-
-
-  .title {
-    color: var(--font-color);
-    font-weight: 900;
-    font-size: 20px;
-  }
-
-  .title span {
-    color: var(--font-color-sub);
-    font-weight: 500;
-    font-size: 15px;
-  }
-
-  .input {
-    width: 100%;
-    height: 40px;
-    border-radius: 5px;
-    border: 2px solid #154979d0;
-    background-color: var(--bg-color);
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--font-color);
-    padding: 5px 10px;
-    outline: none;
-  }
-
-  .input::placeholder {
-    color: var(--font-color-sub);
-    opacity: 0.8;
-  }
-
-  .button-confirm:active {
-    box-shadow: 0px 0px #e8e8e8;
-    transform: translate(3px, 3px);
-  }
-
-  .button-confirm {
-    width: 120px;
-    height: 40px;
-    border-radius: 5px;
-    border: 2px solid var(--main-color);
-    background-color: var(--bg-color);
-    box-shadow: 4px 4px #e8e8e8;
-    font-size: 17px;
-    font-weight: 600;
-    color: var(--font-color);
-    cursor: pointer;
-  }
-
-  .custum-file-upload {
-    height: 200px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: space-between;
-    gap: 20px;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-    border: 2px dashed #154979;
-    background-color: white;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0px 48px 35px -48px #e8e8e8;
-  }
-
-  .custum-file-upload .icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .custum-file-upload .icon svg {
-    height: 80px;
-    fill: #154979;
-  }
-
-  .custum-file-upload .text {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .custum-file-upload .text span {
-    font-weight: 400;
-    color: #6a7282 ;
-  }
-
-  .custum-file-upload input {
-    display: none;
-  }`;
-
-
-export default AddCourse
+export default AddCourse;

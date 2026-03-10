@@ -1,45 +1,123 @@
-import React from 'react'
+import React from 'react';
+import { FaChartLine, FaSearch, FaShareAlt, FaEnvelopeOpenText, FaArrowRight } from 'react-icons/fa';
 
 function DigitalMarketing() {
-    return (
-        <>
-            <section className="  py-16 px-5">
+  const marketingServices = [
+    {
+      title: "Social Media Marketing",
+      desc: "Dominate platforms like Instagram, Facebook, and LinkedIn with engaging content and targeted ad campaigns.",
+      icon: <FaShareAlt />,
+    },
+    {
+      title: "SEO Optimization",
+      desc: "Rank on the first page of Google. We optimize your technical SEO and content to drive organic traffic.",
+      icon: <FaSearch />,
+    },
+    {
+      title: "Performance Marketing",
+      desc: "ROI-driven PPC and lead generation campaigns designed to convert clicks into loyal customers.",
+      icon: <FaChartLine />,
+    },
+    {
+      title: "Email & Content",
+      desc: "Strategic storytelling and email automation that keeps your brand top-of-mind for your audience.",
+      icon: <FaEnvelopeOpenText />,
+    },
+  ];
 
-                <div className=" container mx-auto">
+  return (
+    <div className="bg-white overflow-hidden">
+      {/* --- Hero Header --- */}
+      <section className="relative py-24 bg-[#0F2B5B] px-6 text-center">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+        </div>
+        
+        <div className="container mx-auto relative z-10">
+          <span className="bg-green-500 text-white px-4 py-1 rounded-full text-xs font-black uppercase tracking-[0.2em] mb-6 inline-block">
+            Growth Accelerated
+          </span>
+          <h1 className="text-5xl md:text-7xl font-black text-white mb-6">
+            Digital <span className="text-[#7ED957]">Marketing</span>
+          </h1>
+          <p className="text-gray-300 max-w-2xl mx-auto text-lg">
+            Placid Digital (Smart Future Step) is the premier Social Media Marketing Company 
+            in Indore, dedicated to scaling your business through data-driven strategies.
+          </p>
+        </div>
+      </section>
 
-                    <div className="text-center mb-14">
-                        <h1 className="text-[#83C026] text-5xl font-bold mb-3">
-                            Digital Marketing
-                        </h1>
+      {/* --- Main Content Section --- */}
+      <section className="py-24 px-6 container mx-auto">
+        <div className="flex flex-col lg:flex-row items-center gap-16 mb-24">
+          {/* Image with Decorative Glow */}
+          <div className="lg:w-1/2 relative">
+            <div className="absolute -top-6 -left-6 w-full h-full border-2 border-green-500 rounded-[2.5rem] -z-10"></div>
+            <img
+              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+              alt="Digital Marketing Analysis"
+              className="rounded-[2.5rem] shadow-2xl w-full h-[400px] object-cover"
+            />
+          </div>
 
-                        <p className="  max-w-2xl mx-auto">
-                            We provide the best Digital Marketing Services in Indore
-                        </p>
-                    </div>
+          {/* About Text */}
+          <div className="lg:w-1/2 space-y-6">
+            <h2 className="text-3xl md:text-4xl font-black text-[#0F2B5B] leading-tight">
+              Boost Your Brand <br /> 
+              <span className="text-green-500 text-2xl md:text-3xl italic font-serif">Visibility & Engagement</span>
+            </h2>
+            <p className="text-gray-600 leading-relaxed text-lg">
+              Known for premium services across the region, our team helps your brand gain 
+              massive traffic through Facebook, Instagram, Twitter, and LinkedIn. We don't 
+              just post content; we build communities around your business.
+            </p>
+            <div className="grid grid-cols-2 gap-4 pt-4">
+               <div className="flex items-center gap-2 font-bold text-[#0F2B5B]">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div> Brand Strategy
+               </div>
+               <div className="flex items-center gap-2 font-bold text-[#0F2B5B]">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div> Ad Management
+               </div>
+            </div>
+          </div>
+        </div>
 
-                    <div className="space-y-16
-                               flex flex-col md: md:flex-row-reverse gap-5"  >
-                        <div className="bg-white p-6 rounded-xl Box_Shedow md:w-1/2">
+        {/* --- Services Grid --- */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {marketingServices.map((service, index) => (
+            <div key={index} className="group p-8 bg-gray-50 rounded-[2rem] hover:bg-white hover:shadow-2xl hover:shadow-green-100 transition-all duration-500 border border-transparent hover:border-green-100">
+              <div className="text-4xl text-green-500 mb-6 group-hover:scale-110 transition-transform">
+                {service.icon}
+              </div>
+              <h3 className="text-xl font-bold text-[#0F2B5B] mb-3">{service.title}</h3>
+              <p className="text-gray-500 text-sm leading-relaxed">{service.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
-                            <p className="   ">
-                                Smart Future Step Private Limited is a Social Media Marketing Company in Indore, known for its premium services across the region. We provide all prominent services including Digital Marketing, Web Development, and much more. Our team helps your brand gain traffic and engagement through Facebook, Instagram, Twitter, LinkedIn, and other major platforms. We dedicate our time to your growth and business success.
-                            </p>
+      {/* --- Growth Chart Diagram Placeholder --- */}
+      
 
-                        </div>
-
-                        <div className="md:w-1/2">
-
-                            <img
-                                src="http://media.istockphoto.com/id/1443560890/photo/digital-marketing-business-technology-concept-website-advertisement-email-social-media.jpg?s=612x612&w=0&k=20&c=S7d_Mof_fEsM69inW540APogoXkz-eA23XE1AIhTaBA="
-                                className="rounded-xl shadow-lg w-full h-64 object-cover"
-                            />
-
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </>
-    )
+      {/* --- Final CTA --- */}
+      <section className="bg-gray-50 py-20">
+        <div className="container mx-auto px-6 text-center">
+          <div className="max-w-4xl mx-auto bg-[#0F2B5B] p-10 md:p-16 rounded-[3rem] relative overflow-hidden shadow-2xl">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-green-500 rounded-full blur-[80px] opacity-20"></div>
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-6">
+              Ready to Skyrocket <br /> Your ROI?
+            </h2>
+            <p className="text-gray-400 mb-10 text-lg">
+              Stop guessing and start growing with Indore's most trusted digital team.
+            </p>
+            <button className="bg-green-500 hover:bg-white hover:text-green-600 text-white px-10 py-5 rounded-2xl font-black text-lg transition-all flex items-center gap-3 mx-auto">
+              Get Started Now <FaArrowRight />
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
 }
 
-export default DigitalMarketing
+export default DigitalMarketing;

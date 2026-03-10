@@ -1,87 +1,139 @@
-import React from 'react'
-import { IoLocationSharp } from "react-icons/io5";
-import { MdEmail } from "react-icons/md";
-import { MdAccessTimeFilled } from "react-icons/md";
-import { FaFacebookSquare } from "react-icons/fa";
-import { FaInstagramSquare } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
-import { Link } from 'react-router-dom';
-import Logo from "../../public/placidlogo.png"
+import React from "react";
+import { IoLocationSharp, IoArrowForward } from "react-icons/io5";
+import { MdEmail, MdAccessTimeFilled, MdPhone } from "react-icons/md";
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import Logo from "../../public/placidlogo.png";
 
 function Footer() {
-    const scrollTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-        });
-    };
+  const scrollTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
-    return (
-        <>
-            <footer className=' px-5 md:px-15 BG-Img py-10'>
-                <div className="bg-[#1a2c511e] rounded-3xl p-5">
-                    <div className=" container mx-auto flex flex-col md:flex-row justify-between gap-10 pb-10 ">
-                        <div className=' md:w-80 flex flex-col  items-start justify-center space-y-5'>
-                            <div className=" flex justify-center items-center gap-5">
-                                <img src={Logo} className=' bg-white rounded-2xl w-30' />
+  const quickLinks = [
+    { name: "About Us", link: "/about" },
+    { name: "Portfolio", link: "/portfolio" },
+    { name: "Career", link: "/career" },
+    { name: "Contact", link: "/contact" },
+  ];
 
-                            </div>
-                            <p className='text-justify leading-6'>Placid Digital Pvt. Ltd. is a fast-growing IT Company that provides holistic IT solutions to businesses across geographies We offer IT expertise in software, website, and application (iOS & Android) development; UI/UX design; and digital marketing.</p>
-                        </div>
+  const services = [
+    { name: "Web Development", link: "/web-development" },
+    { name: "App Development", link: "/app-development" },
+    { name: "Digital Marketing", link: "/digital-marketing" },
+    { name: "IT Training", link: "/training-program" },
+  ];
 
-                        <div className="md:border-x-2 md:px-15 md:border-x-gray-400 space-y-5">
-                            <h3 className=' text-[#83C026] font-serif font-bold'>Our Services</h3>
-                            <ul className='flex flex-col gap-4'>
-                                <Link onClick={scrollTop} className='hover:underline hover:   hover:text-[#83C026]' to="/web-development"> Web Development </Link>
-                                <Link onClick={scrollTop} className='hover:underline hover:   hover:text-[#83C026]' to="/digital-marketing"> Digital Marketing</Link>
-                                <Link onClick={scrollTop} className='hover:underline hover:   hover:text-[#83C026]' to="/app-development"> App Development</Link>
-                                <Link onClick={scrollTop} className='hover:underline hover:   hover:text-[#83C026]' to="/training-program"> Training Services</Link>
-                            </ul>
-                        </div>
+  return (
+    <footer className="bg-gray-900 text-gray-300 pt-20 pb-10 overflow-hidden relative">
+      {/* Decorative background element */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-green-500/5 blur-[120px] rounded-full -mr-48 -mt-48"></div>
 
-                        <div className=" space-y-5">
-                            <h3 className=' text-[#83C026] font-serif font-bold'>Contact Info</h3>
-                            <ul className=' space-y-4'>
-                                <li className=' flex  gap-2'> <IoLocationSharp />Indore(M.P.) 452001 </li>
-                                <li className=' hover:text-blue-700 hover:underline  flex  gap-2'> <MdEmail /> <a href="mailto:info@placididigital.in">info@placididigital.in</a></li>
-                                <li className=' flex  gap-2'> <MdAccessTimeFilled /> Office Hours: 10AM – 7PM </li>
-                            </ul>
-                        </div>
-
-
-                    </div>
-                    <div className=" border-y-2 border-y-gray-400 container mx-auto flex flex-col md:flex-row  justify-between gap-5  items-center py-5">
-                        <div className=" space-y-2">
-                            <h1 className=' font-bold text-2xl text-[#83C026]'>Subscribe</h1>
-                            <p>Get our latest updates and offers.</p>
-                        </div>
-                        <div className=" border-4 border-[#48a1112a] rounded-2xl w-full md:w-1/3">
-                            <div className="relative">
-                                <input type="email" placeholder="Email address..." autoComplete="email" aria-label="Email address" className="block w-full rounded-xl py-4 pl-6 bg-white pr-20 text-xl text-neutral-950 ring-4 ring-transparent transition placeholder:text-neutral-500 focus:border-neutral-950 focus:outline-none focus:ring-neutral-950/5" />
-                                <div className="absolute inset-y-1 right-1 flex justify-end">
-                                    <button type="submit" aria-label="Submit" className="flex aspect-square h-full items-center p-2 space-x-2 justify-center font-bold text-white rounded-xl bg-[#83C026]">
-                                        Subscribe
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div className=" container mx-auto flex flex-col lg:flex-row gap-5 justify-between items-center pt-5">
-                        <p>© {new Date().getFullYear()} Placid Digital Private Limited- All Rights Reserved.</p>
-                        <div className=" flex justify-center text-gray-200 items-center p-2 rounded-2xl gap-5">
-                            <FaFacebookSquare className=' text-4xl' />
-                            <FaInstagramSquare className=' text-4xl' />
-                            <FaLinkedin className=' text-4xl' />
-                            <MdEmail className=' text-4xl' />
-                        </div>
-                    </div>
+      <div className="container mx-auto px-6 lg:px-10 relative z-10">
+        
+        {/* Top Section: Branding and Links */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-16 border-b border-gray-800">
+          
+          {/* Column 1: Company Branding */}
+          <div className="space-y-6">
+            <img
+              src={Logo}
+              alt="Placid Digital"
+              className="h-12 bg-white p-2 rounded-xl"
+            />
+            <p className="text-sm leading-relaxed text-gray-400">
+              Leading the digital frontier with innovative software solutions and 
+              industry-standard training programs. We turn complex problems into 
+              elegant digital experiences.
+            </p>
+            <div className="flex gap-3">
+              {[
+                { icon: <FaFacebookF />, color: "hover:bg-blue-600" },
+                { icon: <FaInstagram />, color: "hover:bg-pink-600" },
+                { icon: <FaLinkedinIn />, color: "hover:bg-blue-700" },
+                { icon: <FaYoutube />, color: "hover:bg-red-600" },
+              ].map((social, i) => (
+                <div key={i} className={`w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center cursor-pointer transition-all duration-300 ${social.color} hover:text-white`}>
+                  {social.icon}
                 </div>
-            </footer>
+              ))}
+            </div>
+          </div>
 
-        </>
-    )
+          {/* Column 2: Quick Links */}
+          <div className="space-y-6">
+            <h3 className="text-lg font-bold text-white border-l-4 border-green-500 pl-4">Company</h3>
+            <ul className="space-y-3">
+              {quickLinks.map((item) => (
+                <li key={item.name}>
+                  <Link 
+                    onClick={scrollTop} 
+                    to={item.link} 
+                    className="text-sm flex items-center gap-2 hover:text-green-500 transition-all group"
+                  >
+                    <IoArrowForward className="text-green-500 opacity-0 group-hover:opacity-100 -ml-4 group-hover:ml-0 transition-all" />
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 3: Services */}
+          <div className="space-y-6">
+            <h3 className="text-lg font-bold text-white border-l-4 border-green-500 pl-4">Expertise</h3>
+            <ul className="space-y-3">
+              {services.map((item) => (
+                <li key={item.name}>
+                  <Link 
+                    onClick={scrollTop} 
+                    to={item.link} 
+                    className="text-sm flex items-center gap-2 hover:text-green-500 transition-all group"
+                  >
+                    <IoArrowForward className="text-green-500 opacity-0 group-hover:opacity-100 -ml-4 group-hover:ml-0 transition-all" />
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 4: Contact Info */}
+          <div className="space-y-6">
+            <h3 className="text-lg font-bold text-white border-l-4 border-green-500 pl-4">Official Info</h3>
+            <ul className="space-y-5 text-sm">
+              <li className="flex gap-4">
+                <div className="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center text-green-500 shrink-0">
+                  <IoLocationSharp size={20} />
+                </div>
+                <span>Indore (M.P.) <br /> India, 452001</span>
+              </li>
+              <li className="flex gap-4 group">
+                <div className="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center text-green-500 shrink-0 group-hover:bg-green-500 group-hover:text-white transition-all">
+                  <MdEmail size={20} />
+                </div>
+                <a href="mailto:info@placiddigital.in" className="hover:text-green-500">info@placiddigital.in</a>
+              </li>
+              <li className="flex gap-4">
+                <div className="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center text-green-500 shrink-0">
+                  <MdAccessTimeFilled size={20} />
+                </div>
+                <span>Mon - Sat <br /> 10:00 AM - 07:00 PM</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom Section: Copyright */}
+        <div className="pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
+          <p className="text-xs text-gray-500 font-medium">
+            © {new Date().getFullYear()} <span className="text-green-500">Placid Digital Pvt. Ltd.</span> | Built for the Digital Future.
+          </p>
+         
+        </div>
+      </div>
+    </footer>
+  );
 }
 
-export default Footer
+export default Footer;

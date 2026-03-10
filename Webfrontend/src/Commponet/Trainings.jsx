@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import apiClient from "../Services/api";
+import { FaStar, FaArrowRight, FaUserTie } from "react-icons/fa";
 
 function Trainings() {
   const [courses, setCourses] = useState([]);
-   const navigate = useNavigate();
-    const scrollTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-        });
-    }; 
+  const navigate = useNavigate();
+
+  const scrollTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -23,48 +22,105 @@ function Trainings() {
         setCourses([]);
       }
     };
-
     fetchCourses();
   }, []);
 
   return (
-    <>
-      <div className="my-5 container mx-auto px-5 lg:px-10">
-        <h1 className="text-5xl text-center font-bold text-[#154979]">
-          Popular Trainings
-        </h1>
-        <div className="py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+    <div className="bg-white py-24">
+      <div className="container mx-auto px-6 lg:px-10">
+        
+        {/* Section Heading */}
+        <div className="text-center mb-20">
+          <span className="bg-green-100 text-green-600 px-4 py-1 rounded-full text-sm font-bold uppercase tracking-widest mb-4 inline-block">
+            Our Courses
+          </span>
+          <h1 className="text-4xl md:text-5xl font-black text-gray-900">
+            Explore Our Popular <span className="text-green-500">Trainings</span>
+          </h1>
+          <p className="text-gray-500 mt-4 max-w-2xl mx-auto text-lg">
+            Placid Digital offers industry-leading mentorship to help you master 
+            the most in-demand technical skills.
+          </p>
+        </div>
+
+        {/* Courses Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {courses.map((c) => (
-            <div key={c._id || c.id} className="card-hover  group relative shadow-lg p-5">
-              <div className=" overflow-hidden rounded-lg bg-gray-200">
-                <img
-                  src={c.courseImgUrl}
-                  width={700}
-                  className=" h-auto object-cover object-center lg:h-full lg:w-full "
-                  alt={c.courseName}
-                />
-              </div>
-              <div className=" flex justify-center ">
-                <div className="border border-white rounded-lg -mt-8 bg-white p-4 shadow-mentor Shadow flex items-center justify-center">
-                  <div className="text-xl font-semibold text-[#154979] text-center">
-                    {c.courseName}
-                  </div>
+            <div
+              key={c._id || c.id}
+              className="bg-white rounded-[2.5rem] border border-gray-100 shadow-xl shadow-gray-100/40 hover:shadow-2xl hover:shadow-green-100/30 transition-all duration-500 overflow-hidden group flex flex-col"
+            >
+              {/* Image Container with Badge */}
+              <div className="relative overflow-hidden p-4 pb-0">
+                <div className="overflow-hidden rounded-[2rem]">
+                  <img
+                    src={c.courseImgUrl}
+                    alt={c.courseName}
+                    className="w-full h-50 object-cover group-hover:scale-110 transition duration-700 ease-in-out"
+                  />
+                </div>
+                <div className="absolute top-8 left-8">
+                  <span className="bg-white/90 backdrop-blur-sm text-green-600 text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm">
+                    Best Seller
+                  </span>
                 </div>
               </div>
-              <p className="p-2 text-center text-gray-700">{c.courseDescription}</p>
-              <div className="flex justify-center items-center">
-                <button onClick={()=> {navigate(`/course-details/${c._id}/${c.courseName}`), scrollTop()}}
-                  className="bg-[#154979] px-10 py-3 rounded-lg text-18 font-medium border text-white border-[#154979] hover:text-[#154979] hover:bg-transparent hover:cursor-pointer transition duration-300 ease-in-out"
-                >
-                      View Details
-                </button>
+
+              {/* Card Content */}
+              <div className="p-8 flex flex-col flex-grow">
+                {/* Teacher Info & Rating */}
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 bg-green-50 rounded-full flex items-center justify-center text-green-500">
+                      <FaUserTie size={14} />
+                    </div>
+                    <span className="text-xs font-bold text-gray-400">Expert Mentor</span>
+                  </div>
+                  <div className="flex items-center gap-1 text-yellow-400">
+                    <FaStar size={12} />
+                    <span className="text-xs font-bold text-gray-700">4.9</span>
+                  </div>
+                </div>
+
+                <h2 className="text-2xl font-extrabold text-gray-800 mb-3 group-hover:text-green-500 transition-colors">
+                  {c.courseName}
+                </h2>
+
+                <p className="text-gray-500 text-sm line-clamp-2 leading-relaxed mb-6">
+                  {c.courseDescription || "Master this technology with hands-on projects and industry-standard practices."}
+                </p>
+
+                {/* Footer with Price and Button */}
+                <div className="mt-auto pt-6 border-t border-gray-50 flex items-center justify-between">
+                  <div>
+                    <span className="text-xs font-bold text-gray-400 block uppercase tracking-tighter">Lifetime Access</span>
+                    <span className="text-xl font-black text-gray-900">Enrol Now</span>
+                  </div>
+                  
+                  <button
+                    onClick={() => {
+                      navigate(`/course-details/${c._id}/${c.courseName}`);
+                      scrollTop();
+                    }}
+                    className="bg-green-500 text-white p-4 rounded-2xl hover:bg-gray-900 transition-all duration-300 shadow-lg shadow-green-100 group/btn"
+                  >
+                    <FaArrowRight className="group-hover/btn:translate-x-1 transition-transform" />
+                  </button>
+                </div>
               </div>
             </div>
           ))}
         </div>
+
+        {/* Bottom CTA */}
+        <div className="text-center mt-20">
+          <p className="text-gray-500 font-medium italic">
+            Don't see what you're looking for? <span className="text-green-500 cursor-pointer hover:underline">Contact us for custom corporate training.</span>
+          </p>
+        </div>
       </div>
-    </>
+    </div>
   );
 }
 
-export default Trainings
+export default Trainings;

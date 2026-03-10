@@ -41,7 +41,7 @@ function App() {
       { isLoading &&  <Loading />}
 
       <div className={`${isLoading ? " hidden" : "block"}`}>
-      <div className="leading-none text-gray-950 font-sans">
+      <div className=" leading-normal font-sans">
         <div className={`${authUser ? "hidden" : " "}`}>
           <Navbar />
         </div>
