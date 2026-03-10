@@ -1,6 +1,5 @@
 import transporter from "../config/mailer.js";
 
-// Make contact form fast by responding immediately and sending email in background
 export const sendContactMail = async (req, res) => {
   const data = req.body;
 
@@ -12,25 +11,32 @@ export const sendContactMail = async (req, res) => {
     message: data.message,
   };
 
-  // Respond to client immediately so UI is fast and never times out
-  res.json({
-    success: true,
-    message: "Thank you for contacting us. We have received your message.",
-  });
+  try {
+    const fromEmail = process.env.EMAIL_USER || process.env.SEND_EMAIL_ID;
+    const toEmail =
+      process.env.CONTACT_RECEIVER_EMAIL || process.env.SEND_EMAIL_ID;
 
-  // Send email in the background (no need to block the response)
-  setImmediate(async () => {
-    try {
-      const fromEmail = process.env.EMAIL_USER || process.env.SEND_EMAIL_ID;
-      const toEmail =
-        process.env.CONTACT_RECEIVER_EMAIL || process.env.SEND_EMAIL_ID;
+    if (!fromEmail) {
+      return res.status(500).json({
+        success: false,
+        message:
+          "Server email is not configured (missing EMAIL_USER/SEND_EMAIL_ID).",
+      });
+    }
+    if (!toEmail) {
+      return res.status(500).json({
+        success: false,
+        message:
+          "Server email receiver is not configured (missing CONTACT_RECEIVER_EMAIL/SEND_EMAIL_ID).",
+      });
+    }
 
-      await transporter.sendMail({
-        from: `"Placid Digital" <${fromEmail}>`,
-        replyTo: userInfo.email,
-        to: toEmail,
-        subject: "New Contact Message from Placid Digital",
-        html: `
+    await transporter.sendMail({
+      from: `"Placid Digital" <${fromEmail}>`,
+      replyTo: userInfo.email,
+      to: toEmail,
+      subject: "New Contact Message from Placid Digital",
+      html: `
         <div style="background-color:#f4f6fb;padding:24px 0;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
           <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
             <tr>
@@ -90,9 +96,17 @@ export const sendContactMail = async (req, res) => {
           </table>
         </div>
       `,
-      });
-    } catch (error) {
-      console.error("Error sending contact email:", error);
-    }
-  })
+    });
+
+    return res.json({
+      success: true,
+      message: "Thank you for contacting us. We have received your message.",
+    });
+  } catch (error) {
+    console.error("Error sending contact email:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Failed to send email. Please try again later.",
+    });
+  }
 };
