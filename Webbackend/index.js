@@ -15,7 +15,6 @@ App.use(cookieParser());
 
 const allowedOrigins = [
   process.env.FRONTEND_URL || "http://localhost:3002",
-  "https://placid-digital.vercel.app",
 ];
 
 App.use(
