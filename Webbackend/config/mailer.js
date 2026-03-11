@@ -1,4 +1,6 @@
 import nodemailer from "nodemailer";
+import sgMail from '@sendgrid/mail';
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 // SendGrid ke liye EMAIL_USER hamesha "apikey" hi rahega (fix string)
 // EMAIL_PASS aapki Generate ki hui SendGrid API Key hogi
