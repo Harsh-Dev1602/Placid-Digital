@@ -52,7 +52,7 @@ function Offer() {
       <div className="max-w-7xl mx-auto">
         
         {/* Heading Section */}
-        <div className="flex flex-col lg:flex-row justify-between items-end gap-8 mb-16">
+        <div className="flex flex-col lg:flex-row justify-between items-start gap-8 mb-16">
           <div className="lg:w-2/3 space-y-4">
             <span className="bg-green-100 text-green-600 px-4 py-1 rounded-full text-sm font-bold uppercase tracking-widest">
               Our Expertise
@@ -71,20 +71,19 @@ function Offer() {
         </div>
 
         {/* Carousel Slider */}
-        <div className="pb-12">
-          <Slider {...settings} className="offer-slider">
+        <div className="flex gap-1 lg:gap-5 animate-slide">
             {OfferCard.map(({ id, img, text, paragraph }) => (
-              <div key={id} className="px-4 outline-none">
-                <div className="group bg-white rounded-[2.5rem] border border-gray-100 overflow-hidden hover:shadow-2xl hover:shadow-green-100/50 transition-all duration-500 flex flex-col h-full">
+              <div key={id} className="px-4  outline-none">
+                <div className="group bg-white rounded-[2.5rem] border border-gray-300 overflow-hidden hover:shadow-2xl hover:shadow-green-100/50 transition-all duration-500 flex flex-col w-70 md:w-96 h-full">
                   
                   {/* Image with Overlay */}
-                  <div className="relative h-64 overflow-hidden">
+                  <div className=" relative w-70 md:w-96 h-60">
                     <img
                       src={img}
                       alt={text}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="w-70 md:w-96 h-60 object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+                    <div className="absolute inset-0  group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
                       <button className="bg-white text-green-500 p-4 rounded-full shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                         <FaArrowRight />
                       </button>
@@ -100,16 +99,10 @@ function Offer() {
                       {paragraph}
                     </p>
                     
-                    <div className="mt-auto pt-6 border-t border-gray-50">
-                      <span className="text-green-500 font-bold text-sm uppercase tracking-widest group-hover:underline cursor-pointer">
-                        Explore Service
-                      </span>
-                    </div>
                   </div>
                 </div>
               </div>
             ))}
-          </Slider>
         </div>
 
       </div>

@@ -42,7 +42,7 @@ function Navbar() {
 
   return (
     <header className={`z-50 w-full bg-white transition-all duration-300 ${sticky ? "fixed top-0 shadow-xl" : "relative"}`}>
-      
+
       {/* Top Bar - Clean & Modern */}
       {!sticky && (
         <div className="bg-gray-900 text-gray-300 py-2">
@@ -67,7 +67,7 @@ function Navbar() {
       {/* Main Navbar */}
       <div className={`${sticky ? "py-3" : "py-5"} transition-all duration-300 border-b border-gray-50`}>
         <div className="container mx-auto px-6 flex items-center justify-between">
-          
+
           {/* Logo */}
           <Link onClick={scrollTop} to="/" className="shrink-0">
             <img src={Logo} alt="Placid Digital" className="h-10 md:h-12 w-auto" />
@@ -80,16 +80,15 @@ function Navbar() {
                 key={id}
                 to={link}
                 onClick={scrollTop}
-                className={`text-sm font-bold tracking-tight transition-colors ${
-                  location.pathname === link ? "text-green-500" : "text-gray-700 hover:text-green-500"
-                }`}
+                className={`text-sm font-bold tracking-tight transition-colors ${location.pathname === link ? "text-green-500" : "text-gray-700 hover:text-green-500"
+                  }`}
               >
                 {text}
               </Link>
             ))}
 
             {/* Services Dropdown */}
-            <div 
+            <div
               className="relative group"
               onMouseEnter={() => setOpen(true)}
               onMouseLeave={() => setOpen(false)}
@@ -127,7 +126,7 @@ function Navbar() {
           </div>
 
           {/* Mobile Toggle */}
-          <button 
+          <button
             className="lg:hidden p-2 text-3xl text-gray-800"
             onClick={() => setMenu(!openMenu)}
           >
@@ -139,9 +138,9 @@ function Navbar() {
       {/* Mobile Sidebar */}
       <div className={`fixed inset-0 z-[60] lg:hidden transition-transform duration-500 ${openMenu ? "translate-x-0" : "-translate-x-full"}`}>
         <div className="absolute inset-0 b" onClick={() => setMenu(false)}></div>
-        <nav className="relative w-80 h-full bg-white shadow-2xl p-8 flex flex-col">
-        
-          
+        <nav className="relative w-70 h-full bg-white shadow-2xl p-8 flex flex-col justify-between items-start">
+
+
           <div className="flex flex-col gap-6">
             {navText.map(({ id, text, link }) => (
               <Link
@@ -153,29 +152,42 @@ function Navbar() {
                 {text}
               </Link>
             ))}
-            
-            <button 
-              onClick={() => setOpen(!open)}
-              className="flex items-center justify-between text-xl font-bold text-gray-800"
+
+            <div
+              className="relative group"
+              onMouseEnter={() => setOpen(true)}
+              onMouseLeave={() => setOpen(false)}
             >
-              Services <IoIosArrowDown className={open ? "rotate-180" : ""} />
-            </button>
-            
-            {open && (
-              <div className="flex flex-col gap-4 pl-4 border-l-2 border-green-500">
-                {["Web Development", "App Development", "Digital Marketing"].map((s) => (
-                  <Link key={s} to="/" className="text-gray-500 font-medium">{s}</Link>
-                ))}
-              </div>
-            )}
+              <button className="flex items-center gap-1 text-xl font-bold text-gray-800 hover:text-green-500 transition">
+                Services <IoIosArrowDown className={`transition-transform duration-300 ${open ? "rotate-180" : ""}`} />
+              </button>
+
+              {open && (
+                <div className="absolute top-full -left-8 pt-4 w-60 z-50 animate-in fade-in slide-in-from-top-2">
+                  <div className="bg-white border border-gray-100 rounded-2xl shadow-2xl p-2 overflow-hidden">
+                    {["Web Development", "App Development", "Digital Marketing"].map((service) => (
+                      <Link
+                        key={service}
+                        to={`/${service.toLowerCase().replace(" ", "-")}`}
+                        className="block px-4 py-3 text-xl font-semibold text-gray-600 hover:bg-green-50 hover:text-green-600 rounded-xl transition"
+                      >
+                        {service}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
 
-          <Link
-            to="/training-program"
-            className="mt-auto bg-green-500 text-white py-4 rounded-2xl text-center font-bold shadow-lg"
-          >
-            Start Training
-          </Link>
+          <div className="w-full flex items-center gap-4">
+            <Link
+              to="/training-program"
+              className="bg-green-500 py-4 text-center text-white w-full rounded-full text-xl font-bold hover:bg-gray-900 transition-all shadow-lg shadow-green-100"
+            >
+              Training Program
+            </Link>
+          </div>
         </nav>
       </div>
     </header>

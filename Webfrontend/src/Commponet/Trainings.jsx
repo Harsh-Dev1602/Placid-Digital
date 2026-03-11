@@ -26,7 +26,7 @@ function Trainings() {
   }, []);
 
   return (
-    <div className="bg-white py-24">
+    <div className="bg-white py-10">
       <div className="container mx-auto px-6 lg:px-10">
         
         {/* Section Heading */}
