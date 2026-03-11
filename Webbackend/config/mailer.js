@@ -1,23 +1,24 @@
 import nodemailer from "nodemailer";
 
-const EMAIL_USER = process.env.EMAIL_USER || process.env.SEND_EMAIL_ID;
-const EMAIL_PASS = process.env.EMAIL_PASS || process.env.SEND_PASS;
+// SendGrid ke liye EMAIL_USER hamesha "apikey" hi rahega (fix string)
+// EMAIL_PASS aapki Generate ki hui SendGrid API Key hogi
+const EMAIL_USER = "apikey"; 
+const EMAIL_PASS = process.env.SENDGRID_API_KEY; // .env se uthayein
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 587,
-  secure: false,
-  family: 4, // force IPv4
+  host: "smtp.sendgrid.net",
+  port: 465, // SSL ke liye 465 best hai, ya 587 (TLS) use karein
+  secure: true, // 465 ke liye true, 587 ke liye false
   auth: {
     user: EMAIL_USER,
     pass: EMAIL_PASS,
   },
 });
 
-// Helpful in deploy logs; won't crash the app if misconfigured.
+// Logs for debugging
 transporter.verify().then(
-  () => console.log("Mailer ready."),
-  (err) => console.error("Mailer verify failed:", err?.message || err)
+  () => console.log("SendGrid Mailer ready."),
+  (err) => console.error("SendGrid verify failed:", err?.message || err)
 );
 
 export default transporter;

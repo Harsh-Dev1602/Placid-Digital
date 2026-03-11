@@ -33,8 +33,8 @@ export const sendContactMail = async (req, res) => {
 
     await transporter.sendMail({
       from: `"Placid Digital" <${fromEmail}>`,
-      replyTo: userInfo.email,
-      to: toEmail,
+      replyTo:  userInfo.email,
+      to:  userInfo.email,
       subject: "New Contact Message from Placid Digital",
       html: `
         <div style="background-color:#f4f6fb;padding:24px 0;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
