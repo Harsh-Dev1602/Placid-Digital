@@ -57,7 +57,7 @@ function App() {
           <Route path="/digital-marketing" element={<DigitalMarketing />} />
           <Route path="/training-program" element={<Trainings />} />
           <Route path="/course-details/:id/:course-Name" element={<CourseDetails />} />
-
+ 
           <Route path="/admin-login" element={authUser ? <Navigate to="/admin-dashboard" /> : <LogIn />} />
 
           <Route path="/admin-dashboard" element={authUser ? <Dashboard /> : <Navigate to="/" />}>
@@ -87,7 +87,7 @@ function App() {
             fontWeight: "700",
             borderRadius: "12px",
             color: "#154979",
-            border: "solid 2px #154979",
+            border: "solid 2px white",
             backgroundColor: "white"
           },
           iconTheme: {

@@ -15,7 +15,7 @@ function Dashboard() {
                 <div className="flex-1 bg-white rounded-[2.5rem] shadow-sm border border-gray-200/50 overflow-y-auto relative">
 
                     {/* Page Content padding */}
-                    <div className="">
+                    <div className="mt-15 lg:mt-0 p-5">
                         <Outlet />
                     </div>
                 </div>

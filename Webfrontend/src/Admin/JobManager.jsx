@@ -1,82 +1,117 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import toast from 'react-hot-toast'
-import { Link } from 'react-router-dom'
-import { useLoading } from '../Context/LoadingProvider'
+import React, { useEffect, useState } from 'react';
+import apiClient from '../Services/api';
+import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
+import { useLoading } from '../Context/LoadingProvider';
+import { HiOutlineBriefcase, HiOutlinePlusSm, HiOutlineTrash, HiOutlineLocationMarker } from 'react-icons/hi';
 
 function JobManager() {
-  const [jobs, setJobs] = useState([])
-  const [, setIsLoading] = useLoading()
+  const [jobs, setJobs] = useState([]);
+  const [, setIsLoading] = useLoading();
 
   useEffect(() => {
     const fetchJobs = async () => {
-      setIsLoading(true)
+      setIsLoading(true);
       try {
-        const res = await axios.get('/sfs-app/admin/all-job')
-        const jobs = Array.isArray(res.data) ? res.data : []
-        setJobs(jobs)
+        const res = await apiClient.get('/sfs-app/admin/all-job');
+        const jobsData = Array.isArray(res.data) ? res.data : [];
+        setJobs(jobsData);
       } catch (err) {
-        console.error(err)
-        setJobs([])
+        toast.error('Failed to load career openings');
+        setJobs([]);
       } finally {
-        setIsLoading(false)
+        setIsLoading(false);
       }
-    }
-    fetchJobs()
-  }, [setIsLoading])
+    };
+    fetchJobs();
+  }, [setIsLoading]);
 
   const handleDelete = async (id) => {
-    const ok = window.confirm('Are you sure you want to delete this job?')
-    if (!ok) return
+    if (!window.confirm('Are you sure you want to remove this job listing?')) return;
     try {
-      await axios.delete(`/sfs-app/admin/job-delete/${id}`)
-      setJobs(prev => prev.filter(j => j._id !== id))
-      toast.success('Job deleted')
+      await apiClient.delete(`/sfs-app/admin/job-delete/${id}`);
+      setJobs(prev => prev.filter(j => j._id !== id));
+      toast.success('Job listing removed');
     } catch (err) {
-      console.error(err)
-      toast.error('Failed to delete job')
+      toast.error('Failed to delete job');
     }
-  }
+  };
 
   return (
-    <div className="p-6">
-     
-       <div className="flex justify-between items-center">
-         <h2 className="text-2xl font-semibold pl-5 mb-4">All Jobs</h2>
-        <Link to="/admin-dashboard/add-job" className='hidden lg:block bg-[#154979] text-white text-base  hover:bg-transparent duration-300 hover:text-[#154979] border border-[#154979] px-6 py-2 rounded-lg font-semibold hover:cursor-pointer'>
-          Add Job
+    <div className="space-y-8">
+      {/* Header Section */}
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-sm">
+        <div>
+          <h2 className="text-3xl font-black text-[#0F2B5B]">Career Management</h2>
+          <p className="text-gray-500 text-sm mt-1">Manage open positions and recruitment for Placid Digital.</p>
+        </div> 
+        <Link    to="/admin-dashboard/add-job" 
+          className="flex items-center gap-2 bg-[#7ED957] text-white px-8 py-4 rounded-2xl font-black hover:bg-[#6bc24a] transition-all transform active:scale-95 shadow-lg shadow-green-500/20"
+        >
+          <HiOutlinePlusSm size={20} />
+          Post New Job
         </Link>
       </div>
-      <div style={{ height: "calc(100vh - 130px)" }} className="w-full overflow-y-auto grid grid-cols-1 sm:grid-cols-2 items-start lg:grid-cols-3 gap-6 p-5">
-        {jobs.map((j) => (
-          <div key={j._id} className='group relative shadow-lg p-5'>
-            <div className=' overflow-hidden rounded-lg bg-gray-200'>
-              <img
-                src={j.jobImgUrl}
-                width={700}
-                className=' h-auto object-cover object-center lg:h-full lg:w-full '
-              />
-            </div>
-            <div className=' flex justify-center  '>
 
-              <div className='border border-white rounded-lg -mt-8 bg-white p-4 shadow-mentor Shadow flex items-center justify-center'>
-                <div
-                  className='text-xl font-semibold text-[#154979] text-center'>
+      {/* Jobs Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-10">
+        {jobs.length > 0 ? (
+          jobs.map((j) => (
+            <div 
+              key={j._id} 
+              className="group bg-white rounded-[2.5rem] border border-gray-100 overflow-hidden shadow-xl shadow-gray-200/50 hover:shadow-2xl transition-all duration-500 flex flex-col"
+            >
+              {/* Image Preview */}
+              <div className="relative h-48 overflow-hidden bg-gray-100">
+                <img
+                  src={j.jobImgUrl}
+                  alt={j.jobTitle}
+                  className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
+                />
+                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-black text-[#0F2B5B] uppercase tracking-widest shadow-sm">
+                  Hiring
+                </div>
+              </div>
+
+              {/* Content Section */}
+              <div className="p-6 flex-1 flex flex-col">
+                <div className="flex items-start justify-between mb-4">
+                  <div className="p-3 bg-blue-50 text-[#0F2B5B] rounded-2xl">
+                    <HiOutlineBriefcase size={24} />
+                  </div>
+                </div>
+
+                <h3 className="text-xl font-black text-[#0F2B5B] mb-2 leading-tight">
                   {j.jobTitle}
+                </h3>
+                
+                <div className="flex items-center gap-2 text-gray-400 text-sm font-bold mb-6">
+                   <HiOutlineLocationMarker />
+                   <span>Remote / Office</span>
+                </div>
+
+                <div className="mt-auto pt-4 border-t border-gray-50">
+                  <button 
+                    onClick={() => handleDelete(j._id)} 
+                    className="w-full flex items-center justify-center gap-2 text-red-500 bg-red-50 hover:bg-red-500 hover:text-white py-4 rounded-2xl font-bold transition-all duration-300"
+                  >
+                    <HiOutlineTrash size={18} />
+                    Delete Listing
+                  </button>
                 </div>
               </div>
             </div>
-
-            <div className="flex justify-center items-center mt-3">
-              <button onClick={() => handleDelete(j._id)} className="bg-red-500 px-10 py-3 rounded-lg text-18 font-medium border text-white border-red-500 hover:text-red-500 hover:bg-transparent hover:cursor-pointer transition duration-300 ease-in-out">
-                Delete
-              </button>
-            </div>
+          ))
+        ) : (
+          <div className="col-span-full py-20 text-center bg-gray-50 rounded-[3rem] border-2 border-dashed border-gray-200">
+             <HiOutlineBriefcase size={48} className="mx-auto text-gray-300 mb-4" />
+             <h3 className="text-xl font-bold text-gray-400">No active job listings</h3>
+             <p className="text-gray-400 text-sm">Create a job post to start receiving applications.</p>
           </div>
-        ))}
+        )}
       </div>
     </div>
-  )
+  );
 }
 
-export default JobManager
+export default JobManager;

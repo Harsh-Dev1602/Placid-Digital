@@ -55,7 +55,7 @@ function LogIn() {
 
         <div className="relative z-10">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-black text-[#154979] mb-2">Admin Portal</h2>
+            <h2 className="text-3xl font-black text-green-500 mb-2">Admin Portal</h2>
             <p className="text-gray-400 font-medium">Please sign in to your account</p>
           </div>
 
@@ -106,7 +106,7 @@ function LogIn() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-[#154979] text-white py-4 rounded-2xl font-bold text-lg hover:bg-[#0d3152] transform transition-all active:scale-[0.98] shadow-xl shadow-blue-900/20 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full bg-green-600 text-white py-4 rounded-2xl font-bold text-lg hover:bg-green-700 transform transition-all active:scale-[0.98] shadow-xl shadow-blue-900/20 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {isSubmitting ? (
                 <>
@@ -119,13 +119,6 @@ function LogIn() {
             </button>
           </form>
 
-          {/* Footer Note */}
-          <div className="mt-10 text-center">
-            <p className="text-xs text-gray-400">
-              © {new Date().getFullYear()} Placid Digital Pvt. Ltd. <br />
-              Secure Admin Access Only
-            </p>
-          </div>
         </div>
       </div>
     </div>

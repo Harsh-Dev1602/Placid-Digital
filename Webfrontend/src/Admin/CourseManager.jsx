@@ -38,13 +38,13 @@ function CourseManager() {
   return (
     <div className="space-y-8">
       {/* Header Section */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-gray-50 p-6 rounded-[2rem] border border-gray-100">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-sm">
         <div>
           <h2 className="text-3xl font-black text-[#0F2B5B]">Course Catalog</h2>
           <p className="text-gray-500 text-sm mt-1">Manage your educational curriculum and training programs.</p>
         </div>
         <Link 
-          to="add-course" 
+          to="/admin-dashboard/add-course" 
           className="flex items-center gap-2 bg-[#7ED957] text-white px-6 py-3 rounded-2xl font-bold hover:bg-[#6bc24a] transition-all shadow-lg shadow-green-500/20 active:scale-95"
         >
           <HiOutlinePlus size={20} />
@@ -53,8 +53,8 @@ function CourseManager() {
       </div>
 
       {/* Course Grid */}
-      {loading ? (
-        <div className="flex justify-center items-center h-64">
+      {loading ? ( 
+        <div className="flex justify-center  items-center h-64">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#0F2B5B]"></div>
         </div>
       ) : courses.length > 0 ? (

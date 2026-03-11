@@ -177,25 +177,20 @@ h3 {
 }
 
 
-*::-webkit-scrollbar {
-  width: 8px;
+
+
+
+.scrollbar::-webkit-scrollbar {
+  width: 0px;
 }
 
-*::-webkit-scrollbar-track {
+.scrollbar::-webkit-scrollbar-track {
   background-color: transparent;
-  border-radius: 12px;
 }
 
-*::-webkit-scrollbar-thumb {
-  background-color: #82c0268f;
-  border-radius: 12px;
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color: white;
 }
-
-*::-webkit-scrollbar-thumb:hover {
-  background-color: #154979;
-  cursor: pointer;
-}
-
 
 
 @keyframes slide {
