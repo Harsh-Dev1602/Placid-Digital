@@ -52,7 +52,7 @@ function CourseDetails() {
                         <div className="md:col-span-2 space-y-8">
                             <div className="bg-white rounded-3xl overflow-hidden shadow-2xl border border-gray-100">
                                 <div className="p-4 bg-gray-50 flex items-center justify-between">
-                                    <h2 className="font-bold flex items-center gap-2 text-green-600">
+                                    <h2 className="font-bold flex items-center gap-2 text-[#164676]">
                                         <FaRegPlayCircle size={20}/> Course Video Preview
                                     </h2>
                                 </div>
@@ -66,18 +66,18 @@ function CourseDetails() {
 
                             <div className="space-y-4">
                                 <h2 className="text-2xl font-bold flex items-center gap-3">
-                                    <IoDocumentTextOutline className="text-green-500" /> Resources & Materials
+                                    <IoDocumentTextOutline className="text-[#164676]" /> Resources & Materials
                                 </h2>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     {r.courseDocuments?.map((doc) => (
                                         <div key={doc._id} className="p-6 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition group">
-                                            <h3 className="font-bold text-lg mb-1 group-hover:text-green-500 transition">{doc.documentName}</h3>
+                                            <h3 className="font-bold text-lg mb-1 group-hover:text-[#164676] transition">{doc.documentName}</h3>
                                             <p className="text-gray-500 text-sm mb-4 line-clamp-2">{doc.documentDescription}</p>
                                             <a
                                                 href={doc.documentUrl}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="text-green-500 font-bold text-sm flex items-center gap-1 hover:underline"
+                                                className="text-[#164676] font-bold text-sm flex items-center gap-1 hover:underline"
                                             >
                                                 Download Resource →
                                             </a>
@@ -95,14 +95,14 @@ function CourseDetails() {
                                 <p className="text-gray-500 text-sm mb-6">{course?.courseDescription}</p>
                                 
                                 <div className="flex items-center justify-between mb-6">
-                                    <span className="text-3xl font-black text-gray-900">$49 <span className="text-sm font-normal text-gray-400">/ lifetime</span></span>
+                                    
                                     <div className="flex text-yellow-400 gap-1"><FaStar/><FaStar/><FaStar/><FaStar/><FaStar/></div>
                                 </div>
 
-                                <button className="w-full bg-green-500 text-white py-4 rounded-2xl font-bold hover:bg-green-600 transition shadow-lg shadow-green-100 mb-4">
+                                <button className="w-full bg-[#164676] text-white py-4 rounded-2xl font-bold hover:bg-[#164676] transition shadow-lg shadow-green-100 mb-4">
                                     Enroll in Course
                                 </button>
-                                <p className="text-center text-xs text-gray-400">30-Day Money-Back Guarantee</p>
+                                
                             </div>
                         </div>
                     </div>

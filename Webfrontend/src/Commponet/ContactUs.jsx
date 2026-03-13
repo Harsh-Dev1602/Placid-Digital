@@ -47,11 +47,11 @@ function ContactUs() {
         {/* Left Section: Info & Illustration */}
         <div className="space-y-10">
           <div className="space-y-4">
-            <span className="bg-green-100 text-green-600 px-4 py-1 rounded-full text-sm font-bold uppercase tracking-widest">
+            <span className="bg-green-100 text-[#164676] px-4 py-1 rounded-full text-sm font-bold uppercase tracking-widest">
               Get in Touch
             </span>
             <h1 className="text-4xl md:text-5xl font-black text-gray-900 leading-tight">
-              Let’s Start a <span className="text-green-500">Conversation</span>
+              Let’s Start a <span className="text-[#164676]">Conversation</span>
             </h1>
             <p className="text-gray-500 text-lg max-w-md">
               Have a question or a project in mind? Our team is ready to help your business grow.
@@ -61,7 +61,7 @@ function ContactUs() {
           {/* Contact Badges */}
           <div className="grid sm:grid-cols-2 gap-6">
             <div className="flex items-center gap-4 p-4 rounded-2xl border border-gray-50 bg-gray-50/30">
-              <div className="w-12 h-12 bg-green-500 text-white rounded-xl flex items-center justify-center text-2xl shadow-lg shadow-green-100">
+              <div className="w-12 h-12 bg-[#164676] text-white rounded-xl flex items-center justify-center text-2xl shadow-lg shadow-green-100">
                 <MdEmail />
               </div>
               <div>
@@ -95,7 +95,7 @@ function ContactUs() {
                 <input
                   {...register("firstname", { required: "Required" })}
                   placeholder="John"
-                  className="w-full px-6 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-green-500 focus:bg-white transition-all outline-none text-gray-700"
+                  className="w-full px-6 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-[#164676] focus:bg-white transition-all outline-none text-gray-700"
                 />
               </div>
               <div className="space-y-1">
@@ -103,7 +103,7 @@ function ContactUs() {
                 <input
                   {...register("lastname", { required: "Required" })}
                   placeholder="Doe"
-                  className="w-full px-6 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-green-500 focus:bg-white transition-all outline-none text-gray-700"
+                  className="w-full px-6 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-[#164676] focus:bg-white transition-all outline-none text-gray-700"
                 />
               </div>
             </div>
@@ -114,7 +114,7 @@ function ContactUs() {
                 type="email"
                 {...register("email", { required: "Required" })}
                 placeholder="john@example.com"
-                className="w-full px-6 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-green-500 focus:bg-white transition-all outline-none text-gray-700"
+                className="w-full px-6 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-[#164676] focus:bg-white transition-all outline-none text-gray-700"
               />
             </div>
 
@@ -123,7 +123,7 @@ function ContactUs() {
               <input
                 {...register("Phnumber", { required: "Required" })}
                 placeholder="+91 00000 00000"
-                className="w-full px-6 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-green-500 focus:bg-white transition-all outline-none text-gray-700"
+                className="w-full px-6 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-[#164676] focus:bg-white transition-all outline-none text-gray-700"
               />
             </div>
 
@@ -133,14 +133,14 @@ function ContactUs() {
                 {...register("message", { required: "Required" })}
                 rows="4"
                 placeholder="How can we help you?"
-                className="w-full px-6 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-green-500 focus:bg-white transition-all outline-none text-gray-700 resize-none"
+                className="w-full px-6 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-[#164676] focus:bg-white transition-all outline-none text-gray-700 resize-none"
               />
             </div>
 
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-green-500 text-white py-5 rounded-2xl font-bold text-lg hover:bg-gray-900 transition-all shadow-xl shadow-green-100 disabled:opacity-50 flex items-center justify-center gap-3 group"
+              className="w-full bg-[#164676] text-white py-5 rounded-2xl font-bold text-lg hover:bg-gray-900 transition-all shadow-xl shadow-green-100 disabled:opacity-50 flex items-center justify-center gap-3 group"
             >
               {isSubmitting ? "Sending..." : "Send Message"}
               {!isSubmitting && <span className="group-hover:translate-x-1 transition-transform">→</span>}

@@ -45,20 +45,20 @@ function Navbar() {
 
       {/* Top Bar - Clean & Modern */}
       {!sticky && (
-        <div className="bg-gray-900 text-gray-300 py-2">
+        <div className="bg-[#164676] text-white py-2">
           <div className="container mx-auto px-6 flex justify-between items-center text-xs font-medium">
             <div className="flex items-center gap-6">
-              <span className="flex items-center gap-1.5 hover:text-green-500 transition cursor-default">
-                <IoLocationSharp className="text-green-500" /> Indore (M.P.) 452001
+              <span className="flex items-center gap-1.5 hover:text-[#164676] transition cursor-default">
+                <IoLocationSharp /> Indore (M.P.) 452001
               </span>
-              <a href="mailto:info@placiddigital.in" className="flex items-center gap-1.5 hover:text-green-500 transition">
-                <MdEmail className="text-green-500" /> info@placiddigital.in
+              <a href="mailto:info@placiddigital.in" className="flex items-center gap-1.5 hover:text-[#164676] transition">
+                <MdEmail /> info@placiddigital.in
               </a>
             </div>
             <div className="flex items-center gap-4">
-              <a href="#" className="hover:text-green-500 transition"><FaFacebookF /></a>
-              <a href="#" className="hover:text-green-500 transition"><FaInstagram /></a>
-              <a href="#" className="hover:text-green-500 transition"><FaLinkedinIn /></a>
+              <a href="#" className="hover:text-[#164676] transition"><FaFacebookF /></a>
+              <a href="#" className="hover:text-[#164676] transition"><FaInstagram /></a>
+              <a href="#" className="hover:text-[#164676] transition"><FaLinkedinIn /></a>
             </div>
           </div>
         </div>
@@ -80,7 +80,7 @@ function Navbar() {
                 key={id}
                 to={link}
                 onClick={scrollTop}
-                className={`text-sm font-bold tracking-tight transition-colors ${location.pathname === link ? "text-green-500" : "text-gray-700 hover:text-green-500"
+                className={`text-sm font-bold tracking-tight transition-colors ${location.pathname === link ? "text-[#164676]" : "text-gray-700 hover:text-[#164676]"
                   }`}
               >
                 {text}
@@ -93,7 +93,7 @@ function Navbar() {
               onMouseEnter={() => setOpen(true)}
               onMouseLeave={() => setOpen(false)}
             >
-              <button className="flex items-center gap-1 text-sm font-bold text-gray-700 hover:text-green-500 transition">
+              <button className="flex items-center gap-1 text-sm font-bold text-gray-700 hover:text-[#164676] transition">
                 Services <IoIosArrowDown className={`transition-transform duration-300 ${open ? "rotate-180" : ""}`} />
               </button>
 
@@ -104,7 +104,7 @@ function Navbar() {
                       <Link
                         key={service}
                         to={`/${service.toLowerCase().replace(" ", "-")}`}
-                        className="block px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-green-50 hover:text-green-600 rounded-xl transition"
+                        className="block px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-green-50 hover:text-[#164676] rounded-xl transition"
                       >
                         {service}
                       </Link>
@@ -119,7 +119,7 @@ function Navbar() {
           <div className="hidden lg:flex items-center gap-4">
             <Link
               to="/training-program"
-              className="bg-green-500 text-white px-7 py-2.5 rounded-full text-sm font-bold hover:bg-gray-900 transition-all shadow-lg shadow-green-100"
+              className="bg-[#164676] text-white px-7 py-2.5 rounded-full text-sm font-bold hover:bg-gray-900 transition-all shadow-lg shadow-green-100"
             >
               Training Program
             </Link>
@@ -147,7 +147,7 @@ function Navbar() {
                 key={id}
                 to={link}
                 onClick={() => setMenu(false)}
-                className={`text-xl font-bold ${location.pathname === link ? "text-green-500" : "text-gray-800"}`}
+                className={`text-xl font-bold ${location.pathname === link ? "text-[#164676]" : "text-gray-800"}`}
               >
                 {text}
               </Link>
@@ -158,7 +158,7 @@ function Navbar() {
               onMouseEnter={() => setOpen(true)}
               onMouseLeave={() => setOpen(false)}
             >
-              <button className="flex items-center gap-1 text-xl font-bold text-gray-800 hover:text-green-500 transition">
+              <button className="flex items-center gap-1 text-xl font-bold text-gray-800 hover:text-[#164676] transition">
                 Services <IoIosArrowDown className={`transition-transform duration-300 ${open ? "rotate-180" : ""}`} />
               </button>
 
@@ -169,7 +169,7 @@ function Navbar() {
                       <Link
                         key={service}
                         to={`/${service.toLowerCase().replace(" ", "-")}`}
-                        className="block px-4 py-3 text-xl font-semibold text-gray-600 hover:bg-green-50 hover:text-green-600 rounded-xl transition"
+                        className="block px-4 py-3 text-xl font-semibold text-gray-600 hover:bg-green-50 hover:text-[#164676] rounded-xl transition"
                       >
                         {service}
                       </Link>
@@ -183,7 +183,7 @@ function Navbar() {
           <div className="w-full flex items-center gap-4">
             <Link
               to="/training-program"
-              className="bg-green-500 py-4 text-center text-white w-full rounded-full text-xl font-bold hover:bg-gray-900 transition-all shadow-lg shadow-green-100"
+              className="bg-[#164676] py-4 text-center text-white w-full rounded-full text-xl font-bold hover:bg-gray-900 transition-all shadow-lg shadow-green-100"
             >
               Training Program
             </Link>

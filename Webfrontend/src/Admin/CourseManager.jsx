@@ -45,7 +45,7 @@ function CourseManager() {
         </div>
         <Link 
           to="/admin-dashboard/add-course" 
-          className="flex items-center gap-2 bg-[#7ED957] text-white px-6 py-3 rounded-2xl font-bold hover:bg-[#6bc24a] transition-all shadow-lg shadow-green-500/20 active:scale-95"
+          className="flex items-center gap-2 bg-[#164676] text-white px-6 py-3 rounded-2xl font-bold hover:bg-[#16467670] transition-all shadow-lg shadow-green-500/20 active:scale-95"
         >
           <HiOutlinePlus size={20} />
           Add New Course

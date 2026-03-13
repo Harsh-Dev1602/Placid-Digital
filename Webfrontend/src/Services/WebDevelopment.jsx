@@ -41,11 +41,11 @@ function WebDevelopment() {
         <div className="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
         
         <div className="container mx-auto relative z-10">
-          <span className="text-[#7ED957] font-bold uppercase tracking-widest text-sm mb-4 inline-block">
+          <span className="bg-[#164676] text-white px-4 py-1  rounded-full font-bold uppercase tracking-widest text-sm mb-4 inline-block">
             Scalable & Secure
           </span>
           <h1 className="text-5xl md:text-7xl font-black text-white mb-6">
-            Web <span className="text-[#7ED957]">Development</span>
+            Web Development
           </h1>
           <p className="text-gray-300 max-w-2xl mx-auto text-lg leading-relaxed">
             As Indore's top-rated Web Development Company, we bridge the gap between 
@@ -66,7 +66,7 @@ function WebDevelopment() {
             >
               {/* Image Side with floating effect */}
               <div className="md:w-1/2 relative group">
-                <div className="absolute -inset-2 bg-gradient-to-r from-[#7ED957] to-[#0F2B5B] rounded-[2.5rem] blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+                <div className="absolute -inset-2 bg-gradient-to-r from-[#164676] to-[#0F2B5B] rounded-[2.5rem] blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
                 <div className="relative overflow-hidden rounded-[2.5rem] bg-white">
                   <img
                     src={item.img}
@@ -85,12 +85,12 @@ function WebDevelopment() {
                 <h2 className="text-4xl font-black text-[#0F2B5B] leading-tight">
                   {item.title}
                 </h2>
-                <div className="w-16 h-1.5 bg-[#7ED957] rounded-full"></div>
+                <div className="w-16 h-1.5 bg-[#164676] rounded-full"></div>
                 <p className="text-gray-600 text-lg leading-relaxed">
                   {item.desc}
                 </p>
                 
-                <button className="flex items-center gap-2 font-bold text-[#0F2B5B] group hover:text-[#7ED957] transition-colors">
+                <button className="flex items-center gap-2 font-bold text-[#0F2B5B] group hover:text-[#ccc] transition-colors">
                   View Project Case Studies 
                   <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
                 </button>
@@ -99,48 +99,7 @@ function WebDevelopment() {
           ))}
         </div>
       </section>
-
-      {/* --- Methodology Diagram Section --- */}
-      <div className="container mx-auto px-6 mb-24">
-         
       </div>
-
-      {/* --- Tech Stack Banner --- */}
-      <section className="bg-gray-50 py-16 border-y border-gray-100">
-        <div className="container mx-auto px-6 text-center">
-          <p className="text-gray-400 font-bold uppercase tracking-widest text-xs mb-10">Our Tech Stack</p>
-          <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-            {/* These can be actual Tech icons (React, Node, etc) */}
-            <span className="text-xl font-black">REACT</span>
-            <span className="text-xl font-black">NODE.JS</span>
-            <span className="text-xl font-black">PYTHON</span>
-            <span className="text-xl font-black">MONGODB</span>
-            <span className="text-xl font-black">NEXT.JS</span>
-          </div>
-        </div>
-      </section>
-
-      {/* --- CTA Section --- */}
-      <section className="py-24 px-6 text-center">
-        <div className="max-w-4xl mx-auto bg-gradient-to-br from-[#0F2B5B] to-[#1a4185] p-12 md:p-20 rounded-[4rem] shadow-2xl relative overflow-hidden">
-          <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-[#7ED957] rounded-full blur-[100px] opacity-20"></div>
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
-            Ready to Build Something <br /> Extraordinary?
-          </h2>
-          <p className="text-gray-300 mb-10 text-lg max-w-xl mx-auto">
-            Let's discuss your project and see how we can help your business grow online.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <button className="bg-[#7ED957] text-white px-10 py-5 rounded-2xl font-black text-lg hover:shadow-lg hover:shadow-[#7ed9574d] transition-all">
-              Start Your Project
-            </button>
-            <button className="bg-white/10 text-white backdrop-blur-md px-10 py-5 rounded-2xl font-black text-lg hover:bg-white/20 transition-all border border-white/20">
-              Free Consultation
-            </button>
-          </div>
-        </div>
-      </section>
-    </div>
   );
 }
 

@@ -15,7 +15,7 @@ function Career() {
       title: "Strategic Planning",
       desc: "Map out your professional roadmap with structured career paths.",
       icon: <FaLightbulb />,
-      color: "bg-green-500",
+      color: "bg-[#164676]",
     },
     {
       title: "Agile Execution",
@@ -56,16 +56,16 @@ function Career() {
       {/* --- Hero Section --- */}
       <section className="relative py-24 px-6 overflow-hidden bg-gray-50">
         <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-            <div className="absolute top-[-10%] right-[-5%] w-96 h-96 bg-green-400 rounded-full blur-[120px]"></div>
+            <div className="absolute top-[-10%] right-[-5%] w-96 h-96 bg-[#164676] rounded-full blur-[120px]"></div>
             <div className="absolute bottom-[-10%] left-[-5%] w-96 h-96 bg-blue-400 rounded-full blur-[120px]"></div>
         </div>
 
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <span className="bg-green-100 text-green-600 px-4 py-1 rounded-full text-sm font-bold uppercase tracking-widest mb-6 inline-block">
+          <span className="bg-[#164676] text-white px-4 py-1 rounded-full text-sm font-bold uppercase tracking-widest mb-6 inline-block">
             Career Opportunities
           </span>
           <h1 className="text-4xl md:text-6xl font-black text-gray-900 leading-tight">
-            Build Your <span className="text-green-500">Future</span> <br /> 
+            Build Your <span className="text-[#164676]">Future</span> <br /> 
             With Placid Digital
           </h1>
           <p className="mt-6 text-gray-500 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
@@ -79,7 +79,7 @@ function Career() {
       <section className="py-24 px-6 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-black text-gray-900">Why Work With Us</h2>
-          <div className="w-20 h-1.5 bg-green-500 mx-auto mt-4 rounded-full"></div>
+          <div className="w-20 h-1.5 bg-[#164676] mx-auto mt-4 rounded-full"></div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -91,7 +91,7 @@ function Career() {
               <div className={`w-16 h-16 ${item.color} text-white rounded-2xl flex items-center justify-center text-2xl mx-auto mb-6 shadow-lg rotate-3 group-hover:rotate-0 transition-transform duration-300`}>
                 {item.icon}
               </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-green-500 transition-colors">
+              <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-[#164676] transition-colors">
                 {item.title}
               </h3>
               <p className="text-gray-500 text-sm leading-relaxed">
@@ -103,15 +103,15 @@ function Career() {
       </section>
 
       {/* --- Job Listings --- */}
-      <section className="py-24 px-6 bg-gray-900 relative">
-        <div className="max-w-7xl mx-auto relative z-10">
+      <section className="py-24 px-6">
+        <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
             <div className="text-left">
-              <h2 className="text-3xl md:text-4xl font-black text-white">Current Openings</h2>
+              <h2 className="text-3xl md:text-4xl font-black text-[#164676]">Current Openings</h2>
               <p className="text-gray-400 mt-2">Find the role that matches your passion.</p>
             </div>
-            <div className="hidden md:block h-px flex-1 bg-gray-800 mx-10 mb-4"></div>
-            <span className="text-green-500 font-bold">{jobs.length} Positions Available</span>
+            <div className="hidden md:block h-px flex-1 bg-[#164676] mx-10 mb-4"></div>
+            <span className="text-[#164676] font-bold">{jobs.length} Positions Available</span>
           </div>
 
           {jobs.length > 0 ? (
@@ -119,23 +119,23 @@ function Career() {
               {jobs.map((job) => (
                 <div
                   key={job._id}
-                  className="bg-gray-800/50 backdrop-blur-md rounded-[2.5rem] border border-gray-700 p-2 group hover:border-green-500/50 transition-all duration-500"
+                  className=" backdrop-blur-md bg-[#cccccc3f] rounded-[2.5rem]  p-2 group  transition-all duration-500"
                 >
-                  <div className="relative h-56 w-full overflow-hidden rounded-[2rem]">
+                  <div className="relative h-56 w-full overflow-hidden rounded-4xl">
                     <img
                       src={job.jobImgUrl}
                       alt={job.jobTitle}
                       className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60"></div>
+                    <div className="absolute inset-0 bg-linear-to-t from-gray-900 to-transparent opacity-60"></div>
                   </div>
 
                   <div className="p-6">
-                    <h3 className="text-xl font-bold text-white mb-6 group-hover:text-green-400 transition-colors">
+                    <h3 className="text-xl font-bold text-[#164676] mb-6  transition-colors">
                       {job.jobTitle}
                     </h3>
                     
-                    <button className="w-full bg-white text-gray-900 py-4 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-green-500 hover:text-white transition-all duration-300">
+                    <button className="w-full bg-white text-gray-900 py-4 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-[#164676] hover:text-white transition-all duration-300">
                       Apply Now <FaArrowRight size={14} />
                     </button>
                   </div>
@@ -150,16 +150,6 @@ function Career() {
         </div>
       </section>
 
-      {/* --- Footer CTA --- */}
-      <section className="py-20 text-center px-6">
-        <div className="max-w-2xl mx-auto p-12 rounded-[3rem] bg-green-500 text-white shadow-2xl shadow-green-200">
-            <h2 className="text-3xl font-black mb-4">Didn't find your role?</h2>
-            <p className="mb-8 opacity-90 text-lg">Send us your CV anyway! We're always looking for great talent to join our ecosystem.</p>
-            <a href="mailto:hr@placiddigital.in" className="bg-gray-900 text-white px-10 py-4 rounded-2xl font-bold hover:bg-white hover:text-gray-900 transition-all">
-                Submit Resume
-            </a>
-        </div>
-      </section>
     </div>
   );
 }

@@ -15,7 +15,7 @@ function Services() {
       icon: <FaBullhorn />,
       text: "Digital Marketing",
       paragraph: "Grow your brand with powerful digital marketing strategies and online campaigns.",
-      color: "bg-green-50 text-green-500",
+      color: "bg-green-50 text-[#164676]",
     },
     {
       id: 2,
@@ -39,9 +39,9 @@ function Services() {
         
         {/* Section Header to match the design style */}
         <div className="text-center mb-16">
-          <span className="text-green-500 font-bold tracking-widest uppercase text-sm">Our Expertise</span>
+          <span className="text-[#164676] font-bold tracking-widest uppercase text-sm">Our Expertise</span>
           <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mt-2">
-            Solutions for your <span className="text-green-500">Digital Growth</span>
+            Solutions for your <span className="text-[#164676]">Digital Growth</span>
           </h2>
         </div>
 
@@ -57,7 +57,7 @@ function Services() {
               </div>
 
               {/* Title */}
-              <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-green-500 transition-colors">
+              <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-[#164676] transition-colors">
                 {text}
               </h3>
 
@@ -67,7 +67,7 @@ function Services() {
               </p>
 
               {/* Action Link - matching the "Enroll Now" style */}
-              <div className="flex items-center justify-center gap-2 text-green-500 font-bold text-sm cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="flex items-center justify-center gap-2 text-[#164676] font-bold text-sm cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity">
                 Learn More <span>→</span>
               </div>
             </div>

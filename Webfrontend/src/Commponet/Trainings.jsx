@@ -31,11 +31,11 @@ function Trainings() {
         
         {/* Section Heading */}
         <div className="text-center mb-20">
-          <span className="bg-green-100 text-green-600 px-4 py-1 rounded-full text-sm font-bold uppercase tracking-widest mb-4 inline-block">
+          <span className="bg-green-100 text-[#164676] px-4 py-1 rounded-full text-sm font-bold uppercase tracking-widest mb-4 inline-block">
             Our Courses
           </span>
           <h1 className="text-4xl md:text-5xl font-black text-gray-900">
-            Explore Our Popular <span className="text-green-500">Trainings</span>
+            Explore Our Popular <span className="text-[#164676]">Trainings</span>
           </h1>
           <p className="text-gray-500 mt-4 max-w-2xl mx-auto text-lg">
             Placid Digital offers industry-leading mentorship to help you master 
@@ -60,7 +60,7 @@ function Trainings() {
                   />
                 </div>
                 <div className="absolute top-8 left-8">
-                  <span className="bg-white/90 backdrop-blur-sm text-green-600 text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm">
+                  <span className="bg-white/90 backdrop-blur-sm text-[#164676] text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm">
                     Best Seller
                   </span>
                 </div>
@@ -71,7 +71,7 @@ function Trainings() {
                 {/* Teacher Info & Rating */}
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-green-50 rounded-full flex items-center justify-center text-green-500">
+                    <div className="w-8 h-8 bg-green-50 rounded-full flex items-center justify-center text-[#164676]">
                       <FaUserTie size={14} />
                     </div>
                     <span className="text-xs font-bold text-gray-400">Expert Mentor</span>
@@ -82,7 +82,7 @@ function Trainings() {
                   </div>
                 </div>
 
-                <h2 className="text-2xl font-extrabold text-gray-800 mb-3 group-hover:text-green-500 transition-colors">
+                <h2 className="text-2xl font-extrabold text-gray-800 mb-3 group-hover:text-[#164676] transition-colors">
                   {c.courseName}
                 </h2>
 
@@ -102,7 +102,7 @@ function Trainings() {
                       navigate(`/course-details/${c._id}/${c.courseName}`);
                       scrollTop();
                     }}
-                    className="bg-green-500 text-white p-4 rounded-2xl hover:bg-gray-900 transition-all duration-300 shadow-lg shadow-green-100 group/btn"
+                    className="bg-[#164676] text-white p-4 rounded-2xl hover:bg-gray-900 transition-all duration-300 shadow-lg shadow-green-100 group/btn"
                   >
                     <FaArrowRight className="group-hover/btn:translate-x-1 transition-transform" />
                   </button>
@@ -115,7 +115,7 @@ function Trainings() {
         {/* Bottom CTA */}
         <div className="text-center mt-20">
           <p className="text-gray-500 font-medium italic">
-            Don't see what you're looking for? <span className="text-green-500 cursor-pointer hover:underline">Contact us for custom corporate training.</span>
+            Don't see what you're looking for? <span className="text-[#164676] cursor-pointer hover:underline">Contact us for custom corporate training.</span>
           </p>
         </div>
       </div>

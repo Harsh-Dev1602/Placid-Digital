@@ -27,7 +27,7 @@ function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-300 pt-20 pb-10 overflow-hidden relative">
       {/* Decorative background element */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-green-500/5 blur-[120px] rounded-full -mr-48 -mt-48"></div>
+      <div className="absolute top-0 right-0 w-96 h-96 bg-[#164676]/5 blur-[120px] rounded-full -mr-48 -mt-48"></div>
 
       <div className="container mx-auto px-6 lg:px-10 relative z-10">
         
@@ -62,16 +62,16 @@ function Footer() {
 
           {/* Column 2: Quick Links */}
           <div className="space-y-6">
-            <h3 className="text-lg font-bold text-white border-l-4 border-green-500 pl-4">Company</h3>
+            <h3 className="text-lg font-bold text-white border-l-4 border-white pl-4">Company</h3>
             <ul className="space-y-3">
               {quickLinks.map((item) => (
                 <li key={item.name}>
                   <Link 
                     onClick={scrollTop} 
                     to={item.link} 
-                    className="text-sm flex items-center gap-2 hover:text-green-500 transition-all group"
+                    className="text-sm flex items-center gap-2 hover:text-white hover:font-bold transition-all group"
                   >
-                    <IoArrowForward className="text-green-500 opacity-0 group-hover:opacity-100 -ml-4 group-hover:ml-0 transition-all" />
+                    <IoArrowForward className="text-white opacity-0 group-hover:opacity-100 -ml-4 group-hover:ml-0 transition-all" />
                     {item.name}
                   </Link>
                 </li>
@@ -81,16 +81,16 @@ function Footer() {
 
           {/* Column 3: Services */}
           <div className="space-y-6">
-            <h3 className="text-lg font-bold text-white border-l-4 border-green-500 pl-4">Expertise</h3>
+            <h3 className="text-lg font-bold text-white border-l-4 border-white pl-4">Expertise</h3>
             <ul className="space-y-3">
               {services.map((item) => (
                 <li key={item.name}>
                   <Link 
                     onClick={scrollTop} 
                     to={item.link} 
-                    className="text-sm flex items-center gap-2 hover:text-green-500 transition-all group"
+                    className="text-sm flex items-center  hover:font-bold gap-2 hover:text-white transition-all group"
                   >
-                    <IoArrowForward className="text-green-500 opacity-0 group-hover:opacity-100 -ml-4 group-hover:ml-0 transition-all" />
+                    <IoArrowForward className="text-white opacity-0 group-hover:opacity-100 -ml-4 group-hover:ml-0 transition-all" />
                     {item.name}
                   </Link>
                 </li>
@@ -100,22 +100,22 @@ function Footer() {
 
           {/* Column 4: Contact Info */}
           <div className="space-y-6">
-            <h3 className="text-lg font-bold text-white border-l-4 border-green-500 pl-4">Official Info</h3>
+            <h3 className="text-lg font-bold text-white border-l-4 border-white pl-4">Official Info</h3>
             <ul className="space-y-5 text-sm">
               <li className="flex gap-4">
-                <div className="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center text-green-500 shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-[#164676]/10 flex items-center justify-center text-white shrink-0">
                   <IoLocationSharp size={20} />
                 </div>
                 <span>Indore (M.P.) <br /> India, 452001</span>
               </li>
               <li className="flex gap-4 group">
-                <div className="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center text-green-500 shrink-0 group-hover:bg-green-500 group-hover:text-white transition-all">
+                <div className="w-10 h-10 rounded-xl bg-[#164676]/10 flex items-center justify-center text-white shrink-0 group-hover:bg-[#164676] group-hover:text-white transition-all">
                   <MdEmail size={20} />
                 </div>
-                <a href="mailto:info@placiddigital.in" className="hover:text-green-500">info@placiddigital.in</a>
+                <a href="mailto:info@placiddigital.in" className="hover:text-white  hover:font-bold">info@placiddigital.in</a>
               </li>
               <li className="flex gap-4">
-                <div className="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center text-green-500 shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-[#164676]/10 flex items-center justify-center text-white shrink-0">
                   <MdAccessTimeFilled size={20} />
                 </div>
                 <span>Mon - Sat <br /> 10:00 AM - 07:00 PM</span>
@@ -127,7 +127,7 @@ function Footer() {
         {/* Bottom Section: Copyright */}
         <div className="pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-xs text-gray-500 font-medium">
-            © {new Date().getFullYear()} <span className="text-green-500">Placid Digital Pvt. Ltd.</span> | Built for the Digital Future.
+            © {new Date().getFullYear()} <span className="text-white">Placid Digital Pvt. Ltd.</span> | Built for the Digital Future.
           </p>
          
         </div>

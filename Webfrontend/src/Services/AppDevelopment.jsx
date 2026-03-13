@@ -42,11 +42,11 @@ function AppDevelopment() {
         </div>
         
         <div className="container mx-auto text-center relative z-10">
-          <span className="text-green-500 font-black tracking-widest uppercase text-sm mb-4 inline-block">
+          <span className="bg-[#164676] text-white px-4 py-1  rounded-full font-black tracking-widest uppercase text-sm mb-4 inline-block">
             Our Expertise
           </span>
           <h1 className="text-5xl md:text-7xl font-black text-white mb-6">
-            App <span className="text-green-500">Development</span>
+            App Development
           </h1>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
             Placid Digital is the leading App Development Company in Indore, 
@@ -68,7 +68,7 @@ function AppDevelopment() {
               {/* Image Side */}
               <div className="md:w-1/2 relative group">
                 {/* Decorative Background Shape */}
-                <div className={`absolute -inset-4 bg-green-500/10 rounded-[3rem] -rotate-3 group-hover:rotate-0 transition-transform duration-500`}></div>
+                <div className={`absolute -inset-4 bg-[#164676]/10 rounded-[3rem] -rotate-3 group-hover:rotate-0 transition-transform duration-500`}></div>
                 
                 <div className="relative overflow-hidden rounded-[2.5rem] shadow-2xl shadow-gray-200">
                   <img
@@ -77,7 +77,7 @@ function AppDevelopment() {
                     className="w-full h-[400px] object-cover group-hover:scale-110 transition duration-700"
                   />
                   {/* Floating Icon Badge */}
-                  <div className={`absolute bottom-6 ${item.reverse ? 'left-6' : 'right-6'} bg-white p-5 rounded-3xl shadow-xl text-green-500 text-3xl animate-bounce-slow`}>
+                  <div className={`absolute bottom-6 ${item.reverse ? 'left-6' : 'right-6'} bg-white p-5 rounded-3xl shadow-xl text-[#164676] text-3xl animate-bounce-slow`}>
                     {item.icon}
                   </div>
                 </div>
@@ -85,8 +85,8 @@ function AppDevelopment() {
 
               {/* Text Side */}
               <div className="md:w-1/2 space-y-6">
-                <div className="inline-flex items-center gap-3 text-green-600 font-bold uppercase tracking-tighter text-sm">
-                  <div className="w-10 h-[2px] bg-green-500"></div>
+                <div className="inline-flex items-center gap-3 text-[#164676] font-bold uppercase tracking-tighter text-sm">
+                  <div className="w-10 h-[2px] bg-[#164676]"></div>
                   Feature 0{index + 1}
                 </div>
                 
@@ -94,12 +94,12 @@ function AppDevelopment() {
                   {item.title}
                 </h2>
                 
-                <p className="text-gray-500 text-lg leading-relaxed italic border-l-4 border-green-500 pl-6">
+                <p className="text-gray-500 text-lg leading-relaxed italic border-l-4 border-[#164676] pl-6">
                   {item.desc}
                 </p>
 
                 <div className="pt-6">
-                    <button className="bg-gray-900 text-white px-8 py-4 rounded-2xl font-bold hover:bg-green-500 transition-all shadow-xl shadow-gray-200 flex items-center gap-3 group">
+                    <button className="bg-gray-900 text-white px-8 py-4 rounded-2xl font-bold hover:bg-[#164676] transition-all shadow-xl shadow-gray-200 flex items-center gap-3 group">
                         Learn More 
                         <span className="group-hover:translate-x-1 transition-transform">→</span>
                     </button>
@@ -110,14 +110,6 @@ function AppDevelopment() {
         </div>
       </section>
 
-      {/* --- Simple Process Banner --- */}
-      <section className="py-20 bg-green-500 mx-6 mb-20 rounded-[3rem] text-center text-white px-6">
-          <h2 className="text-3xl md:text-5xl font-black mb-6">Ready to launch your app?</h2>
-          <p className="text-green-50 text-lg mb-10 max-w-xl mx-auto">From wireframing to App Store deployment, we handle the entire lifecycle of your mobile project.</p>
-          <button className="bg-white text-green-600 px-12 py-5 rounded-2xl font-black text-lg hover:bg-gray-900 hover:text-white transition-all">
-              Get a Free Quote
-          </button>
-      </section>
 
       <style jsx>{`
         @keyframes bounce-slow {

@@ -48,7 +48,7 @@ function PortfolioManager() {
           </p>
         </div>
         <Link to="/admin-dashboard/add-portfolio" 
-          className="flex items-center gap-2 bg-[#7ED957] text-white px-6 py-3 rounded-2xl font-black hover:bg-[#7ed9575c] transition-all transform active:scale-95 shadow-lg shadow-black/10"
+          className="flex items-center gap-2 bg-[#164676] text-white px-6 py-3 rounded-2xl font-black hover:bg-[#16467670] transition-all transform active:scale-95 shadow-lg shadow-black/10"
         >
           <HiOutlinePlusSm size={20} />
           Add New Project

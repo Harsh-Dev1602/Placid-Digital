@@ -125,7 +125,7 @@ function AddJob() {
                     <p className="text-sm font-bold text-gray-500">{uploading ? 'Processing Image...' : 'Click to upload banner'}</p>
                   </div>
                 ) : (
-                  <div className="flex flex-col items-center text-green-600">
+                  <div className="flex flex-col items-center text-[#164676]">
                     <HiOutlineCheckCircle className="text-5xl mb-2" />
                     <button type="button" onClick={() => setUploadedImageUrl("")} className="text-xs font-bold text-red-500 hover:underline">Replace Banner</button>
                   </div>
@@ -158,7 +158,7 @@ function AddJob() {
                          <HiOutlineBriefcase size={60} />
                     </div>
                 )}
-                <div className="absolute top-4 right-4 bg-[#7ED957] text-[#0F2B5B] px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">
+                <div className="absolute top-4 right-4 bg-[#164676] text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">
                   Live
                 </div>
             </div>

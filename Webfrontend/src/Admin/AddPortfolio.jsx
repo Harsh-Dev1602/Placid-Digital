@@ -91,7 +91,7 @@ function AddPortfolio() {
           {/* Image Upload Area */}
           <div className="space-y-3">
             <label className="text-xs font-black uppercase tracking-widest text-gray-400 ml-2">Display Image</label>
-            <label className={`relative flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-[2.5rem] cursor-pointer transition-all duration-300 ${uploadedImageUrl ? 'border-green-500 bg-green-50/20' : 'border-gray-200 hover:border-[#0F2B5B] bg-gray-50'}`}>
+            <label className={`relative flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-[2.5rem] cursor-pointer transition-all duration-300 ${uploadedImageUrl ? 'border-[#164676] bg-green-50/20' : 'border-gray-200 hover:border-[#0F2B5B] bg-gray-50'}`}>
               {!uploadedImageUrl ? (
                 <div className="flex flex-col items-center justify-center text-center px-6">
                   <div className={`p-4 rounded-full mb-4 ${uploading ? 'bg-blue-100' : 'bg-gray-100'}`}>
@@ -101,7 +101,7 @@ function AddPortfolio() {
                   <p className="text-xs text-gray-400 mt-2">Recommended: 16:9 ratio (e.g. 1920x1080)</p>
                 </div>
               ) : (
-                <div className="flex flex-col items-center text-green-600">
+                <div className="flex flex-col items-center text-[#164676]">
                   <HiOutlineCheckCircle className="text-5xl mb-2" />
                   <span className="text-sm font-black uppercase tracking-widest">Image Secured</span>
                   <button type="button" onClick={(e) => {e.preventDefault(); setUploadedImageUrl("")}} className="mt-4 text-xs text-red-500 underline">Change Image</button>
@@ -150,7 +150,7 @@ function AddPortfolio() {
              <div className="p-6 flex justify-between items-center">
                 <div>
                    <p className="text-[10px] font-black text-gray-400 uppercase">Status</p>
-                   <p className="text-xs font-bold text-green-500">Live on Website</p>
+                   <p className="text-xs font-bold text-[#164676]">Live on Website</p>
                 </div>
                 <div className="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center text-gray-300">
                     <HiOutlinePhotograph />

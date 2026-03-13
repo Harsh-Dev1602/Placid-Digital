@@ -9,11 +9,11 @@ function AboutUs() {
         
         {/* Title Section */}
         <div className="text-center mb-16">
-          <span className="bg-green-100 text-green-600 px-4 py-1 rounded-full text-sm font-semibold mb-4 inline-block">
+          <span className="bg-green-100 text-[#164676] px-4 py-1 rounded-full text-sm font-semibold mb-4 inline-block">
             Our Story
           </span>
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900">
-            About <span className="text-green-500">Placid Digital</span>
+            About <span className="text-[#164676]">Placid Digital</span>
           </h1>
         </div>
 
@@ -22,7 +22,7 @@ function AboutUs() {
           <div className="order-2 md:order-1">
             <h2 className="text-3xl font-bold text-gray-800 mb-6 leading-tight">
               We help to implement your <br />
-              <span className="text-green-500">ideas into reality</span>
+              <span className="text-[#164676]">ideas into reality</span>
             </h2>
             <p className="text-gray-600 mb-8 text-lg leading-relaxed">
               We believe that communication is the key and our team of experts
@@ -30,7 +30,7 @@ function AboutUs() {
               between team members and clients, ensuring transparency.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-green-500 text-white px-8 py-3 rounded-full font-bold hover:bg-green-600 transition shadow-lg shadow-green-100">
+              <button className="bg-[#164676] text-white px-8 py-3 rounded-full font-bold  transition shadow-lg shadow-green-100">
                 Contact Us
               </button>
               <button className="border border-gray-200 text-gray-700 px-8 py-3 rounded-full font-bold hover:bg-gray-50 transition">
@@ -58,7 +58,7 @@ function AboutUs() {
             { icon: "✅", title: "Quality First", desc: "We deliver high-fidelity products tailored to your needs." }
           ].map((item, index) => (
             <div key={index} className="p-8 rounded-3xl border border-gray-100 bg-white hover:shadow-2xl hover:shadow-gray-100 transition-all duration-300 group">
-              <div className="w-14 h-14 bg-green-50 text-green-500 flex items-center justify-center rounded-2xl mb-6 text-2xl group-hover:bg-green-500 group-hover:text-white transition-colors">
+              <div className="w-14 h-14 bg-green-50 text-[#164676] flex items-center justify-center rounded-2xl mb-6 text-2xl group-hover:bg-[#164676] group-hover:text-white transition-colors">
                 {item.icon}
               </div>
               <h3 className="font-bold text-xl mb-3 text-gray-800">{item.title}</h3>
@@ -68,11 +68,11 @@ function AboutUs() {
         </div>
 
         {/* Why Choose Us Section */}
-        <div className="bg-gray-900 rounded-[3rem] p-8 md:p-16 text-white overflow-hidden relative">
+        <div className="bg-gray-100 rounded-[3rem] p-8 md:p-16 overflow-hidden relative">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Why choose <span className="text-green-400">Placid Digital?</span>
+                Why choose <span className="text-[#164676]">Placid Digital?</span>
               </h2>
               <p className="text-gray-400 mb-10 leading-relaxed text-lg">
                 Our systematic approach starts with trust. From signing NDAs to 
@@ -87,7 +87,7 @@ function AboutUs() {
                   "📈 Investment Strategy", 
                   "🔐 Business Security"
                 ].map((tag) => (
-                  <div key={tag} className="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10 hover:bg-white/20 transition cursor-default">
+                  <div key={tag} className="bg-white backdrop-blur-md p-4 rounded-2xl border border-white/10 hover:bg-white/20 transition cursor-default">
                     {tag}
                   </div>
                 ))}

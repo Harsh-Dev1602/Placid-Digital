@@ -46,7 +46,7 @@ function JobManager() {
           <p className="text-gray-500 text-sm mt-1">Manage open positions and recruitment for Placid Digital.</p>
         </div> 
         <Link    to="/admin-dashboard/add-job" 
-          className="flex items-center gap-2 bg-[#7ED957] text-white px-8 py-4 rounded-2xl font-black hover:bg-[#6bc24a] transition-all transform active:scale-95 shadow-lg shadow-green-500/20"
+          className="flex items-center gap-2 bg-[#164676] text-white px-8 py-4 rounded-2xl font-black hover:bg-[#16467670] transition-all transform active:scale-95 shadow-lg shadow-green-500/20"
         >
           <HiOutlinePlusSm size={20} />
           Post New Job

@@ -66,7 +66,7 @@ function Sidebar() {
       `}>
 
         {/* Decorative Glow */}
-        <div className="absolute top-0 right-0 w-32 h-32 bg-[#7ED957] blur-[120px] opacity-20 pointer-events-none" />
+        <div className="absolute top-0 right-0 w-32 h-32 bg-[#164676] blur-[120px] opacity-20 pointer-events-none" />
 
         <div className="w-full relative z-10">
           <div className="flex flex-col items-center pb-10 mb-6 border-b border-white/5">
@@ -85,7 +85,7 @@ function Sidebar() {
                     className={({ isActive }) => `
                       flex items-center gap-4 px-5 py-4 rounded-2xl font-bold transition-all text-black duration-500 group
                       ${isActive
-                        ? "bg-[#7ED957] text-[#0F2B5B] shadow-xl shadow-[#7ED957]/20 scale-105"
+                        ? "bg-[#164676] text-white shadow-xl shadow-[#7ED957]/20 scale-105"
                         : " "
                       }
                     `}

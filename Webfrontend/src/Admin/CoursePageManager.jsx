@@ -52,7 +52,7 @@ function CoursePageManager() {
           </p>
         </div>
         <Link   to="/admin-dashboard/add-course-page" 
-          className="flex items-center gap-2 bg-[#7ED957] text-white px-8 py-4 rounded-2xl font-black hover:bg-[#6bc24a] transition-all transform active:scale-95 shadow-lg shadow-green-500/20"
+          className="flex items-center gap-2 bg-[#164676] text-white px-8 py-4 rounded-2xl font-black hover:bg-[#16467670] transition-all transform active:scale-95 shadow-lg shadow-green-500/20"
         >
           <HiOutlinePlusSm size={20} />
           Add Course Page

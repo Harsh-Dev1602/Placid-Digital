@@ -30,16 +30,16 @@ function Offer() {
         {/* Heading Section */}
         <div className="flex flex-col lg:flex-row justify-between items-start gap-8 mb-16">
           <div className="lg:w-2/3 space-y-4">
-            <span className="bg-green-100 text-green-600 px-4 py-1 rounded-full text-sm font-bold uppercase tracking-widest">
+            <span className="bg-green-100 text-[#164676] px-4 py-1 rounded-full text-sm font-bold uppercase tracking-widest">
               Our Expertise
             </span>
             <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
               Premium Solutions For <br />
-              <span className="text-green-500 font-black">Your Global Business</span>
+              <span className="text-[#164676] font-black">Your Global Business</span>
             </h2>
           </div>
           <div className="lg:w-1/3">
-            <p className="text-gray-500 text-lg leading-relaxed border-l-4 border-green-500 pl-6">
+            <p className="text-gray-500 text-lg leading-relaxed border-l-4 border-[#164676] pl-6">
               Placid Digital is a fast-growing IT power-house delivering
               innovative software, mobile apps, and digital marketing strategies.
             </p>
@@ -63,7 +63,7 @@ function Offer() {
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-                      <button className="bg-white text-green-500 p-4 rounded-full shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                      <button className="bg-white text-[#164676] p-4 rounded-full shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                         <FaArrowRight />
                       </button>
                     </div>
@@ -71,7 +71,7 @@ function Offer() {
 
                   {/* Content Area */}
                   <div className="p-8 flex flex-col flex-grow text-center">
-                    <h3 className="text-2xl font-bold text-gray-800 mb-4 group-hover:text-green-500 transition-colors">
+                    <h3 className="text-2xl font-bold text-gray-800 mb-4 group-hover:text-[#164676] transition-colors">
                       {text}
                     </h3>
                     <p className="text-gray-500 leading-relaxed line-clamp-3">

@@ -75,14 +75,14 @@ function AddCourse() {
           {/* Image Upload Area */}
           <div className="space-y-2">
             <label className="text-xs font-black uppercase tracking-widest text-gray-400 ml-2">Course Banner</label>
-            <label className={`relative flex flex-col items-center justify-center w-full h-48 border-2 border-dashed rounded-[2rem] cursor-pointer transition-all ${uploadedImageUrl ? 'border-green-500 bg-green-50/30' : 'border-gray-200 hover:border-[#0F2B5B] bg-gray-50'}`}>
+            <label className={`relative flex flex-col items-center justify-center w-full h-48 border-2 border-dashed rounded-[2rem] cursor-pointer transition-all ${uploadedImageUrl ? 'border-[#164676] bg-green-50/30' : 'border-gray-200 hover:border-[#0F2B5B] bg-gray-50'}`}>
               {!uploadedImageUrl ? (
                 <div className="flex flex-col items-center justify-center pt-5 pb-6 text-center px-4">
                   <HiOutlineCloudUpload className={`text-4xl mb-2 ${uploading ? 'animate-bounce text-blue-500' : 'text-gray-400'}`} />
                   <p className="text-sm font-bold text-gray-500">{uploading ? 'Processing Image...' : 'Click to upload course image'}</p>
                 </div>
               ) : (
-                <div className="flex flex-col items-center text-green-600">
+                <div className="flex flex-col items-center text-[#164676]">
                   <HiOutlineCheckCircle className="text-4xl mb-1" />
                   <span className="text-xs font-bold uppercase">Image Secured</span>
                 </div>

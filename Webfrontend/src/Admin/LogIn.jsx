@@ -51,11 +51,11 @@ function LogIn() {
       
       <div className="w-full max-w-md bg-white rounded-[2rem] shadow-2xl shadow-gray-200/50 p-8 md:p-12 relative overflow-hidden">
         {/* Subtle Brand Accent */}
-        <div className="absolute top-0 right-0 w-32 h-32 bg-[#7ED957]/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+        <div className="absolute top-0 right-0 w-32 h-32 bg-[#164676]/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
 
         <div className="relative z-10">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-black text-green-500 mb-2">Admin Portal</h2>
+            <h2 className="text-3xl font-black text-[#164676] mb-2">Admin Portal</h2>
             <p className="text-gray-400 font-medium">Please sign in to your account</p>
           </div>
 
@@ -106,7 +106,7 @@ function LogIn() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-green-600 text-white py-4 rounded-2xl font-bold text-lg hover:bg-green-700 transform transition-all active:scale-[0.98] shadow-xl shadow-blue-900/20 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full bg-[#164676] text-white py-4 rounded-2xl font-bold text-lg hover:bg-[#16467692] cursor-pointer transform transition-all active:scale-[0.98] shadow-xl shadow-blue-900/20 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {isSubmitting ? (
                 <>

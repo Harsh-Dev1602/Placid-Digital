@@ -34,11 +34,11 @@ function DigitalMarketing() {
         </div>
         
         <div className="container mx-auto relative z-10">
-          <span className="bg-green-500 text-white px-4 py-1 rounded-full text-xs font-black uppercase tracking-[0.2em] mb-6 inline-block">
+          <span className="bg-[#164676] text-white px-4 py-1 rounded-full text-xs font-black uppercase tracking-[0.2em] mb-6 inline-block">
             Growth Accelerated
           </span>
           <h1 className="text-5xl md:text-7xl font-black text-white mb-6">
-            Digital <span className="text-[#7ED957]">Marketing</span>
+            Digital Marketing
           </h1>
           <p className="text-gray-300 max-w-2xl mx-auto text-lg">
             Placid Digital (Smart Future Step) is the premier Social Media Marketing Company 
@@ -52,7 +52,7 @@ function DigitalMarketing() {
         <div className="flex flex-col lg:flex-row items-center gap-16 mb-24">
           {/* Image with Decorative Glow */}
           <div className="lg:w-1/2 relative">
-            <div className="absolute -top-6 -left-6 w-full h-full border-2 border-green-500 rounded-[2.5rem] -z-10"></div>
+            <div className="absolute -top-6 -left-6 w-full h-full border-2 border-[#164676] rounded-[2.5rem] -z-10"></div>
             <img
               src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
               alt="Digital Marketing Analysis"
@@ -64,7 +64,7 @@ function DigitalMarketing() {
           <div className="lg:w-1/2 space-y-6">
             <h2 className="text-3xl md:text-4xl font-black text-[#0F2B5B] leading-tight">
               Boost Your Brand <br /> 
-              <span className="text-green-500 text-2xl md:text-3xl italic font-serif">Visibility & Engagement</span>
+              <span className="text-[#164676] text-2xl md:text-3xl italic font-serif">Visibility & Engagement</span>
             </h2>
             <p className="text-gray-600 leading-relaxed text-lg">
               Known for premium services across the region, our team helps your brand gain 
@@ -73,10 +73,10 @@ function DigitalMarketing() {
             </p>
             <div className="grid grid-cols-2 gap-4 pt-4">
                <div className="flex items-center gap-2 font-bold text-[#0F2B5B]">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div> Brand Strategy
+                  <div className="w-2 h-2 bg-[#164676] rounded-full"></div> Brand Strategy
                </div>
                <div className="flex items-center gap-2 font-bold text-[#0F2B5B]">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div> Ad Management
+                  <div className="w-2 h-2 bg-[#164676] rounded-full"></div> Ad Management
                </div>
             </div>
           </div>
@@ -86,7 +86,7 @@ function DigitalMarketing() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {marketingServices.map((service, index) => (
             <div key={index} className="group p-8 bg-gray-50 rounded-[2rem] hover:bg-white hover:shadow-2xl hover:shadow-green-100 transition-all duration-500 border border-transparent hover:border-green-100">
-              <div className="text-4xl text-green-500 mb-6 group-hover:scale-110 transition-transform">
+              <div className="text-4xl text-[#164676] mb-6 group-hover:scale-110 transition-transform">
                 {service.icon}
               </div>
               <h3 className="text-xl font-bold text-[#0F2B5B] mb-3">{service.title}</h3>
@@ -96,26 +96,6 @@ function DigitalMarketing() {
         </div>
       </section>
 
-      {/* --- Growth Chart Diagram Placeholder --- */}
-      
-
-      {/* --- Final CTA --- */}
-      <section className="bg-gray-50 py-20">
-        <div className="container mx-auto px-6 text-center">
-          <div className="max-w-4xl mx-auto bg-[#0F2B5B] p-10 md:p-16 rounded-[3rem] relative overflow-hidden shadow-2xl">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-green-500 rounded-full blur-[80px] opacity-20"></div>
-            <h2 className="text-3xl md:text-5xl font-black text-white mb-6">
-              Ready to Skyrocket <br /> Your ROI?
-            </h2>
-            <p className="text-gray-400 mb-10 text-lg">
-              Stop guessing and start growing with Indore's most trusted digital team.
-            </p>
-            <button className="bg-green-500 hover:bg-white hover:text-green-600 text-white px-10 py-5 rounded-2xl font-black text-lg transition-all flex items-center gap-3 mx-auto">
-              Get Started Now <FaArrowRight />
-            </button>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
