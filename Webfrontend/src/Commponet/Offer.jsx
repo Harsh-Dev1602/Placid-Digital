@@ -1,7 +1,5 @@
 import React from "react";
 
-
-// Icons and Images
 import { FaArrowRight } from "react-icons/fa";
 import Img0 from "../../public/Offer_Img/ImgO.jpg";
 import Img1 from "../../public/Offer_Img/ImgO1.jpg";
@@ -46,16 +44,14 @@ function Offer() {
           </div>
         </div>
 
-        {/* container: overflow-x-auto allows scrolling, no-scrollbar hides the bar */}
-        <div className="container mx-auto px-4 scrollbar overflow-x-auto">
-          {/* flex-nowrap: forces all cards into a single row */}
+
+        <div className="container mx-auto px-4 scrollbar overscroll-auto overflow-x-auto">
+
           <div className="flex flex-nowrap  gap-6 pb-10 animate-slide">
             {OfferCard.map(({ id, img, text, paragraph }) => (
-              /* flex-shrink-0: prevents the cards from squishing to fit the screen */
-              <div key={id} className="flex-shrink-0 outline-none">
-                <div className="group bg-white rounded-[2.5rem] border border-gray-300 overflow-hidden hover:shadow-2xl hover:shadow-green-100/50 transition-all duration-500 flex flex-col w-72 md:w-96 h-full">
 
-                  {/* Image Container */}
+              <div key={id} className="shrink-0 outline-none">
+                <div className="group bg-white rounded-[2.5rem] border border-gray-300 overflow-hidden hover:shadow-2xl hover:shadow-green-100/50 transition-all duration-500 flex flex-col w-72 md:w-96 h-full">
                   <div className="relative w-full h-60 overflow-hidden">
                     <img
                       src={img}
@@ -68,8 +64,6 @@ function Offer() {
                       </button>
                     </div>
                   </div>
-
-                  {/* Content Area */}
                   <div className="p-8 flex flex-col flex-grow text-center">
                     <h3 className="text-2xl font-bold text-gray-800 mb-4 group-hover:text-[#164676] transition-colors">
                       {text}

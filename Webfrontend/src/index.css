@@ -200,6 +200,9 @@ h3 {
   100% {
     transform: translateX(-37%);
   }
+  0%{
+     transform: translateX(-100%);
+  }
 }
 
 .animate-slide {

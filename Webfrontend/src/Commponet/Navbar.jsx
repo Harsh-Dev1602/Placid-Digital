@@ -103,6 +103,7 @@ function Navbar() {
                     {["Web Development", "App Development", "Digital Marketing"].map((service) => (
                       <Link
                         key={service}
+                         onClick={scrollTop}
                         to={`/${service.toLowerCase().replace(" ", "-")}`}
                         className="block px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-green-50 hover:text-[#164676] rounded-xl transition"
                       >
@@ -136,7 +137,7 @@ function Navbar() {
       </div>
 
       {/* Mobile Sidebar */}
-      <div className={`fixed inset-0 z-[60] lg:hidden transition-transform duration-500 ${openMenu ? "translate-x-0" : "-translate-x-full"}`}>
+      <div className={`fixed inset-0 z-60 lg:hidden transition-transform duration-500 ${openMenu ? "translate-x-0" : "-translate-x-full"}`}>
         <div className="absolute inset-0 b" onClick={() => setMenu(false)}></div>
         <nav className="relative w-70 h-full bg-white shadow-2xl p-8 flex flex-col justify-between items-start">
 
@@ -155,7 +156,7 @@ function Navbar() {
 
             <div
               className="relative group"
-              onMouseEnter={() => setOpen(true)}
+              onClick={() => setOpen(true)}
               onMouseLeave={() => setOpen(false)}
             >
               <button className="flex items-center gap-1 text-xl font-bold text-gray-800 hover:text-[#164676] transition">
@@ -168,6 +169,7 @@ function Navbar() {
                     {["Web Development", "App Development", "Digital Marketing"].map((service) => (
                       <Link
                         key={service}
+                         onClick={scrollTop}
                         to={`/${service.toLowerCase().replace(" ", "-")}`}
                         className="block px-4 py-3 text-xl font-semibold text-gray-600 hover:bg-green-50 hover:text-[#164676] rounded-xl transition"
                       >

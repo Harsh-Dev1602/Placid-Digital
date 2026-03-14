@@ -47,7 +47,7 @@ function Home() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start pt-4">
-              <button className="bg-[#164676] text-white px-10 py-5 rounded-2xl font-black hover:bg-green-600 hover:-translate-y-1 transition-all shadow-xl shadow-green-200 flex items-center justify-center gap-3 group">
+              <button className="bg-[#164676] text-white px-10 py-5 rounded-2xl font-black hover:bg-[#164676b4] hover:-translate-y-1 transition-all shadow-xl shadow-[#16467651] flex items-center justify-center gap-3 group">
                 Start Learning <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
               </button>
 
